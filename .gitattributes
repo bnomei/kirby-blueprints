@@ -1,0 +1,12 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+/*-lock.json        export-ignore
+/.*                 export-ignore
+/docker-compose.yml export-ignore
+/docs               export-ignore
+/examples           export-ignore
+/package.json       export-ignore
+/phpunit.xml        export-ignore
+/ray.php            export-ignore
+/tests              export-ignore
