@@ -1,0 +1,33 @@
+<?php
+
+use Bnomei\Blueprints\Attributes\Buttons;
+use Bnomei\Blueprints\Attributes\ButtonTypes;
+use Bnomei\Blueprints\Attributes\FieldTypes;
+use Bnomei\Blueprints\Attributes\Label;
+use Bnomei\Blueprints\Attributes\MaxLength;
+use Bnomei\Blueprints\Attributes\Spellcheck;
+use Bnomei\Blueprints\Attributes\Type;
+use Kirby\Content\Field;
+
+trait hasDescriptionField
+{
+    #[
+        Type(FieldTypes::TEXTAREA),
+        Label([
+            'de' => 'Beschreibung',
+            'en' => 'Description',
+        ]),
+        Buttons([
+            ButtonTypes::BOLD,
+            ButtonTypes::ITALIC,
+            ButtonTypes::SEPERATOR,
+            ButtonTypes::LINK,
+        ]),
+        MaxLength(3000),
+        Spellcheck(true),
+    ]
+    public function description(): Field
+    {
+        return parent::__call(__METHOD__);
+    }
+}

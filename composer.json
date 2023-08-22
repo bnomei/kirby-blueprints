@@ -1,0 +1,81 @@
+{
+    "name": "bnomei/kirby-blueprints",
+    "type": "kirby-plugin",
+    "version": "1.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bnomei/kirby3-blueprints",
+    "description": "Class based Blueprints for Kirby CMS for better type safety and code completion",
+    "authors": [
+        {
+            "name": "Bruno Meilick",
+            "email": "b@bnomei.com"
+        }
+    ],
+    "keywords": [
+        "kirby",
+        "kirby-cms",
+        "kirby-plugin",
+				"panel",
+        "blueprints",
+        "yml",
+        "yaml",
+        "php",
+        "object-oriented",
+        "type-hints",
+        "code-completion",
+        "model",
+        "class",
+        "attributes"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Bnomei\\": "classes/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true,
+        "allow-plugins": {
+            "getkirby/composer-installer": true,
+            "pestphp/pest-plugin": true
+        }
+    },
+    "require": {
+        "php": ">=8.1",
+        "getkirby/composer-installer": "^1.2"
+    },
+    "require-dev": {
+        "bnomei/autoloader-for-kirby": "^1.9",
+        "getkirby/cli": "dev-develop",
+        "getkirby/cms": "^4.0.0-alpha.7",
+        "laravel/pint": "^1.11",
+        "pestphp/pest": "^2.16",
+        "php-coveralls/php-coveralls": "^2.4",
+        "spatie/ray": "^1.37",
+        "vimeo/psalm": "^5.15"
+    },
+    "scripts": {
+        "analyze": "psalm",
+        "fix": "pint",
+        "test": [
+            "mkdir -p tests/logs",
+            "@putenv XDEBUG_MODE=coverage",
+            "pest --coverage --coverage-html tests/logs/coverage"
+        ],
+        "dist": [
+            "composer fix",
+            "composer install --no-dev --optimize-autoloader",
+            "git rm -rf --cached .; git add .;"
+        ],
+        "kirby": [
+            "npm install",
+            "composer install",
+            "composer update",
+            "composer install --working-dir=tests/kirby --no-dev --optimize-autoloader",
+            "composer update --working-dir=tests/kirby"
+        ]
+    },
+    "extra": {
+        "kirby-cms-path": "tests/kirby"
+    }
+}
