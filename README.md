@@ -7,17 +7,15 @@
 [![Maintainability](https://flat.badgen.net/codeclimate/maintainability/bnomei/kirby-blueprints)](https://codeclimate.com/github/bnomei/kirby-blueprints)
 [![Twitter](https://flat.badgen.net/badge/twitter/bnomei?color=66d9ef)](https://twitter.com/bnomei)
 
-Class based Blueprints for Kirby CMS for better type safety and code completion.
+Class-based Blueprints for Kirby CMS for better type safety and code completion.
 
 ## Install
 
 Using composer:
 
 ```bash
-composer require getkirby/cli bnomei/kirby-blueprints
+composer require bnomei/kirby-blueprints
 ```
-
-You need to install the CLI with composer. Since Janitor depends on the CLI to be available installing only the blueprints plugin via submodules or via ZIP do not make much sense. Please stick to composer for now.
 
 ## Commercial Usage
 

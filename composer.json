@@ -4,7 +4,7 @@
     "version": "1.0.0",
     "license": "MIT",
     "homepage": "https://github.com/bnomei/kirby3-blueprints",
-    "description": "Class based Blueprints for Kirby CMS for better type safety and code completion",
+    "description": "Class-based Blueprints for Kirby CMS for better type safety and code completion",
     "authors": [
         {
             "name": "Bruno Meilick",
