@@ -104,12 +104,16 @@ trait hasBlueprint
     {
         $blueprint = [];
 
-        // find method with blueprint attribute using reflection
+        // find method(s) with blueprint attribute using reflection
         $rc = new ReflectionClass(self::class);
         foreach ($rc->getMethods(ReflectionMethod::IS_PUBLIC) as $method) {
             foreach ($method->getAttributes() as $attribute) {
                 if ($attribute->getName() === 'Bnomei\Blueprints\Attributes\Blueprint') {
-                    $blueprint = self::{$method->getShortName()}();
+					// merge from methods that return blueprint array
+                    $blueprint = array_merge_recursive(
+						$blueprint,
+						self::{$method->getShortName()}()
+					);
                 }
             }
         }
