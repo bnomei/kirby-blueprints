@@ -3,6 +3,8 @@
 namespace Bnomei\Blueprints;
 
 use Kirby\Content\Field;
+use Kirby\Data\Yaml;
+use Kirby\Filesystem\F;
 use Kirby\Toolkit\Str;
 use ReflectionClass;
 use ReflectionMethod;
@@ -50,8 +52,19 @@ trait hasBlueprint
         }
 
         $blueprint = [
-            'fields' => $fields, // TODO: recursive! merge them with the class based blueprint
+            'fields' => $fields,
         ];
+
+        $yamlFile = str_replace('.php', '.yml', $rc->getFileName());
+        if (F::exists($yamlFile)) {
+            $blueprint = Yaml::read($yamlFile);
+            // find fields and map them from the attributes that match `{key}: true`
+            array_walk_recursive($blueprint, function (&$value, $key) use ($fields) {
+                if (in_array($key, array_keys($fields)) && $value === true) {
+                    $value = $fields[$key]; // this will overwrite since value is used by reference!
+                }
+            });
+        }
 
         $pagesSlashModel = 'pages/'.strtolower(str_replace('Page', '', $rc->getShortName()));
         $pm = [$pagesSlashModel => $blueprint];
