@@ -68,7 +68,6 @@
             "git rm -rf --cached .; git add .;"
         ],
         "kirby": [
-            "npm install",
             "composer install",
             "composer update",
             "composer install --working-dir=tests/kirby --no-dev --optimize-autoloader",
