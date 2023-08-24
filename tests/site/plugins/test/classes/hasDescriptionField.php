@@ -5,7 +5,6 @@ use Bnomei\Blueprints\Attributes\ButtonTypes;
 use Bnomei\Blueprints\Attributes\FieldTypes;
 use Bnomei\Blueprints\Attributes\Label;
 use Bnomei\Blueprints\Attributes\MaxLength;
-use Bnomei\Blueprints\Attributes\Property;
 use Bnomei\Blueprints\Attributes\Spellcheck;
 use Bnomei\Blueprints\Attributes\Type;
 use Kirby\Content\Field;
@@ -26,7 +25,6 @@ trait hasDescriptionField
         ]),
         MaxLength(3000),
         Spellcheck(true),
-        Property('Custom key', 'custom data')
     ]
     public function description(): Field
     {

@@ -23,38 +23,42 @@ test('Textarea has Attributes', function () {
     ]);
 });
 
-test('Blueprint of ProductPage has description Textarea field', function () {
+test('has a Blueprint of ProductPage with description Textarea field', function () {
     $blueprint = ProductPage::registerBlueprintExtension();
-    expect($blueprint)->toEqual([
-        'pages/product' => [
-            'fields' => [
-                'description' => [
-                    'buttons' => [
-                        'bold',
-                        'italic',
-                        '|',
-                        'link',
-                    ],
-                    'customkey' => 'custom data',
-                    'label' => [
-                        'en' => 'Description',
-                        'de' => 'Beschreibung',
-                    ],
-                    'maxlength' => 3000,
-                    'spellcheck' => true,
-                    'type' => 'textarea',
-                ],
-            ],
+    expect($blueprint['pages/product']['sections']['main']['fields']['description'])->toEqual([
+        'buttons' => [
+            'bold',
+            'italic',
+            '|',
+            'link',
         ],
+
+        'label' => [
+            'en' => 'Description',
+            'de' => 'Beschreibung',
+        ],
+        'maxlength' => 3000,
+        'spellcheck' => true,
+        'type' => 'textarea',
     ]);
 });
 
-test('Test Custom Type', function () {
+test('has Custom Type and Property', function () {
     $blueprint = ProductPage::registerBlueprintExtension();
-    ray($blueprint);
-    expect($blueprint['pages/product']['fields']['qrcode'])->toEqual(
+    expect($blueprint['pages/product']['sections']['main']['fields']['qrcode'])->toEqual(
         [
             'type' => 'qrcode',
+            'customkey' => 'custom data',
         ]
     );
+});
+
+test('has merged Blueprint from class method', function () {
+	$blueprint = ProductPage::registerBlueprintExtension();
+	expect($blueprint['pages/product']['sections']['files'])->toEqual(
+		[
+			'type' => 'files',
+			'label' => 'All Files',
+		]
+	);
 });

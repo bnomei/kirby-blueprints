@@ -19,6 +19,41 @@ trait hasBlueprint
             return $blueprint;
         }
 
+        $fields = self::getFieldsForBlueprintUsingReflection();
+
+        // merge with blueprint from yaml file or class
+        $blueprint = array_merge_recursive(
+            self::getBlueprintFromYamlFile(),
+            self::getBlueprintFromClass(),
+        );
+        if (! empty($blueprint)) {
+            // find fields and map them from the attributes that match `{key}: true`
+            array_walk_recursive($blueprint, function (&$value, $key) use ($fields) {
+                if (in_array($key, array_keys($fields)) && $value === true) {
+                    $value = $fields[$key]; // this will overwrite since value is used by reference!
+                }
+            });
+        } else {
+            // define most basic blueprint
+            $blueprint = [
+                'fields' => $fields,
+            ];
+        }
+
+        $rc = new ReflectionClass(self::class);
+        $pagesSlashModel = 'pages/'.strtolower(str_replace('Page', '', $rc->getShortName()));
+        $pm = [$pagesSlashModel => $blueprint];
+
+        // some might not be cacheable like when they are class based and have dynamic fields
+        if (! isset(self::$cacheBlueprint) || self::$cacheBlueprint === true) {
+            BlueprintCache::set(static::class, $pm);
+        }
+
+        return $pm;
+    }
+
+    public static function getFieldsForBlueprintUsingReflection(): array
+    {
         $fields = [];
         $rc = new ReflectionClass(self::class);
         foreach ($rc->getMethods(ReflectionMethod::IS_PUBLIC) as $method) {
@@ -51,29 +86,34 @@ trait hasBlueprint
             }
         }
 
-        $blueprint = [
-            'fields' => $fields,
-        ];
+        return $fields;
+    }
 
+    public static function getBlueprintFromYamlFile(): array
+    {
+        $rc = new ReflectionClass(self::class);
         $yamlFile = str_replace('.php', '.yml', $rc->getFileName());
         if (F::exists($yamlFile)) {
-            $blueprint = Yaml::read($yamlFile);
-            // find fields and map them from the attributes that match `{key}: true`
-            array_walk_recursive($blueprint, function (&$value, $key) use ($fields) {
-                if (in_array($key, array_keys($fields)) && $value === true) {
-                    $value = $fields[$key]; // this will overwrite since value is used by reference!
+            return Yaml::read($yamlFile);
+        }
+
+        return [];
+    }
+
+    public static function getBlueprintFromClass(): array
+    {
+        $blueprint = [];
+
+        // find method with blueprint attribute using reflection
+        $rc = new ReflectionClass(self::class);
+        foreach ($rc->getMethods(ReflectionMethod::IS_PUBLIC) as $method) {
+            foreach ($method->getAttributes() as $attribute) {
+                if ($attribute->getName() === 'Bnomei\Blueprints\Attributes\Blueprint') {
+                    $blueprint = self::{$method->getShortName()}();
                 }
-            });
+            }
         }
 
-        $pagesSlashModel = 'pages/'.strtolower(str_replace('Page', '', $rc->getShortName()));
-        $pm = [$pagesSlashModel => $blueprint];
-
-        // some might not be cacheable like when they have dynamic fields
-        if (! isset(self::$cacheBlueprint) || self::$cacheBlueprint === true) {
-            BlueprintCache::set(static::class, $pm);
-        }
-
-        return $pm;
+        return $blueprint;
     }
 }
