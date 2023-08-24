@@ -7,8 +7,11 @@ Kirby::plugin('bnomei/blueprints', [
         'cache' => true,
     ],
     'hooks' => [
-        'route:before' => function (Kirby\Http\Route $route, string $path, string $method) {
-            \Bnomei\Blueprints\BlueprintCache::cacheDir(true);
+        'system.loadPlugins:after' => function () {
+            // the kirby cache is not available yet when the plugin
+            // is caching the blueprint so remember the cache dir
+            // and use it on next request
+            \Bnomei\Blueprints\BlueprintCache::rememberCacheDir();
         },
     ],
 ]);

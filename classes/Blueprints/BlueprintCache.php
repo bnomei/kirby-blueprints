@@ -8,39 +8,46 @@ use Kirby\Filesystem\F;
 
 class BlueprintCache
 {
-    public static function cacheDir(bool $remember = false): ?string
+    public static function rememberCacheDir(): void
     {
-        $key = 'bnomei.blueprints.cache.dir';
-        if ($dir = kirby()->session()->get($key)) {
-            return $dir;
-        }
-        if ($remember) {
-            $dir = kirby()->cache('bnomei.blueprints')->root();
-            if (! Dir::exists($dir)) {
-                Dir::make($dir);
-            }
-            kirby()->session()->set($key, $dir);
-
-            return $dir;
+        $key = self::getKey();
+        if (kirby()->session()->get($key)) {
+            return;
         }
 
-        return null;
+        $dir = kirby()->cache('bnomei.blueprints')->root();
+        if (! Dir::exists($dir)) {
+            Dir::make($dir);
+        }
+        kirby()->session()->set($key, $dir);
     }
 
-    private static function cacheFile(string $key): string
+    public static function cacheDir(): ?string
     {
-        return static::cacheDir().'/'.hash('xxh3', $key).'.cache';
+        $key = self::getKey();
+
+        return kirby()->session()->get($key);
+    }
+
+    private static function cacheFile(string $key): ?string
+    {
+        return static::cacheDir() ?
+            static::cacheDir().'/'.hash('xxh3', $key).'.cache'
+            : null;
     }
 
     public static function get(string $key, $default = null): ?array
     {
         $file = static::cacheFile($key);
+        if (! $file) {
+            return $default;
+        }
         $expire = 5; // seconds
         if ($opcacheConfig = opcache_get_configuration()) {
             $expire = $opcacheConfig['directives']['opcache.enable'] ?
                 $opcacheConfig['directives']['opcache.revalidate_freq'] : $expire;
         }
-        $m = F::modified($file) + $expire <= time();
+        $m = F::modified($file) + $expire >= time();
         if (F::exists($file) && $m) {
             return Json::read($file);
         }
@@ -51,10 +58,15 @@ class BlueprintCache
         return $default;
     }
 
-    public static function set(string $key, array $data)
+    public static function set(string $key, array $data): bool
     {
         $file = static::cacheFile($key);
 
-        return Json::write($file, $data);
+        return $file ? Json::write($file, $data) : false;
+    }
+
+    public static function getKey(): string
+    {
+        return 'bnomei.blueprints.cache.dir';
     }
 }
