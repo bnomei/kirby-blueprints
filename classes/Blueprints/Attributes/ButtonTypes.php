@@ -6,6 +6,6 @@ enum ButtonTypes: string
 {
     case BOLD = 'bold';
     case ITALIC = 'italic';
-    case SEPERATOR = '|';
+    case SEPARATOR = '|';
     case LINK = 'link';
 }

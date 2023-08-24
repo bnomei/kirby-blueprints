@@ -5,10 +5,10 @@ namespace Bnomei\Blueprints\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_METHOD)]
-class Spellcheck extends GenericAttribute
+class CustomType extends GenericAttribute
 {
     public function __construct(
-        public bool $spellcheck
+        public string $type // use mixed to allow custom types from plugins
     ) {
     }
 }

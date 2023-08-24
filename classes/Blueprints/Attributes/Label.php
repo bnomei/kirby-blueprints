@@ -5,7 +5,7 @@ namespace Bnomei\Blueprints\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_METHOD)]
-class Label
+class Label extends GenericAttribute
 {
     /**
      * @param  string|array<string,string>  $label

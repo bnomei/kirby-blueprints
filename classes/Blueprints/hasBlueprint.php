@@ -20,6 +20,7 @@ trait hasBlueprint
         $fields = [];
         $rc = new ReflectionClass(self::class);
         foreach ($rc->getMethods(ReflectionMethod::IS_PUBLIC) as $method) {
+            $key = $method->getName();
             // only Fields
             $returnType = $method->getReturnType();
             if ($returnType instanceof ReflectionUnionType === true ||
@@ -29,22 +30,22 @@ trait hasBlueprint
             }
 
             // only with Attributes
-            $fields[$method->getName()] = [];
+            $fields[$key] = [];
             foreach ($method->getAttributes() as $attribute) {
                 if (! Str::startsWith($attribute->getName(), 'Bnomei\Blueprints\Attributes')) {
                     continue;
                 }
                 $instance = $attribute->newInstance();
-                $fields[$method->getName()] = array_merge(
-                    $fields[$method->getName()],
-                    json_decode(json_encode($instance), true)
+                $fields[$key] = array_merge(
+                    $fields[$key],
+                    $instance->toArray()
                 );
             }
 
-            // sort field properties and remove empty ones
-            ksort($fields[$method->getName()]);
-            if (empty($fields[$method->getName()])) {
-                unset($fields[$method->getName()]);
+            // sort field properties and discard empty ones
+            ksort($fields[$key]);
+            if (empty($fields[$key])) {
+                unset($fields[$key]);
             }
         }
 
@@ -61,23 +62,5 @@ trait hasBlueprint
         }
 
         return $pm;
-    }
-
-    public static function registerPageModelExtension()
-    {
-        $rc = new ReflectionClass(self::class);
-
-        return [
-            strtolower(str_replace('Page', '', $rc->getShortName())) => static::class,
-        ];
-    }
-
-    public static function registerUserModelExtension()
-    {
-        $rc = new ReflectionClass(self::class);
-
-        return [
-            strtolower(str_replace('User', '', $rc->getShortName())) => static::class,
-        ];
     }
 }

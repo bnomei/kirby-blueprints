@@ -5,7 +5,7 @@ namespace Bnomei\Blueprints\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_METHOD)]
-class Buttons
+class Buttons extends GenericAttribute
 {
     /**
      * @param  array<ButtonTypes>  $buttons

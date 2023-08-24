@@ -35,6 +35,7 @@ test('Blueprint of ProductPage has description Textarea field', function () {
                         '|',
                         'link',
                     ],
+                    'customkey' => 'custom data',
                     'label' => [
                         'en' => 'Description',
                         'de' => 'Beschreibung',
@@ -46,4 +47,14 @@ test('Blueprint of ProductPage has description Textarea field', function () {
             ],
         ],
     ]);
+});
+
+test('Test Custom Type', function () {
+    $blueprint = ProductPage::registerBlueprintExtension();
+    ray($blueprint);
+    expect($blueprint['pages/product']['fields']['qrcode'])->toEqual(
+        [
+            'type' => 'qrcode',
+        ]
+    );
 });
