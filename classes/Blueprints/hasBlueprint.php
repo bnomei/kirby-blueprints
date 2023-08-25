@@ -19,11 +19,11 @@ trait hasBlueprint
             return $blueprint;
         }
 
-        $fields = self::getFieldsForBlueprintUsingReflection();
+        $fields = self::getBlueprintFieldsFromReflection();
 
         // merge with blueprint from yaml file or class
         $blueprint = array_merge_recursive(
-            self::getBlueprintFromYamlFile(),
+            //            self::getBlueprintFromYamlFile(),
             self::getBlueprintFromClass(),
         );
         if (! empty($blueprint)) {
@@ -42,7 +42,9 @@ trait hasBlueprint
 
         $rc = new ReflectionClass(self::class);
         $pagesSlashModel = 'pages/'.strtolower(str_replace('Page', '', $rc->getShortName()));
-        $pm = [$pagesSlashModel => $blueprint];
+        $pm = [
+            $pagesSlashModel => $blueprint,
+        ];
 
         // some might not be cacheable like when they are class based and have dynamic fields
         if (! isset(self::$cacheBlueprint) || self::$cacheBlueprint === true) {
@@ -52,7 +54,7 @@ trait hasBlueprint
         return $pm;
     }
 
-    public static function getFieldsForBlueprintUsingReflection(): array
+    public static function getBlueprintFieldsFromReflection(): array
     {
         $fields = [];
         $rc = new ReflectionClass(self::class);
@@ -109,11 +111,11 @@ trait hasBlueprint
         foreach ($rc->getMethods(ReflectionMethod::IS_PUBLIC) as $method) {
             foreach ($method->getAttributes() as $attribute) {
                 if ($attribute->getName() === 'Bnomei\Blueprints\Attributes\Blueprint') {
-					// merge from methods that return blueprint array
+                    // merge from methods that return blueprint array
                     $blueprint = array_merge_recursive(
-						$blueprint,
-						self::{$method->getShortName()}()
-					);
+                        $blueprint,
+                        self::{$method->getShortName()}()
+                    );
                 }
             }
         }

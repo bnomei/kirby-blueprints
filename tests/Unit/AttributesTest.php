@@ -4,6 +4,7 @@ use Bnomei\Blueprints\Attributes\Buttons;
 use Bnomei\Blueprints\Attributes\Label;
 use Bnomei\Blueprints\Attributes\MaxLength;
 use Bnomei\Blueprints\Attributes\Spellcheck;
+use Bnomei\Blueprints\Attributes\Type;
 
 dataset('pageModels', [
 
@@ -15,7 +16,7 @@ test('Textarea has Attributes', function () {
     expect(
         array_map(fn ($a) => $a->getName(), $rm->getAttributes())
     )->toEqual([
-        Label::class,
+        Type::class,
         Label::class,
         Buttons::class,
         MaxLength::class,
@@ -25,7 +26,7 @@ test('Textarea has Attributes', function () {
 
 test('has a Blueprint of ProductPage with description Textarea field', function () {
     $blueprint = ProductPage::registerBlueprintExtension();
-    expect($blueprint['pages/product']['sections']['main']['fields']['description'])->toEqual([
+    expect($blueprint['pages/product']['tabs'][0]['columns'][1]['fields']['description'])->toEqual([
         'buttons' => [
             'bold',
             'italic',
@@ -45,20 +46,10 @@ test('has a Blueprint of ProductPage with description Textarea field', function 
 
 test('has Custom Type and Property', function () {
     $blueprint = ProductPage::registerBlueprintExtension();
-    expect($blueprint['pages/product']['sections']['main']['fields']['qrcode'])->toEqual(
+    expect($blueprint['pages/product']['tabs'][0]['columns'][1]['fields']['qrcode'])->toEqual(
         [
             'type' => 'qrcode',
             'customkey' => 'custom data',
         ]
     );
-});
-
-test('has merged Blueprint from class method', function () {
-	$blueprint = ProductPage::registerBlueprintExtension();
-	expect($blueprint['pages/product']['sections']['files'])->toEqual(
-		[
-			'type' => 'files',
-			'label' => 'All Files',
-		]
-	);
 });

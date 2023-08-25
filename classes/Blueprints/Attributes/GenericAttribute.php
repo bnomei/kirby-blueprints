@@ -2,10 +2,9 @@
 
 namespace Bnomei\Blueprints\Attributes;
 
+use Bnomei\Blueprints\isArrayable;
+
 class GenericAttribute
 {
-    public function toArray(): array
-    {
-        return json_decode(json_encode($this), true);
-    }
+    use isArrayable;
 }

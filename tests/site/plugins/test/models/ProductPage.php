@@ -3,36 +3,99 @@
 use Bnomei\Blueprints\Attributes\Blueprint;
 use Bnomei\Blueprints\Attributes\CustomType;
 use Bnomei\Blueprints\Attributes\Property;
-use Kirby\Cms\Page;
-use Kirby\Content\Field;
+use Bnomei\Blueprints\Schema\Column;
+use Bnomei\Blueprints\Schema\Field;
+use Bnomei\Blueprints\Schema\FieldProperties;
+use Bnomei\Blueprints\Schema\Fields\Url;
+use Bnomei\Blueprints\Schema\FieldTypes;
+use Bnomei\Blueprints\Schema\Icon;
+use Bnomei\Blueprints\Schema\Page;
+use Bnomei\Blueprints\Schema\Tab;
 
-class ProductPage extends Page
+class ProductPage extends \Kirby\Cms\Page
 {
     // public static bool $cacheBlueprint = false;
     use Bnomei\Blueprints\hasBlueprint;
-    use \hasDescriptionField;
+    use hasDescriptionField;
 
     #[
         CustomType('qrcode'),
         Property('Custom key', 'custom data'),
     ]
-    public function qrcode(): Field
+    public function qrcode(): Kirby\Content\Field
     {
         return parent::__call(__METHOD__);
     }
 
-	#[
-		Blueprint
-	]
-	public static function blueprintFromMyCustomMethod(): array
-	{
-		return [
-			'sections' => [
-				'files' => [
-					'type' => 'files',
-					'label' => 'All Files',
-				],
-			],
-		];
-	}
+    public static function blueprintFromMyCustomMethod(): array
+    {
+        return [
+            'sections' => [
+                'files' => [
+                    'type' => 'files',
+                    'label' => 'All Files',
+                ],
+            ],
+        ];
+    }
+
+    #[
+        Blueprint
+    ]
+    public static function thisIsACustomBlueprint(): array
+    {
+        return Page::make(
+            //			options: [],
+            tabs: [
+                Tab::make(
+                    label: 'Shop',
+                    icon: Icon::CART,
+                    columns: [
+                        Column::make(
+                            width: 1 / 3,
+                            //							sections: [
+                            //								\Sections\Files::make(
+                            //									label: 'Gallery',
+                            //									template: 'cover',
+                            //								),
+                            //								\MyCustomSection::make(
+                            //									callback: getenv('SOME_SECRET')
+                            //								),
+                            //							]
+                        ),
+                        Column::make(
+                            width: 2 / 3,
+                            fields: [
+                                // generic
+                                'intro' => Field::make(
+                                    type: FieldTypes::TEXTAREA,
+                                    label: 'Introduction',
+                                    // for custom props use a method with attributes or...
+                                    properties: [
+                                        FieldProperties::MAXLENGTH->value => 3000,
+                                        FieldProperties::SPELLCHECK->value => false,
+                                        FieldProperties::BUTTONS->value => false,
+                                    ],
+                                ),
+                                /*
+                                 * THIS WOULD MEAN CREATING A LOT OF CLASSES
+                                // explicit field type
+                                'website' => Url::make(
+                                    label: 'Website',
+                                ),
+                                */
+                                // from methods with attributes
+                                'qrcode' => true,
+                                'description' => true,
+                            ]
+                        ),
+                    ],
+                ),
+                Tab::make(
+                    label: 'Settings',
+                    icon: Icon::SETTINGS,
+                ),
+            ],
+        )->toArray();
+    }
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace Bnomei\Blueprints\Attributes;
+namespace Bnomei\Blueprints\Schema;
 
-enum ButtonTypes: string
+enum Button: string
 {
     case BOLD = 'bold';
     case ITALIC = 'italic';

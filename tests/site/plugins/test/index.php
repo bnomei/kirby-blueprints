@@ -7,8 +7,6 @@ load([
     'ProductPage' => __DIR__.'/models/ProductPage.php',
 ]);
 
-ray(ProductPage::registerBlueprintExtension());
-
 Kirby::plugin('test/plugin', autoloader(__DIR__)->toArray(
     // TODO: make autoloader load the blueprint from the model on its own
     [
