@@ -2,11 +2,11 @@
 
 namespace Bnomei\Blueprints\Schema;
 
-use Bnomei\Blueprints\isArrayable;
+use Bnomei\Blueprints\IsArrayable;
 
 class Page
 {
-    use isArrayable;
+    use IsArrayable;
 
     /**
      * @param  Page  $page
@@ -44,5 +44,19 @@ class Page
         //		public array $section = [],
         //		public array $fields = [],
     ) {
+    }
+
+    public function tabs(array $tabs): Page
+    {
+        $this->tabs = $tabs;
+
+        return $this;
+    }
+
+    public function columns(array $columns): Page
+    {
+        $this->columns = $columns;
+
+        return $this;
     }
 }

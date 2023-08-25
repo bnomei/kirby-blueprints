@@ -2,7 +2,7 @@
 
 namespace Bnomei\Blueprints\Schema\Fields;
 
-use Bnomei\Blueprints\isArrayable;
+use Bnomei\Blueprints\IsArrayable;
 use JetBrains\PhpStorm\Deprecated;
 
 #[
@@ -10,7 +10,7 @@ use JetBrains\PhpStorm\Deprecated;
 ]
 class Url
 {
-    use isArrayable;
+    use IsArrayable;
 
     /**
      * @param  string|array<string,string>  $label

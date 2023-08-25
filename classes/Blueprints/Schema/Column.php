@@ -2,11 +2,11 @@
 
 namespace Bnomei\Blueprints\Schema;
 
-use Bnomei\Blueprints\isArrayable;
+use Bnomei\Blueprints\IsArrayable;
 
 class Column
 {
-    use isArrayable;
+    use IsArrayable;
 
     /**
      * @param  array<Section>  $sections
@@ -29,5 +29,12 @@ class Column
         //		public array $section = [],
         public array $fields = [],
     ) {
+    }
+
+    public function width(float|string|null $width): Column
+    {
+        $this->width = $width;
+
+        return $this;
     }
 }

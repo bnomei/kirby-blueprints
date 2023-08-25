@@ -10,7 +10,7 @@ use ReflectionClass;
 use ReflectionMethod;
 use ReflectionUnionType;
 
-trait hasBlueprint
+trait HasBlueprint
 {
     public static function registerBlueprintExtension()
     {

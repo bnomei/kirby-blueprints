@@ -2,11 +2,11 @@
 
 namespace Bnomei\Blueprints\Schema;
 
-use Bnomei\Blueprints\isArrayable;
+use Bnomei\Blueprints\IsArrayable;
 
 class Tab
 {
-    use isArrayable;
+    use IsArrayable;
 
     /**
      * @param  array<Column>  $columns
@@ -30,11 +30,32 @@ class Tab
      * @return Page
      */
     public function __construct(
-        public string $label = '',
+        public string|array $label = '',
         public ?Icon $icon = null,
         public array $columns = [],
         //		public array $section = [],
         //		public array $fields = [],
     ) {
+    }
+
+    public function label(string|array $label): Tab
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    public function icon(?Icon $icon): Tab
+    {
+        $this->icon = $icon;
+
+        return $this;
+    }
+
+    public function columns(array $columns): Tab
+    {
+        $this->columns = $columns;
+
+        return $this;
     }
 }

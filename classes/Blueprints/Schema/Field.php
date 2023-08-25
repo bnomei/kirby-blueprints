@@ -41,8 +41,6 @@ class Field implements \JsonSerializable
             unset($data['properties']);
         }
 
-        ray($data)->red();
-
         ksort($data);
 
         // empty() would catch 0 and false which is not what we want
@@ -54,5 +52,33 @@ class Field implements \JsonSerializable
     public function jsonSerialize(): array
     {
         return $this->toArray();
+    }
+
+    public function label(array|string|null $label): Field
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    public function width(float|string|null $width): Field
+    {
+        $this->width = $width;
+
+        return $this;
+    }
+
+    public function properties(?array $properties): Field
+    {
+        $this->properties = $properties;
+
+        return $this;
+    }
+
+    public function property(string $key, mixed $value): Field
+    {
+        $this->properties[$key] = $value;
+
+        return $this;
     }
 }

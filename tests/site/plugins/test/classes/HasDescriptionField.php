@@ -9,7 +9,7 @@ use Bnomei\Blueprints\Schema\Button;
 use Bnomei\Blueprints\Schema\FieldTypes;
 use Kirby\Content\Field;
 
-trait hasDescriptionField
+trait HasDescriptionField
 {
     #[
         Type(FieldTypes::TEXTAREA),

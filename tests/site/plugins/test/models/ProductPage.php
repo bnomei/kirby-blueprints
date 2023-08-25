@@ -15,8 +15,8 @@ use Bnomei\Blueprints\Schema\Tab;
 class ProductPage extends \Kirby\Cms\Page
 {
     // public static bool $cacheBlueprint = false;
-    use Bnomei\Blueprints\hasBlueprint;
-    use hasDescriptionField;
+    use Bnomei\Blueprints\HasBlueprint;
+    use HasDescriptionField;
 
     #[
         CustomType('qrcode'),
@@ -45,24 +45,14 @@ class ProductPage extends \Kirby\Cms\Page
     public static function thisIsACustomBlueprint(): array
     {
         return Page::make(
-            //			options: [],
+            // options: [],
             tabs: [
                 Tab::make(
                     label: 'Shop',
                     icon: Icon::CART,
                     columns: [
-                        Column::make(
-                            width: 1 / 3,
-                            //							sections: [
-                            //								\Sections\Files::make(
-                            //									label: 'Gallery',
-                            //									template: 'cover',
-                            //								),
-                            //								\MyCustomSection::make(
-                            //									callback: getenv('SOME_SECRET')
-                            //								),
-                            //							]
-                        ),
+                        Column::make()
+                            ->width(1 / 3),
                         Column::make(
                             width: 2 / 3,
                             fields: [
@@ -76,7 +66,11 @@ class ProductPage extends \Kirby\Cms\Page
                                         FieldProperties::SPELLCHECK->value => false,
                                         FieldProperties::BUTTONS->value => false,
                                     ],
-                                ),
+                                )
+                                // ->property(FieldProperties::MAXLENGTH->value, 3000)
+                                // ->property(FieldProperties::SPELLCHECK->value, false)
+                                // ->property(FieldProperties::BUTTONS->value, false)
+                                ,
                                 /*
                                  * THIS WOULD MEAN CREATING A LOT OF CLASSES
                                 // explicit field type
@@ -91,10 +85,9 @@ class ProductPage extends \Kirby\Cms\Page
                         ),
                     ],
                 ),
-                Tab::make(
-                    label: 'Settings',
-                    icon: Icon::SETTINGS,
-                ),
+                Tab::make()
+                    ->label('Settings')
+                    ->icon(Icon::SETTINGS),
             ],
         )->toArray();
     }

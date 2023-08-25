@@ -2,9 +2,9 @@
 
 namespace Bnomei\Blueprints\Attributes;
 
-use Bnomei\Blueprints\isArrayable;
+use Bnomei\Blueprints\IsArrayable;
 
 class GenericAttribute
 {
-    use isArrayable;
+    use IsArrayable;
 }

@@ -2,7 +2,7 @@
 
 namespace Bnomei\Blueprints;
 
-trait isArrayable
+trait IsArrayable
 {
     public function toArray(): array
     {
