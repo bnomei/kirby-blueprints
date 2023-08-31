@@ -10,6 +10,10 @@ use Bnomei\Blueprints\Schema\Fields\Url;
 use Bnomei\Blueprints\Schema\FieldTypes;
 use Bnomei\Blueprints\Schema\Icon;
 use Bnomei\Blueprints\Schema\Page;
+use Bnomei\Blueprints\Schema\PageImage;
+use Bnomei\Blueprints\Schema\PageNavigation;
+use Bnomei\Blueprints\Schema\PageOptions;
+use Bnomei\Blueprints\Schema\PageStatus;
 use Bnomei\Blueprints\Schema\Tab;
 
 class ProductPage extends \Kirby\Cms\Page
@@ -45,7 +49,22 @@ class ProductPage extends \Kirby\Cms\Page
     public static function thisIsACustomBlueprint(): array
     {
         return Page::make(
-            // options: [],
+            title: 'Product',
+            status: PageStatus::make(
+                draft: 'Beer',
+                unlisted: 'Wine',
+                listed: 'Whiskey',
+            ),
+            icon: Icon::PIN,
+            image: PageImage::make(
+                back: 'black',
+				icon: '📝',
+				query: 'page.cover.toFile()'
+            ),
+            options: PageOptions::make()
+                ->preview('{{ page.url }}#product'),
+            navigation: PageNavigation::make()
+                ->sortBy('date desc'),
             tabs: [
                 Tab::make(
                     label: 'Shop',
@@ -85,9 +104,8 @@ class ProductPage extends \Kirby\Cms\Page
                         ),
                     ],
                 ),
-                Tab::make()
-                    ->label('Settings')
-                    ->icon(Icon::SETTINGS),
+                Tab::make(label: 'Badger')
+                    ->icon(Icon::BADGE),
             ],
         )->toArray();
     }

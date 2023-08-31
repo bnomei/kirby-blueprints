@@ -23,7 +23,7 @@ trait HasBlueprint
 
         // merge with blueprint from yaml file or class
         $blueprint = array_merge_recursive(
-            //            self::getBlueprintFromYamlFile(),
+            self::getBlueprintFromYamlFile(),
             self::getBlueprintFromClass(),
         );
         if (! empty($blueprint)) {
@@ -41,17 +41,22 @@ trait HasBlueprint
         }
 
         $rc = new ReflectionClass(self::class);
-        $pagesSlashModel = 'pages/'.strtolower(str_replace('Page', '', $rc->getShortName()));
-        $pm = [
-            $pagesSlashModel => $blueprint,
+        $typeSlashModel = $rc->getShortName();
+        if (Str::endsWith($rc->getShortName(), 'Page')) {
+            $typeSlashModel = 'pages/'.strtolower(str_replace('Page', '', $rc->getShortName()));
+        } elseif (Str::endsWith($rc->getShortName(), 'User')) {
+            $typeSlashModel = 'users/'.strtolower(str_replace('User', '', $rc->getShortName()));
+        }
+        $b = [
+            $typeSlashModel => $blueprint,
         ];
 
         // some might not be cacheable like when they are class based and have dynamic fields
         if (! isset(self::$cacheBlueprint) || self::$cacheBlueprint === true) {
-            BlueprintCache::set(static::class, $pm);
+            BlueprintCache::set(static::class, $b);
         }
 
-        return $pm;
+        return $b;
     }
 
     public static function getBlueprintFieldsFromReflection(): array
