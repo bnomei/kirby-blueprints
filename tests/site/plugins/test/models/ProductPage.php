@@ -58,8 +58,8 @@ class ProductPage extends \Kirby\Cms\Page
             icon: Icon::PIN,
             image: PageImage::make(
                 back: 'black',
-				icon: '📝',
-				query: 'page.cover.toFile()'
+                icon: '📝',
+                query: 'page.cover.toFile()'
             ),
             options: PageOptions::make()
                 ->preview('{{ page.url }}#product'),
@@ -71,7 +71,13 @@ class ProductPage extends \Kirby\Cms\Page
                     icon: Icon::CART,
                     columns: [
                         Column::make()
-                            ->width(1 / 3),
+                            ->width(1 / 3)
+                            ->fields([
+                                'price' => [
+                                    'type' => 'number',
+                                    'label' => 'Price',
+                                ],
+                            ]),
                         Column::make(
                             width: 2 / 3,
                             fields: [

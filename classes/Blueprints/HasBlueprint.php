@@ -12,6 +12,22 @@ use ReflectionUnionType;
 
 trait HasBlueprint
 {
+    // https://stackoverflow.com/a/45534505
+    public static function arrayRemoveByValuesRecursive(array $haystack, array $values)
+    {
+        foreach ($haystack as $key => $value) {
+            if (is_array($value)) {
+                $haystack[$key] = static::arrayRemoveByValuesRecursive($haystack[$key], $values);
+            }
+
+            if (in_array($haystack[$key], $values, true)) {
+                unset($haystack[$key]);
+            }
+        }
+
+        return $haystack;
+    }
+
     public static function registerBlueprintExtension()
     {
         $blueprint = BlueprintCache::get(static::class);
@@ -50,6 +66,9 @@ trait HasBlueprint
         $b = [
             $typeSlashModel => $blueprint,
         ];
+
+        // empty() would catch 0 and false which is not what we want
+        $b = static::arrayRemoveByValuesRecursive($b, [null, '', []]);
 
         // some might not be cacheable like when they are class based and have dynamic fields
         if (! isset(self::$cacheBlueprint) || self::$cacheBlueprint === true) {

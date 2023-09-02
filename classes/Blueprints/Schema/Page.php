@@ -19,11 +19,11 @@ class Page
     public function __construct(
         public string $title,
         public ?string $num = null,
-        public array $status = [], // TODO: draft, unlisted, listed [label, text]
-        public ?string $icon = null,
-        public array $image = [], // TODO: back, icon, query[bool]
-        public array $options = [], // TODO: https://getkirby.com/docs/reference/panel/blueprints/page#options
-        public array $navigation = [], // TODO: status, template, sortBy
+        public mixed $status = null,
+        public mixed $icon = null,
+        public mixed $image = null,
+        public mixed $options = null,
+        public mixed $navigation = null,
         public array $tabs = [],
         public array $columns = [],
         public array $section = [],
@@ -45,11 +45,11 @@ class Page
     public static function make(
         string $title,
         string $num = null,
-        array $status = [],
-        string $icon = null,
-        array $image = [],
-        array $options = [],
-        array $navigation = [],
+        mixed $status = null,
+        mixed $icon = null,
+        mixed $image = null,
+        mixed $options = null,
+        mixed $navigation = null,
         array $tabs = [],
         array $columns = [],
         array $section = [],
