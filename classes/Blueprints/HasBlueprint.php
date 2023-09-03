@@ -82,6 +82,8 @@ trait HasBlueprint
     {
         $fields = [];
         $rc = new ReflectionClass(self::class);
+
+        // METHODS
         foreach ($rc->getMethods(ReflectionMethod::IS_PUBLIC) as $method) {
             $key = $method->getName();
             // only Fields
@@ -95,6 +97,39 @@ trait HasBlueprint
             // only with Attributes
             $fields[$key] = [];
             foreach ($method->getAttributes() as $attribute) {
+                if (! Str::startsWith($attribute->getName(), 'Bnomei\Blueprints\Attributes')) {
+                    continue;
+                }
+                $instance = $attribute->newInstance();
+                $fields[$key] = array_merge(
+                    $fields[$key],
+                    $instance->toArray()
+                );
+            }
+
+            // sort field properties and discard empty ones
+            ksort($fields[$key]);
+            if (empty($fields[$key])) {
+                unset($fields[$key]);
+            }
+        }
+
+        // PROPERTIES
+        // find properties with blueprint attribute using reflection
+        foreach ($rc->getProperties(ReflectionMethod::IS_PUBLIC) as $property) {
+            $key = $property->getName();
+
+            // only Fields
+            $returnType = $property->getType();
+            if ($returnType instanceof ReflectionUnionType === true ||
+                $returnType?->getName() !== Field::class
+            ) {
+                continue;
+            }
+
+            // only with Attributes
+            $fields[$key] = [];
+            foreach ($property->getAttributes() as $attribute) {
                 if (! Str::startsWith($attribute->getName(), 'Bnomei\Blueprints\Attributes')) {
                     continue;
                 }
@@ -145,5 +180,24 @@ trait HasBlueprint
         }
 
         return $blueprint;
+    }
+
+    public function __construct(array $props)
+    {
+        parent::__construct($props);
+
+        if (option('bnomei.blueprints.fieldsFromProperties')) {
+            // register all blueprint props to their fields
+            $rc = new ReflectionClass(self::class);
+            foreach ($rc->getProperties(\ReflectionProperty::IS_PUBLIC) as $rp) {
+                foreach ($rp->getAttributes() as $attribute) {
+                    if (Str::startsWith($attribute->getName(), 'Bnomei\Blueprints\Attributes')) {
+                        $name = $rp->getName();
+                        $this->{$name} = $this->{$name}(); // set the field
+                        break; // registered
+                    }
+                }
+            }
+        }
     }
 }

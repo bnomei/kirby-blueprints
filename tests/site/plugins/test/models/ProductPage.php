@@ -2,7 +2,9 @@
 
 use Bnomei\Blueprints\Attributes\Blueprint;
 use Bnomei\Blueprints\Attributes\CustomType;
+use Bnomei\Blueprints\Attributes\Placeholder;
 use Bnomei\Blueprints\Attributes\Property;
+use Bnomei\Blueprints\Attributes\Type;
 use Bnomei\Blueprints\Schema\Column;
 use Bnomei\Blueprints\Schema\Field;
 use Bnomei\Blueprints\Schema\FieldProperties;
@@ -25,12 +27,17 @@ class ProductPage extends \Kirby\Cms\Page
     #[
         CustomType('qrcode'),
         Property('Custom key', 'custom data'),
-        \Bnomei\Blueprints\Attributes\After()
     ]
     public function qrcode(): Kirby\Content\Field
     {
         return parent::__call(__METHOD__);
     }
+
+    #[
+        Type(FieldTypes::EMAIL),
+        Placeholder('Email Field from Property')
+    ]
+    public Kirby\Content\Field $email;
 
     public static function blueprintFromMyCustomMethod(): array
     {
@@ -78,6 +85,7 @@ class ProductPage extends \Kirby\Cms\Page
                                     'type' => 'number',
                                     'label' => 'Price',
                                 ],
+                                'email' => true, // from PHP
                             ]),
                         Column::make(
                             width: 2 / 3,
