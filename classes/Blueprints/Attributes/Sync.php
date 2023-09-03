@@ -5,13 +5,13 @@ namespace Bnomei\Blueprints\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_METHOD)]
-class MaxLength extends GenericAttribute
+class Sync extends GenericAttribute
 {
     /**
-     * Maximum number of allowed characters
+     * Name of another field that should be used to automatically update this field's value
      */
     public function __construct(
-        public int $maxlength
+        public string $sync
     ) {
     }
 }

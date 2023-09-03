@@ -5,13 +5,13 @@ namespace Bnomei\Blueprints\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_METHOD)]
-class MaxLength extends GenericAttribute
+class Allow extends GenericAttribute
 {
     /**
-     * Maximum number of allowed characters
+     * Set of characters allowed in the slug
      */
     public function __construct(
-        public int $maxlength
+        public string $allow
     ) {
     }
 }

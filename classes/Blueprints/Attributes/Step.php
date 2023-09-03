@@ -5,13 +5,13 @@ namespace Bnomei\Blueprints\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_METHOD)]
-class MaxLength extends GenericAttribute
+class Step extends GenericAttribute
 {
     /**
-     * Maximum number of allowed characters
+     * Round to the nearest: sub-options for unit (day) and size (1)
      */
     public function __construct(
-        public int $maxlength
+        public array $step = [] // ['unit' => 'd', 'size' => 1]
     ) {
     }
 }

@@ -8,8 +8,13 @@ use Bnomei\Blueprints\Schema\FieldTypes;
 #[Attribute(Attribute::TARGET_METHOD)]
 class Type extends GenericAttribute
 {
+    /**
+     * Set the type of the field from the list of official fields
+     *
+     * @see CustomType if you want to use a custom type like from a plugin
+     */
     public function __construct(
-        public FieldTypes $type // use mixed to allow custom types from plugins
+        public FieldTypes $type
     ) {
     }
 }

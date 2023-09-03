@@ -5,13 +5,13 @@ namespace Bnomei\Blueprints\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_METHOD)]
-class MaxLength extends GenericAttribute
+class Separator extends GenericAttribute
 {
     /**
-     * Maximum number of allowed characters
+     * Custom tags separator, which will be used to store tags in the content file
      */
     public function __construct(
-        public int $maxlength
+        public string $separator = ','
     ) {
     }
 }

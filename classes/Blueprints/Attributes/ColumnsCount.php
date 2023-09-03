@@ -5,13 +5,13 @@ namespace Bnomei\Blueprints\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_METHOD)]
-class MaxLength extends GenericAttribute
+class ColumnsCount extends GenericAttribute
 {
     /**
-     * Maximum number of allowed characters
+     * Arranges the radio buttons in the given number of columns
      */
     public function __construct(
-        public int $maxlength
+        public int $columns = 1
     ) {
     }
 }

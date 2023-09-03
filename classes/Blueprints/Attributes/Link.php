@@ -5,13 +5,13 @@ namespace Bnomei\Blueprints\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_METHOD)]
-class MaxLength extends GenericAttribute
+class Link extends GenericAttribute
 {
     /**
-     * Maximum number of allowed characters
+     * Whether each item should be clickable
      */
     public function __construct(
-        public int $maxlength
+        public bool $link = true
     ) {
     }
 }

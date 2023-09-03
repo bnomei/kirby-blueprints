@@ -5,13 +5,13 @@ namespace Bnomei\Blueprints\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_METHOD)]
-class MaxLength extends GenericAttribute
+class Columns extends GenericAttribute
 {
     /**
-     * Maximum number of allowed characters
+     * @see https://getkirby.com/docs/reference/panel/fields/layout#layout-settings
      */
     public function __construct(
-        public int $maxlength
+        public array $columns = []
     ) {
     }
 }

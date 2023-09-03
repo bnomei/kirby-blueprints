@@ -5,13 +5,13 @@ namespace Bnomei\Blueprints\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_METHOD)]
-class MaxLength extends GenericAttribute
+class Options extends GenericAttribute
 {
     /**
-     * Maximum number of allowed characters
+     * An array with options
      */
     public function __construct(
-        public int $maxlength
+        public array $options
     ) {
     }
 }

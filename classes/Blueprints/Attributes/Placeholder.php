@@ -5,13 +5,13 @@ namespace Bnomei\Blueprints\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_METHOD)]
-class MaxLength extends GenericAttribute
+class Placeholder extends GenericAttribute
 {
     /**
-     * Maximum number of allowed characters
+     * Optional placeholder value that will be shown when the field is empty
      */
     public function __construct(
-        public int $maxlength
+        public string $placeholder
     ) {
     }
 }

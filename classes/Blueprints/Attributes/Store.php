@@ -5,13 +5,13 @@ namespace Bnomei\Blueprints\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_METHOD)]
-class MaxLength extends GenericAttribute
+class Store extends GenericAttribute
 {
     /**
-     * Maximum number of allowed characters
+     * Whether to store UUID or ID in the content file of the model
      */
     public function __construct(
-        public int $maxlength
+        public string $store = 'uuid' // uuid, id
     ) {
     }
 }

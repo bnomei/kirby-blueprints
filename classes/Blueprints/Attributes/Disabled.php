@@ -5,13 +5,13 @@ namespace Bnomei\Blueprints\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_METHOD)]
-class MaxLength extends GenericAttribute
+class Disabled extends GenericAttribute
 {
     /**
-     * Maximum number of allowed characters
+     * If true, the field is no longer editable and will not be saved
      */
     public function __construct(
-        public int $maxlength
+        public bool $disabled = false
     ) {
     }
 }

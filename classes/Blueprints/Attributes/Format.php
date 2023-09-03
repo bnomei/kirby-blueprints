@@ -5,13 +5,13 @@ namespace Bnomei\Blueprints\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_METHOD)]
-class MaxLength extends GenericAttribute
+class Format extends GenericAttribute
 {
     /**
-     * Maximum number of allowed characters
+     * Defines a custom format that is used when the field is saved
      */
     public function __construct(
-        public int $maxlength
+        public string $format
     ) {
     }
 }

@@ -5,13 +5,13 @@ namespace Bnomei\Blueprints\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_METHOD)]
-class MaxLength extends GenericAttribute
+class TimeNotation extends GenericAttribute
 {
     /**
-     * Maximum number of allowed characters
+     * 12 or 24 hour notation. If 12, an AM/PM selector will be shown.
      */
     public function __construct(
-        public int $maxlength
+        public int $time = 24
     ) {
     }
 }

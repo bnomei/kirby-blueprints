@@ -5,13 +5,15 @@ namespace Bnomei\Blueprints\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_METHOD)]
-class MaxLength extends GenericAttribute
+class Icon extends GenericAttribute
 {
     /**
-     * Maximum number of allowed characters
+     * Optional icon that will be shown at the end of the field
+     *
+     * @param  string|Icon  $icon
      */
     public function __construct(
-        public int $maxlength
+        public mixed $icon
     ) {
     }
 }

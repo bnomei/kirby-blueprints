@@ -5,13 +5,13 @@ namespace Bnomei\Blueprints\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_METHOD)]
-class MaxLength extends GenericAttribute
+class MinDate extends GenericAttribute
 {
     /**
-     * Maximum number of allowed characters
+     * Earliest date, which can be selected/saved (Y-m-d)
      */
     public function __construct(
-        public int $maxlength
+        public string $min //  (Y-m-d)
     ) {
     }
 }

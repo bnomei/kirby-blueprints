@@ -5,13 +5,13 @@ namespace Bnomei\Blueprints\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_METHOD)]
-class MaxLength extends GenericAttribute
+class Pattern extends GenericAttribute
 {
     /**
-     * Maximum number of allowed characters
+     * A regular expression, which will be used to validate the input
      */
     public function __construct(
-        public int $maxlength
+        public string $pattern
     ) {
     }
 }

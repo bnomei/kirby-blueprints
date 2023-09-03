@@ -9,10 +9,12 @@ use Bnomei\Blueprints\Schema\Button;
 class Buttons extends GenericAttribute
 {
     /**
-     * @param  array<Button>  $buttons
+     * Enables/disables the format buttons. Can either be true/false or a list of allowed buttons. Available buttons: headlines, italic, bold, link, email, file, code, ul, ol (as well as | for a divider)
+     *
+     * @param  bool|array<Button>  $buttons
      */
     public function __construct(
-        public array $buttons
+        public bool|array $buttons = true
     ) {
     }
 }

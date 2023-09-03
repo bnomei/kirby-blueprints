@@ -5,13 +5,13 @@ namespace Bnomei\Blueprints\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_METHOD)]
-class MaxLength extends GenericAttribute
+class Calendar extends GenericAttribute
 {
     /**
-     * Maximum number of allowed characters
+     * Activate/deactivate the dropdown calendar
      */
     public function __construct(
-        public int $maxlength
+        public bool $calendar = true
     ) {
     }
 }

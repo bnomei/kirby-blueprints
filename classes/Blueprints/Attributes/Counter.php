@@ -5,13 +5,13 @@ namespace Bnomei\Blueprints\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_METHOD)]
-class MaxLength extends GenericAttribute
+class Counter extends GenericAttribute
 {
     /**
-     * Maximum number of allowed characters
+     * Shows or hides the character counter in the top right corner
      */
     public function __construct(
-        public int $maxlength
+        public bool $counter = true
     ) {
     }
 }

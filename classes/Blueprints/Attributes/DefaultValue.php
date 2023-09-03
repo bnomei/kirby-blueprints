@@ -5,13 +5,13 @@ namespace Bnomei\Blueprints\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_METHOD)]
-class MaxLength extends GenericAttribute
+class DefaultValue extends GenericAttribute
 {
     /**
-     * Maximum number of allowed characters
+     * Default value for the field, which will be used when a page/file/user is created
      */
     public function __construct(
-        public int $maxlength
+        public mixed $default
     ) {
     }
 }

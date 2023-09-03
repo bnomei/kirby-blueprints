@@ -7,8 +7,11 @@ use Attribute;
 #[Attribute(Attribute::TARGET_METHOD)]
 class Spellcheck extends GenericAttribute
 {
+    /**
+     * If false, spellcheck will be switched off
+     */
     public function __construct(
-        public bool $spellcheck
+        public bool $spellcheck = false
     ) {
     }
 }

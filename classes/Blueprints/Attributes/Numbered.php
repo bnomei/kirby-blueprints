@@ -5,13 +5,13 @@ namespace Bnomei\Blueprints\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_METHOD)]
-class MaxLength extends GenericAttribute
+class Numbered extends GenericAttribute
 {
     /**
-     * Maximum number of allowed characters
+     * If false, the prepended number will be hidden
      */
     public function __construct(
-        public int $maxlength
+        public bool $numbered = false
     ) {
     }
 }

@@ -5,13 +5,13 @@ namespace Bnomei\Blueprints\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_METHOD)]
-class MaxLength extends GenericAttribute
+class Tooltip extends GenericAttribute
 {
     /**
-     * Maximum number of allowed characters
+     * Enables/disables the tooltip and set the before and after values
      */
     public function __construct(
-        public int $maxlength
+        public bool $tooltip
     ) {
     }
 }

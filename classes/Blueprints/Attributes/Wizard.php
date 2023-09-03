@@ -5,13 +5,13 @@ namespace Bnomei\Blueprints\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_METHOD)]
-class MaxLength extends GenericAttribute
+class Wizard extends GenericAttribute
 {
     /**
-     * Maximum number of allowed characters
+     * Set to object with keys field and text to add button to generate from another field
      */
     public function __construct(
-        public int $maxlength
+        public bool $wizard = false
     ) {
     }
 }

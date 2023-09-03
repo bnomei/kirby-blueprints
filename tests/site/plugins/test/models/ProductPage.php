@@ -25,6 +25,7 @@ class ProductPage extends \Kirby\Cms\Page
     #[
         CustomType('qrcode'),
         Property('Custom key', 'custom data'),
+        \Bnomei\Blueprints\Attributes\After()
     ]
     public function qrcode(): Kirby\Content\Field
     {

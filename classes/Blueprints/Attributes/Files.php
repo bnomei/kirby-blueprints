@@ -5,13 +5,13 @@ namespace Bnomei\Blueprints\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_METHOD)]
-class MaxLength extends GenericAttribute
+class Files extends GenericAttribute
 {
     /**
-     * Maximum number of allowed characters
+     * Sets the options for the files picker
      */
     public function __construct(
-        public int $maxlength
+        public array $files = []
     ) {
     }
 }

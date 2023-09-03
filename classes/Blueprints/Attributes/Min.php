@@ -5,13 +5,13 @@ namespace Bnomei\Blueprints\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_METHOD)]
-class MaxLength extends GenericAttribute
+class Min extends GenericAttribute
 {
     /**
-     * Maximum number of allowed characters
+     * The minimum number of required selected
      */
     public function __construct(
-        public int $maxlength
+        public int $min
     ) {
     }
 }

@@ -5,13 +5,13 @@ namespace Bnomei\Blueprints\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_METHOD)]
-class MaxLength extends GenericAttribute
+class MaxRange extends GenericAttribute
 {
     /**
-     * Maximum number of allowed characters
+     * The maximum value on the slider
      */
     public function __construct(
-        public int $maxlength
+        public float $max = 100.0
     ) {
     }
 }

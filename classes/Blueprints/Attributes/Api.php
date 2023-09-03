@@ -5,13 +5,13 @@ namespace Bnomei\Blueprints\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_METHOD)]
-class MaxLength extends GenericAttribute
+class Api extends GenericAttribute
 {
     /**
-     * Maximum number of allowed characters
+     * API settings for options requests. This will only take affect when options type is set to api.
      */
     public function __construct(
-        public int $maxlength
+        public mixed $api
     ) {
     }
 }
