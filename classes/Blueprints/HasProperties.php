@@ -23,6 +23,8 @@ trait HasProperties
             unset($data['properties']);
         }
 
+        // resolve enums etc...
+        $data = json_decode(json_encode($data), true) ?? [];
         ksort($data);
 
         // empty() would catch 0 and false which is not what we want

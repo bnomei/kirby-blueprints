@@ -1,6 +1,0 @@
-sections:
-  main:
-    type: fields
-    fields:
-      description: true
-      qrcode: true

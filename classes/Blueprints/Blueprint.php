@@ -43,34 +43,6 @@ class Blueprint
         $fields = [];
         $rc = new ReflectionClass($class);
 
-        // METHODS
-        foreach ($rc->getMethods(ReflectionMethod::IS_PUBLIC) as $method) {
-            $key = $method->getName();
-            // only Fields
-            $returnType = $method->getReturnType();
-            if ($returnType instanceof ReflectionUnionType === true ||
-                $returnType?->getName() !== Field::class
-            ) {
-                continue;
-            }
-
-            // only with Attributes
-            $fields[$key] = [];
-            foreach ($method->getAttributes() as $attribute) {
-                if (! Str::startsWith($attribute->getName(), 'Bnomei\Blueprints\Attributes')) {
-                    continue;
-                }
-                $instance = $attribute->newInstance();
-                $fields[$key] = array_merge(
-                    $fields[$key],
-                    $instance->toArray()
-                );
-            }
-
-            // sort field properties
-            ksort($fields[$key]);
-        }
-
         // PROPERTIES
         // find properties with blueprint attribute using reflection
         foreach ($rc->getProperties(ReflectionMethod::IS_PUBLIC) as $property) {
@@ -128,7 +100,7 @@ class Blueprint
                     // merge from methods that return blueprint array
                     $blueprint = array_merge_recursive(
                         $blueprint,
-						$class::{$method->getShortName()}()
+                        $class::{$method->getShortName()}()
                     );
                 }
             }

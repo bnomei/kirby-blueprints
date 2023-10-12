@@ -6,23 +6,22 @@ use Bnomei\Blueprints\Attributes\MaxLength;
 use Bnomei\Blueprints\Attributes\Spellcheck;
 use Bnomei\Blueprints\Attributes\Type;
 
-test('HomePage has field from attributes', function() {
-	$blueprint = HomePage::blueprintFromAttributes();
-	expect($blueprint['pages/home']['fields']['introduction'])
-		->toEqual([
-			'label' => [
-				'en' => 'Introduction',
-				'de' => 'Einleitung',
-			],
-			'type' => 'text',
-		]);
+test('HomePage has field from attributes', function () {
+    $blueprint = HomePage::blueprintFromAttributes();
+    expect($blueprint['pages/home']['fields']['introduction'])
+        ->toEqual([
+            'label' => [
+                'en' => 'Introduction',
+                'de' => 'Einleitung',
+            ],
+            'type' => 'text',
+        ]);
 
-	$page = page('home');
+    $page = page('home');
 
-	expect($page->introduction()->value())->toBe('Hello Blueprint!')
-		->and($page->blueprint()->field('introduction')['type'])->toBe('text')
-		->and($page->blueprint()->field('introduction')['label']['de'])->toBe('Einleitung')
-	;
+    expect($page->introduction()->value())->toBe('Hello Blueprint!')
+        ->and($page->blueprint()->field('introduction')['type'])->toBe('text')
+        ->and($page->blueprint()->field('introduction')['label']['de'])->toBe('Einleitung');
 });
 
 test('Textarea has Attributes', function () {

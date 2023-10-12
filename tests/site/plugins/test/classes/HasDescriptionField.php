@@ -26,8 +26,5 @@ trait HasDescriptionField
         MaxLength(3000),
         Spellcheck(true),
     ]
-    public function description(): Field
-    {
-        return parent::__call(__METHOD__);
-    }
+    public Field $description;
 }

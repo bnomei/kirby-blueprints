@@ -1,7 +1,6 @@
 <?php
 
 /** @var HomePage $page */
-
 var_dump($page::class);
 var_dump($page->blueprint()->fields());
 

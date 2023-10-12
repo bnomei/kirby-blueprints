@@ -23,17 +23,14 @@ use Bnomei\Blueprints\Schema\Tab;
 class ProductPage extends \Kirby\Cms\Page
 {
     use HasBlueprintFromAttributes;
-	use HasPublicPropertiesWithAttributes;
     use HasDescriptionField;
+    use HasPublicPropertiesWithAttributes;
 
     #[
         CustomType('qrcode'),
         Property('Custom key', 'custom data'),
     ]
-    public function qrcode(): Kirby\Content\Field
-    {
-        return parent::__call(__METHOD__);
-    }
+    public Kirby\Content\Field $qrcode;
 
     #[
         Type(FieldTypes::EMAIL),
@@ -41,22 +38,10 @@ class ProductPage extends \Kirby\Cms\Page
     ]
     public Kirby\Content\Field $email;
 
-    public static function blueprintFromMyCustomMethod(): array
-    {
-        return [
-            'sections' => [
-                'files' => [
-                    'type' => 'files',
-                    'label' => 'All Files',
-                ],
-            ],
-        ];
-    }
-
     #[
         Blueprint
     ]
-    public static function thisIsACustomBlueprint(): array
+    public static function nameOfThisMethodDoesNotMatterOnlyTheAttribute(): array
     {
         return Page::make(
             title: 'Product',

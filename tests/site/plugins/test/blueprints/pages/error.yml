@@ -1,0 +1,5 @@
+columns:
+  left:
+    width: 1/2
+    fields:
+      fromblue: true # this will not work, only in same folder as model class

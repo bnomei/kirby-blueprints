@@ -5,7 +5,7 @@ namespace Bnomei\Blueprints\Attributes;
 use Attribute;
 use Kirby\Toolkit\Str;
 
-#[Attribute(Attribute::TARGET_METHOD | Attribute::IS_REPEATABLE)]
+#[Attribute(Attribute::TARGET_PROPERTY | Attribute::IS_REPEATABLE)]
 class Property extends GenericAttribute
 {
     /**

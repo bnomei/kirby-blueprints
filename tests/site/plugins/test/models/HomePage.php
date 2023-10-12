@@ -1,5 +1,6 @@
 <?php
 
+use Bnomei\Blueprints\Attributes\ExtendsField;
 use Bnomei\Blueprints\Attributes\Label;
 use Bnomei\Blueprints\Attributes\Type;
 use Bnomei\Blueprints\HasBlueprintFromAttributes;
@@ -10,15 +11,21 @@ use Kirby\Content\Field;
 
 class HomePage extends Page
 {
-	use HasBlueprintFromAttributes;
-	use HasPublicPropertiesWithAttributes;
+    use HasBlueprintFromAttributes;
+    use HasPublicPropertiesWithAttributes;
 
-	#[
-		Label([
-			'en' => 'Introduction',
-			'de' => 'Einleitung',
-		]),
-		Type(FieldTypes::TEXT),
-	]
-	public Field $introduction;
+    #[
+        Label([
+            'en' => 'Introduction',
+            'de' => 'Einleitung',
+        ]),
+        Type(FieldTypes::TEXT),
+    ]
+    public Field $introduction;
+
+    #[
+        Label('Extended'),
+        ExtendsField('fields/extme'),
+    ]
+    public Field $extended;
 }

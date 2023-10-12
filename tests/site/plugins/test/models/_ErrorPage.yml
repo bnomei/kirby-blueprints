@@ -1,0 +1,5 @@
+columns:
+  left:
+    width: 1/2
+    fields:
+      fromblue: true
