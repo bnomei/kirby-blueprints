@@ -43,6 +43,10 @@ class ProductPage extends \Kirby\Cms\Page
     ]
     public static function nameOfThisMethodDoesNotMatterOnlyTheAttribute(): array
     {
+		// IMPORTANT: do NOT use kirby() or site() or page() or option() here since
+		// this method is called before the kirby instance is available.
+		// if you need such behaviour register the blueprint in the plugins:after hook.
+
         return Page::make(
             title: 'Product',
             status: PageStatus::make(
