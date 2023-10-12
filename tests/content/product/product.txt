@@ -2,11 +2,15 @@ Title: Coffee
 
 ----
 
-Price: 
+Price: 50
 
 ----
 
-Intro: 
+Email: roger.rabbit@acme.com
+
+----
+
+Intro: Some Text
 
 ----
 

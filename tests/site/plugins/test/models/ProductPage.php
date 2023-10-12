@@ -5,6 +5,8 @@ use Bnomei\Blueprints\Attributes\CustomType;
 use Bnomei\Blueprints\Attributes\Placeholder;
 use Bnomei\Blueprints\Attributes\Property;
 use Bnomei\Blueprints\Attributes\Type;
+use Bnomei\Blueprints\HasBlueprintFromAttributes;
+use Bnomei\Blueprints\HasPublicPropertiesWithAttributes;
 use Bnomei\Blueprints\Schema\Column;
 use Bnomei\Blueprints\Schema\Field;
 use Bnomei\Blueprints\Schema\FieldProperties;
@@ -20,8 +22,8 @@ use Bnomei\Blueprints\Schema\Tab;
 
 class ProductPage extends \Kirby\Cms\Page
 {
-    // public static bool $cacheBlueprint = false;
-    use Bnomei\Blueprints\HasBlueprint;
+    use HasBlueprintFromAttributes;
+	use HasPublicPropertiesWithAttributes;
     use HasDescriptionField;
 
     #[

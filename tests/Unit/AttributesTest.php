@@ -6,12 +6,27 @@ use Bnomei\Blueprints\Attributes\MaxLength;
 use Bnomei\Blueprints\Attributes\Spellcheck;
 use Bnomei\Blueprints\Attributes\Type;
 
-dataset('pageModels', [
+test('HomePage has field from attributes', function() {
+	$blueprint = HomePage::blueprintFromAttributes();
+	expect($blueprint['pages/home']['fields']['introduction'])
+		->toEqual([
+			'label' => [
+				'en' => 'Introduction',
+				'de' => 'Einleitung',
+			],
+			'type' => 'text',
+		]);
 
-]);
+	$page = page('home');
+
+	expect($page->introduction()->value())->toBe('Hello Blueprint!')
+		->and($page->blueprint()->field('introduction')['type'])->toBe('text')
+		->and($page->blueprint()->field('introduction')['label']['de'])->toBe('Einleitung')
+	;
+});
 
 test('Textarea has Attributes', function () {
-    $pageModel = page('product-test');
+    $pageModel = page('product');
     $rm = new ReflectionMethod($pageModel::class, 'description');
     expect(
         array_map(fn ($a) => $a->getName(), $rm->getAttributes())
@@ -25,7 +40,7 @@ test('Textarea has Attributes', function () {
 });
 
 test('has a Blueprint of ProductPage with description Textarea field', function () {
-    $blueprint = ProductPage::registerBlueprintExtension();
+    $blueprint = ProductPage::blueprintFromAttributes();
     expect($blueprint['pages/product']['tabs'][0]['columns'][1]['fields']['description'])->toEqual([
         'buttons' => [
             'bold',
@@ -45,7 +60,7 @@ test('has a Blueprint of ProductPage with description Textarea field', function 
 });
 
 test('has Custom Type and Property', function () {
-    $blueprint = ProductPage::registerBlueprintExtension();
+    $blueprint = ProductPage::blueprintFromAttributes();
     expect($blueprint['pages/product']['tabs'][0]['columns'][1]['fields']['qrcode'])->toEqual(
         [
             'type' => 'qrcode',
