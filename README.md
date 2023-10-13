@@ -195,6 +195,12 @@ introduction:
     type: text
 ```
 
+### Available Attributes
+
+You can find all available attributes in the [Attributes folder](https://github.com/bnomei/kirby-blueprints/tree/main/classes/Blueprints/Attributes) of this repository.
+
+`Accept, After, Api, Autocomplete, Autofocus, Before, Blueprint, Buttons, Calendar, Columns, ColumnsCount, Converter, Counter, CustomType, DefaultValue, Disabled, Display, EmptyValue, ExtendsField, Fieldsets, Fields, Files, Font, Format, GenericAttribute, Grow, Help, Icon, Image, Info, Inline, Label, Layout, LayoutSettings, Layouts, Link, Marks, Max, MaxDate, MaxRange, MaxTime, MaxLength, Min, MinDate, MinLength, MinRange, MinTime, Multiple, Nodes, Numbered, Options, Path, Pattern, Placeholder, Prepend, Property, Query, Range, Required, Reset, Search, Separator, Size, SortBy, Sortable, Spellcheck, Step, Store, Subpages, Sync, Text, Theme, Time, TimeNotation, Tooltip, Translate, Type, Uploads, When, Width, Wizard`
+
 ### Benefits of using Fields defined in a PageModel using PHP Attributes
 
 You could avoid typos and get auto-completion if you use my [Schema for Kirbys YAML Blueprints](https://github.com/bnomei/kirby3-schema) but the main reason for using PHP attributes is that you will get code completion and type safety within your PHP code (the PageModel, Controllers, Templates, ...). 
@@ -296,9 +302,125 @@ class BlogpostPage extends Page
 }
 ```
 
-## Blueprint definitions for Pages from a PageModel
+## Blueprint definitions for a Page from a PageModel
 
-> WIP
+Most of the time you will use the `Page::make()` helper to create a blueprint definition in a PHP blueprint file and I would recommend to do so. But you could also directly define a full page blueprint in a PageModel if you do not want to have any blueprint files at all.
+
+There is only one special behaviour to note here. You can make the blueprint expand the fields defined by attributes in referencing them by name and setting their value to `true`. But this will only work in Blueprints defined in PageModels not for those from PHP blueprint files.
+
+```php
+Column::make()
+    ->width(1 / 3)
+    ->fields([
+        'price' => [
+            'type' => 'number',
+            'label' => 'Price',
+        ],
+        // will be expanded to the field definition from the
+        // attributes set on the `public Field $email` property.
+        'email' => true, 
+    ]),
+```
+
+<details>
+<summary>👁️ show really long example 👁️</summary>
+
+**site/plugins/example/models/ArticlePage.php<**
+```php
+<?php
+
+// use statements omitted for brevity's sake
+
+class ProductPage extends \Kirby\Cms\Page
+{
+    use HasBlueprintFromAttributes;
+    use HasPublicPropertiesMappedToKirbyFields;
+    
+    // this is the same trait as the example above
+    use HasDescriptionField;
+
+    #[
+        CustomType('qrcode'),
+        Property('Custom key', 'custom data'),
+    ]
+    public Kirby\Content\Field $qrcode;
+
+    #[
+        Type(FieldTypes::EMAIL),
+        Placeholder('Email Field from Property')
+    ]
+    public Kirby\Content\Field $email;
+
+    #[
+        Blueprint
+    ]
+    public static function nameOfThisMethodDoesNotMatterOnlyTheAttribute(): array
+    {
+        return Page::make(
+            title: 'Product',
+            status: PageStatus::make(
+                draft: 'Beer',
+                unlisted: 'Wine',
+                listed: 'Whiskey',
+            ),
+            icon: Icon::PIN,
+            image: PageImage::make(
+                back: 'black',
+                icon: '📝',
+                query: 'page.cover.toFile()'
+            ),
+            options: PageOptions::make()
+                ->preview('{{ page.url }}#product'),
+            navigation: PageNavigation::make()
+                ->sortBy('date desc'),
+            tabs: [
+                Tab::make(
+                    label: 'Shop',
+                    icon: Icon::CART,
+                    columns: [
+                        Column::make()
+                            ->width(1 / 3)
+                            ->fields([
+                                'price' => [
+                                    'type' => 'number',
+                                    'label' => 'Price',
+                                ],
+                                'email' => true, // from PHP
+                            ]),
+                        Column::make(
+                            width: 2 / 3,
+                            fields: [
+                                // generic
+                                'intro' => Field::make(
+                                    type: FieldTypes::TEXTAREA,
+                                    label: 'Introduction',
+                                    // for custom props use a method with attributes or...
+                                    properties: [
+                                        FieldProperties::MAXLENGTH->value => 3000,
+                                        FieldProperties::SPELLCHECK->value => false,
+                                        FieldProperties::BUTTONS->value => false,
+                                    ],
+                                )
+                                // ->property(FieldProperties::MAXLENGTH->value, 3000)
+                                // ->property(FieldProperties::SPELLCHECK->value, false)
+                                // ->property(FieldProperties::BUTTONS->value, false)
+                                ,
+                                // from methods with attributes
+                                'qrcode' => true,
+                                'description' => true,
+                            ]
+                        ),
+                    ],
+                ),
+                Tab::make(label: 'Badger')
+                    ->icon(Icon::BADGE),
+            ],
+        )->toArray();
+    }
+}
+
+```
+</details>
 
 ## Disclaimer
 
