@@ -5,7 +5,7 @@ namespace Bnomei\Blueprints;
 use Kirby\Toolkit\Str;
 use ReflectionClass;
 
-trait HasPublicPropertiesWithAttributes
+trait HasPublicPropertiesMappedToKirbyFields
 {
     public function __construct(array $props)
     {

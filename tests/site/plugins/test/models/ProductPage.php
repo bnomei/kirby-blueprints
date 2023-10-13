@@ -6,7 +6,7 @@ use Bnomei\Blueprints\Attributes\Placeholder;
 use Bnomei\Blueprints\Attributes\Property;
 use Bnomei\Blueprints\Attributes\Type;
 use Bnomei\Blueprints\HasBlueprintFromAttributes;
-use Bnomei\Blueprints\HasPublicPropertiesWithAttributes;
+use Bnomei\Blueprints\HasPublicPropertiesMappedToKirbyFields;
 use Bnomei\Blueprints\Schema\Column;
 use Bnomei\Blueprints\Schema\Field;
 use Bnomei\Blueprints\Schema\FieldProperties;
@@ -24,7 +24,7 @@ class ProductPage extends \Kirby\Cms\Page
 {
     use HasBlueprintFromAttributes;
     use HasDescriptionField;
-    use HasPublicPropertiesWithAttributes;
+    use HasPublicPropertiesMappedToKirbyFields;
 
     #[
         CustomType('qrcode'),
@@ -43,9 +43,9 @@ class ProductPage extends \Kirby\Cms\Page
     ]
     public static function nameOfThisMethodDoesNotMatterOnlyTheAttribute(): array
     {
-		// IMPORTANT: do NOT use kirby() or site() or page() or option() here since
-		// this method is called before the kirby instance is available.
-		// if you need such behaviour register the blueprint in the plugins:after hook.
+        // IMPORTANT: do NOT use kirby() or site() or page() or option() here since
+        // this method is called before the kirby instance is available.
+        // if you need such behaviour register the blueprint in the plugins:after hook.
 
         return Page::make(
             title: 'Product',
