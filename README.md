@@ -306,22 +306,6 @@ class BlogpostPage extends Page
 
 Most of the time you will use the `Page::make()` helper to create a blueprint definition in a PHP blueprint file and I would recommend to do so. But you could also directly define a full page blueprint in a PageModel if you do not want to have any blueprint files at all.
 
-There is only one special behaviour to note here. You can make the blueprint expand the fields defined by attributes in referencing them by name and setting their value to `true`. But this will only work in Blueprints defined in PageModels not for those from PHP blueprint files.
-
-```php
-Column::make()
-    ->width(1 / 3)
-    ->fields([
-        'price' => [
-            'type' => 'number',
-            'label' => 'Price',
-        ],
-        // will be expanded to the field definition from the
-        // attributes set on the `public Field $email` property.
-        'email' => true, 
-    ]),
-```
-
 <details>
 <summary>👁️ show really long example 👁️</summary>
 
@@ -421,6 +405,22 @@ class ProductPage extends \Kirby\Cms\Page
 
 ```
 </details>
+
+There is one special behaviour to note here. You can make the blueprint expand the fields defined by attributes in referencing them by name and setting their value to `true`. But this will only work in Blueprints defined in PageModels not for those from PHP blueprint files.
+
+```php
+Column::make()
+    ->width(1 / 3)
+    ->fields([
+        'price' => [
+            'type' => 'number',
+            'label' => 'Price',
+        ],
+        // will be expanded to the field definition from the
+        // attributes set on the `public Field $email` property.
+        'email' => true, 
+    ]),
+```
 
 ## Disclaimer
 
