@@ -306,7 +306,7 @@ class BlogpostPage extends Page
 
 Most of the time you will use the `Page::make()` helper to create a blueprint definition in a PHP blueprint file and I would recommend to do so. But you could also directly define a full page blueprint in a PageModel if you do not want to have any blueprint files at all.
 
-**site/plugins/example/models/ArticlePage.php<**
+**site/plugins/example/models/ArticlePage.php**
 ```php
 <?php
 
@@ -382,9 +382,14 @@ class ProductPage extends \Kirby\Cms\Page
                                         FieldProperties::BUTTONS->value => false,
                                     ],
                                 )
+                                // OR
                                 // ->property(FieldProperties::MAXLENGTH->value, 3000)
                                 // ->property(FieldProperties::SPELLCHECK->value, false)
                                 // ->property(FieldProperties::BUTTONS->value, false)
+                                // OR
+                                // ->maxLength(3000)
+                                // ->spellcheck(false)
+                                // ->buttons(false)
                                 ,
                                 // from methods with attributes
                                 'qrcode' => true,
