@@ -188,11 +188,12 @@ Just to be extra clear: This would be the same as having the following YAML blue
 
 **site/plugins/example/blueprints/pages/article.yml**
 ```yaml
-introduction:
-    label:
-        en: Introduction
-        de: Einleitung
-    type: text
+fields:
+    introduction:
+        label:
+            en: Introduction
+            de: Einleitung
+        type: text
 ```
 
 ### Available Attributes
