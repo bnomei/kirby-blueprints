@@ -304,7 +304,7 @@ class BlogpostPage extends Page
 
 ## Blueprint definitions for a Page from a PageModel
 
-Most of the time you will use the `Page::make()` helper to create a blueprint definition in a PHP blueprint file and I would recommend to do so. But you could also directly define a full page blueprint in a PageModel if you do not want to have any blueprint files at all.
+Most of the time you will use the `*::make()` helpers to create a blueprint definition in a PHP blueprint files and I would recommend to do so. But if you want your attribute based fields from the page model to work you need to directly define a full page blueprint in a PageModel. This will also give you the benefit of not having any blueprint files at all. Why is it needed? Because somehow the attribute based fields need to be injected in the blueprint definition and that can only work if you define the blueprint in the PageModel itself.
 
 **site/plugins/example/models/ArticlePage.php**
 ```php
