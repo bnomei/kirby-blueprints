@@ -1,0 +1,31 @@
+<?php
+
+namespace Bnomei\Blueprints\Schema;
+
+use Bnomei\Blueprints\HasFluentSetter;
+use Bnomei\Blueprints\HasProperties;
+
+/**
+ * @method changeTitle(bool|array $changeTitle = true): self
+ * @method update(bool|array $update = true): self
+ */
+class SiteOptions implements \JsonSerializable
+{
+    use HasFluentSetter;
+    use HasProperties;
+
+    public function __construct(
+        public bool|array $changeTitle = true,
+        public bool|array $update = true,
+        public array $properties = [],
+    ) {
+    }
+
+    public static function make(
+        bool|array $changeTitle = true,
+        bool|array $update = true,
+        array $properties = [],
+    ): static {
+        return new static(...func_get_args());
+    }
+}

@@ -131,8 +131,9 @@ Depending on what blueprint you want to create you can use one of the following 
 - `Column::make()`
 - `Tab::make()`
 - `Page::make()`
-- `File::make()` (coming soon)
-- `Site::make()` (coming soon)
+- `File::make()`
+- `User::make()`
+- `Site::make()`
 
 ### Dynamic Blueprints
 

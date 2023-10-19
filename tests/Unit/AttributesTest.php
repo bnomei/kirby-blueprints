@@ -26,7 +26,7 @@ test('HomePage has field from attributes', function () {
 
 test('Textarea has Attributes', function () {
     $pageModel = page('product');
-    $rm = new ReflectionMethod($pageModel::class, 'description');
+    $rm = new ReflectionProperty($pageModel::class, 'description');
     expect(
         array_map(fn ($a) => $a->getName(), $rm->getAttributes())
     )->toEqual([

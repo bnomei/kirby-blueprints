@@ -1,0 +1,6 @@
+title: Gallery
+
+sections:
+  images:
+    type: files
+    template: jpgs-only # from PHP

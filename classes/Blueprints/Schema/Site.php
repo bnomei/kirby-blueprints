@@ -11,19 +11,14 @@ use Bnomei\Blueprints\IsArrayable;
  * @method columns(Column[] $columns): self
  * @method fields(Field[] $fields): self
  */
-class Page
+class Site
 {
     use HasFluentSetter;
     use IsArrayable;
 
     public function __construct(
         public string $title, // TODO: should be an string OR array of languages
-        public ?string $num = null,
-        public mixed $status = null,
-        public mixed $icon = null,
-        public mixed $image = null,
         public mixed $options = null,
-        public mixed $navigation = null,
         public array $tabs = [],
         public array $columns = [],
         public array $sections = [],
@@ -32,11 +27,7 @@ class Page
     }
 
     /**
-     * @param  PageStatus  $status
-     * @param  PageImage  $image
-     * @param  PageOptions  $options
-     * @param  PageNavigation  $navigation
-     * @param  Icon|string  $icon
+     * @param  SiteOptions  $options
      * @param  array<Tab>  $tabs
      * @param  array<Column>  $columns
      * @param  array<Section>  $sections
@@ -44,12 +35,7 @@ class Page
      */
     public static function make(
         string $title,
-        string $num = null,
-        mixed $status = null,
-        mixed $icon = null,
-        mixed $image = null,
         mixed $options = null,
-        mixed $navigation = null,
         array $tabs = [],
         array $columns = [],
         array $sections = [],
