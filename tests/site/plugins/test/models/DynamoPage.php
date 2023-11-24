@@ -52,7 +52,7 @@ class DynamoPage extends \Kirby\Cms\Page
                         'c' => Field::make('text', 'User')
                             ->property('placeholder', $user->email().' ('.$user->role().')'),
                         'd' => Field::make('text', 'Value from Plugin Options')
-                            ->property('placeholder', option('bnomei.blueprints.test'))
+                            ->property('placeholder', option('bnomei.blueprints.test')) // does not work
                             ->property('help', 'expected: Test'),
                         'e' => Field::make('text', 'Value from global Options')
                             ->property('placeholder', option('debug') ? 'true' : 'false'),
