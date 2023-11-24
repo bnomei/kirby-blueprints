@@ -35,6 +35,7 @@ composer require bnomei/kirby-blueprints
 
 This plugin introduces two new ways to define blueprints for Kirby.
 
+<div>
 <div style="width: 50%; float: left; padding-right: 1vw;">
 
 ### Fluent & Named Helper Classes
@@ -54,15 +55,16 @@ Define blueprints for pages in PageModels and use public properties with PHP att
 
 **site/plugins/example/models/ArticlePage.php**
 ```php 
-    #[
-        Label([
-            'en' => 'Introduction',
-            'de' => 'Einleitung',
-        ]),
-        Type(FieldTypes::TEXT),
-    ]
-    public Field $introduction;
+#[
+    Label([
+        'en' => 'Introduction',
+        'de' => 'Einleitung',
+    ]),
+    Type(FieldTypes::TEXT),
+]
+public Field $introduction;
 ```
+</div>
 </div>
 
 ## Blueprint definitions from Files
