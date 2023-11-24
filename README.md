@@ -35,14 +35,41 @@ composer require bnomei/kirby-blueprints
 
 This plugin introduces two new ways to define blueprints for Kirby.
 
-1. Define blueprints in PHP files with the *fluent definition* or *named parameter definition* instead of just the *array definition* that Kirby provides. You can use the`*::make()`-helpers (see below) to create them and avoid typos.
-2. Define blueprints for pages in PageModels and use public properties with PHP attributes to define fields. You will gain auto-completion and insights on hover for the fields in your templates.
+<div style="width: 50%; float: left; padding-right: 1vw;">
+
+### Fluent & Named Helper Classes
+Define blueprints in PHP files with the *fluent definition* or *named parameter definition* instead of just the *array definition* that Kirby provides. You can use the`*::make()`-helpers to create them and avoid typos.
+
+**site/plugins/example/blueprints/fields/description.php**
+```php
+return Field::make(FieldTypes::TEXTAREA)
+    ->label('Description')
+    ->toArray();
+```
+</div>
+<div style="width: 50%; float: left; padding-left: 1vw;">
+
+### PHP Attributes for PageModels
+Define blueprints for pages in PageModels and use public properties with PHP attributes to define fields. You will gain auto-completion and insights on hover for the fields in your templates.
+
+**site/plugins/example/models/ArticlePage.php**
+```php 
+    #[
+        Label([
+            'en' => 'Introduction',
+            'de' => 'Einleitung',
+        ]),
+        Type(FieldTypes::TEXT),
+    ]
+    public Field $introduction;
+```
+</div>
 
 ## Blueprint definitions from Files
 
 ### How to make Kirby aware of a blueprint definition
 
-Kirby can currently only load blueprints from YAML files if they are stored in the `site/blueprints` folder. To use PHP you will need to load them in a custom plugin with something called *extension*. Give my [suggestion an up-vote](https://kirby.nolt.io/572) if you want to see this changed in the future and be able to use PHP blueprints right from the core folders.
+Kirby can currently only load blueprints from YAML files if they are stored in the `site/blueprints` folder. It can also load them from PHP files but they need to be defined in a custom plugin with something called *extension*. Give my [suggestion an up-vote](https://kirby.nolt.io/572) if you want to see this changed in the future and be able to use PHP blueprints right from the core folders.
 
 The examples in this Readme show how to create various blueprints. What is not show here is how to register them in the `index.php` of your custom plugin via an extension. See the [official docs](https://getkirby.com/docs/reference/plugins/extensions/blueprints) on how to do that or try my [autoloader helper](https://github.com/bnomei/autoloader-for-kirby). 
 
@@ -64,7 +91,7 @@ Kirby::plugin('your/example', autoloader(__DIR__)->toArray([
 ]);
 ```
 
-### Creating blueprints with YAML in a custom plugin
+### Creating blueprints with YAML in a custom plugin (core Kirby feature)
 
 This is the way you are currently using to define a blueprint in Kirby via a plugin extension.
 
@@ -74,7 +101,11 @@ label: Description
 type: textarea
 ```
 
-### Creating blueprints with PHP in a custom plugin
+### Creating blueprints with PHP in a custom plugin 
+
+In addition to the core *array*-definition his plugin introduces two new ways to define blueprints. The *fluent*- and the *named parameter*-definition. In the end they are both converted to the same *array*-definition that Kirby expects but you can use the `*::make()`-helpers to create them and avoid typos.
+
+#### Programmable Blueprints in Kirby array-definition (core feature)
 
 You can use a PHP file to define a blueprint if you registered it in the `index.php` of your plugin or used the *autoloader helper*.
 
@@ -88,8 +119,6 @@ return [
     'type' => 'textarea',
 ];
 ```
-
-In addition to the *array*-definition his plugin introduces two new ways to define blueprints. The *fluent*- and the *named parameter*-definition.
 
 #### Fluent Definition
 
@@ -106,7 +135,7 @@ return Field::make(FieldTypes::TEXTAREA)
     ->toArray();
 ```
 
-#### Named Parameter Definition
+#### Named Parameter Definition 
 
 **site/plugins/example/blueprints/fields/description.php**
 ```php
@@ -139,9 +168,9 @@ Depending on what blueprint you want to create you can use one of the following 
 
 Since the blueprint definitions get parsed during Kirby's initial setup you can NOT access the Kirby instance (`kirby()`) or any other helpers (`site()/page()`) without causing issues. If you need dynamic behaviour in your blueprints consider reading up on the [system.loadPlugins:after hook](https://getkirby.com/docs/reference/plugins/hooks/system-loadplugins-after).
 
-## Blueprint definitions from PageModels
+## Blueprint definitions from PageModels (new feature from plugin)
 
-In Kirby you can define a class matching the name of your template plus the suffix `Page` to create a [PageModel](https://getkirby.com/docs/reference/plugins/extensions/page-models). In this example we are putting them into the `site/plugins/example/models` folder so that the *autoloader helper* can find them. You could also put them into the `site/models` folder given you adjust the filename a bit. But having said that I would still recommend to use a plugin extension to register them.
+In Kirby you can define a class matching the name of your template plus the suffix `Page` to create a [PageModel](https://getkirby.com/docs/reference/plugins/extensions/page-models). In this example we are putting them into the `site/plugins/example/models` folder so that the *autoloader helper* can find them. You could also put them into the `site/models` folder given you adjust the filename a bit.
 
 **site/plugins/example/models/ExamplePage.php**
 ```php
@@ -159,7 +188,9 @@ class ExamplePage extends Page
 
 Do not be confused by the many `use` statements you will see in the examples below. Your IDE will most likely add them when you use the PHP attributes to ensure the PHP code knows where to find the definitions for them.
 
-You will need to add two traits to your PageModel. One for making it aware that we want the public properties with attributes registered as blueprint fields and to read the page blueprint definition (`HasBlueprintFromAttributes`) and a second one for making those public properties return the Kirby field object (`HasPublicPropertiesMappedToKirbyFields`).
+You will need to add two traits to your PageModel. 
+- One for making it aware that we want the public properties with attributes registered as blueprint fields and to read the page blueprint definition (`HasBlueprintFromAttributes`) and 
+- a second one for making those public properties return the Kirby field object (`HasPublicPropertiesMappedToKirbyFields`).
 
 Without defining a YAML blueprint for the `article` template Kirby would have an empty blueprint definition. But with the attributes defined in the PageModel Kirby will know what fields we want to have in the blueprint (registered by the *autoloader helper*).
 
@@ -204,6 +235,8 @@ fields:
         type: text
 ```
 
+Most likely you will want a more complex blueprint definition than just fields at root level. To do that you will have to create a method to return the blueprint from the PageModel. The name of the method does not matter but the attribute `Blueprint` does. The method needs to return an array with the blueprint definition. See futher down for an example.
+
 ### Available Attributes
 
 You can find all available PHP attributes in the [classes/Blueprints/Attributes folder](https://github.com/bnomei/kirby-blueprints/tree/main/classes/Blueprints/Attributes) of this repository. They reflect the properties you would set for a given field in a YAML blueprint. For some properties I created variants since different fields use the same property name but with different meanings (like `max` in a `number` field vs. `max` in a `date` field) and I wanted to keep them unambiguous in PHP.
@@ -212,11 +245,9 @@ You can find all available PHP attributes in the [classes/Blueprints/Attributes 
 
 ### Benefits of using this plugin
 
-You could alternatively use another plugin to [create type-hints](https://github.com/lukaskleinschmidt/kirby-file-types) based on your regular Kirby setup but that would mean you need to update them on every code change.
+You could alternatively use another plugin to [create type-hints](https://github.com/lukaskleinschmidt/kirby-file-types) based on your regular Kirby setup but that would mean you need to update them on every code change. With this plugin you can define your fields in the PageModel and instantly have code-completion in your templates. Hovering the property name will, in most IDEs, show you the attributes you did set for easy reference.
 
-You could avoid typos and get auto-completion if you use my [Schema for Kirby's YAML Blueprints](https://github.com/bnomei/kirby3-schema) but the main reason for using the `*::make()`-helpers and the PHP attributes is that you will get code-completion and type-safety within the blueprints themself and in the rest of your PHP code (the PageModels, controllers, templates, ...). 
-
-But with this plugin you can define your fields in the PageModel and instantly use them in your templates with code-completion. Hovering the property name will, in most IDEs, show you the attributes you did set for easy reference.
+You could reduce the risk of typos and get auto-completion if you use my [Schema for Kirby's YAML Blueprints](https://github.com/bnomei/kirby3-schema). But using the `*::make()`-helpers and the PHP attributes will get you code-completion and type-safety within the blueprints themselves and in the rest of your PHP code (the PageModels, controllers, templates, ...).
 
 **site/templates/article.php**
 ```php
@@ -224,13 +255,16 @@ But with this plugin you can define your fields in the PageModel and instantly u
 
 // no code completion. your IDE does NOT know
 // that `introduction()` method is a Field.
+
 var_dump($page->introduction()->value());
+
 
 // with this plugin your IDE will know that
 // the public property `introduction` is a Field
 // and you can use code completion and see the
 // set attributes on hovering the property.
-var_dump($page->introduction->value());
+
+var_dump($page->introduction->value()); // <-- property not method!
 ```
 
 > NOTE: This in not perfect. In an ideal case the IDE would know that you wanted a field of type textarea and only offer you methods that are available for that type of field. But that is something we can not do with Kirby right now. Still it's better than nothing. :-)
