@@ -111,6 +111,7 @@ return array(
     'Bnomei\\Blueprints\\Schema\\PageOptions' => $baseDir . '/classes/Blueprints/Schema/PageOptions.php',
     'Bnomei\\Blueprints\\Schema\\PageStatus' => $baseDir . '/classes/Blueprints/Schema/PageStatus.php',
     'Bnomei\\Blueprints\\Schema\\Section' => $baseDir . '/classes/Blueprints/Schema/Section.php',
+    'Bnomei\\Blueprints\\Schema\\SectionTypes' => $baseDir . '/classes/Blueprints/Schema/SectionTypes.php',
     'Bnomei\\Blueprints\\Schema\\Site' => $baseDir . '/classes/Blueprints/Schema/Site.php',
     'Bnomei\\Blueprints\\Schema\\SiteOptions' => $baseDir . '/classes/Blueprints/Schema/SiteOptions.php',
     'Bnomei\\Blueprints\\Schema\\Tab' => $baseDir . '/classes/Blueprints/Schema/Tab.php',

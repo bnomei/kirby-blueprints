@@ -4,6 +4,9 @@
 autoloader(__DIR__)->classes();
 
 $a = autoloader(__DIR__)->toArray([
+    'options' => [
+        'test' => 'Test',
+    ],
     'blueprints' => [
         'fields/test' => [
             'type' => 'info',
@@ -11,7 +14,7 @@ $a = autoloader(__DIR__)->toArray([
         ],
     ],
 ]);
-// ray ($a);
+ray($a);
 
 // load everything else with the autoloader
 Kirby::plugin('test/plugin', $a);

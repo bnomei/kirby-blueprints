@@ -168,7 +168,9 @@ Depending on what blueprint you want to create you can use one of the following 
 
 ### Dynamic Blueprints
 
-Since the blueprint definitions get parsed during Kirby's initial setup you can NOT access the Kirby instance (`kirby()`) or any other helpers (`site()/page()`) without causing issues. If you need dynamic behaviour in your blueprints consider reading up on the [system.loadPlugins:after hook](https://getkirby.com/docs/reference/plugins/hooks/system-loadplugins-after).
+Since the blueprint definitions get parsed during Kirby's initial setup you can NOT access all data in the Kirby instance (`kirby()`) or any other helpers (`site()/page()`) without causing issues once in a while. If you need dynamic behaviour in your blueprints consider reading up on the [system.loadPlugins:after hook](https://getkirby.com/docs/reference/plugins/hooks/system-loadplugins-after).
+
+Also take a look at the [official cookbook](https://getkirby.com/docs/cookbook/panel/programmable-blueprints#assigning-filtered-blueprints-to-sections) and the [examples in this plugin](https://github.com/bnomei/kirby-blueprints/tree/main/tests/site/plugins/test/models/DynamoPage.php) related to dynamic blueprints.
 
 ## Blueprint definitions from PageModels (new feature from plugin)
 
@@ -350,7 +352,7 @@ class BlogpostPage extends Page
 
 ## Blueprint definitions for a page from a PageModel
 
-Most of the time you will use the `*::make()`-helpers to create a blueprint definition in a PHP blueprint files and I would recommend to do so. But if you want your attribute based fields from the PageModel to work you need to directly define a full page blueprint in the same PageModel. Why is it needed? Because the attribute based fields need to be injected in the blueprint definition and that can only work if you define the blueprint in the PageModel itself.
+You will use the `*::make()`-helpers to create a blueprint definition in a PHP blueprint files. If you want your attribute based fields from the PageModel to work you need to directly define a full page blueprint in the same PageModel. Why is it needed? Because the attribute based fields need to be injected in the blueprint definition and that can only work if you define the blueprint in the PageModel itself.
 
 This will also give you the benefit of not having any blueprint files at all.
 

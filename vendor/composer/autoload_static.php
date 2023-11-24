@@ -134,6 +134,7 @@ class ComposerStaticInit6b42d764b051343bd3f241c226468d06
         'Bnomei\\Blueprints\\Schema\\PageOptions' => __DIR__ . '/../..' . '/classes/Blueprints/Schema/PageOptions.php',
         'Bnomei\\Blueprints\\Schema\\PageStatus' => __DIR__ . '/../..' . '/classes/Blueprints/Schema/PageStatus.php',
         'Bnomei\\Blueprints\\Schema\\Section' => __DIR__ . '/../..' . '/classes/Blueprints/Schema/Section.php',
+        'Bnomei\\Blueprints\\Schema\\SectionTypes' => __DIR__ . '/../..' . '/classes/Blueprints/Schema/SectionTypes.php',
         'Bnomei\\Blueprints\\Schema\\Site' => __DIR__ . '/../..' . '/classes/Blueprints/Schema/Site.php',
         'Bnomei\\Blueprints\\Schema\\SiteOptions' => __DIR__ . '/../..' . '/classes/Blueprints/Schema/SiteOptions.php',
         'Bnomei\\Blueprints\\Schema\\Tab' => __DIR__ . '/../..' . '/classes/Blueprints/Schema/Tab.php',
