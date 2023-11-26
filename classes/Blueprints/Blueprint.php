@@ -12,8 +12,22 @@ use ReflectionUnionType;
 
 class Blueprint
 {
-    public function __construct(private readonly string $modelClass, private readonly bool $cache = true)
+    public function __construct(private readonly string $modelClass, private ?bool $cache = null)
     {
+        $isCacheable = false;
+        $rc = new ReflectionClass($modelClass);
+        foreach ($rc->getMethods(ReflectionMethod::IS_PUBLIC) as $method) {
+            foreach ($method->getAttributes() as $attribute) {
+                if ($attribute->getName() === 'Bnomei\Blueprints\Attributes\Blueprint') {
+                    $isCacheable = $attribute->newInstance()->cacheable;
+                    break;
+                }
+            }
+            if ($isCacheable) {
+                break;
+            }
+        }
+        $this->cache ??= $isCacheable;
     }
 
     public function __toString(): string
@@ -175,12 +189,15 @@ class Blueprint
 
                         continue; // do not overwrite those set manually in arrays
                     }
-                    if (isset($item['id'])) {
+                    if (is_string($item)) {
+                        $updated[$item] = true; // resolve attribute based definition
+                    } elseif (is_array($item) && isset($item['id'])) {
                         $updated[Str::camel($item['id'])] = $item;
-                    } elseif (isset($item['label'])) {
+                    } elseif (is_array($item) && isset($item['label'])) {
                         $updated[Str::camel($item['label'])] = $item;
                     } else {
-                        $updated[Str::random(5)] = $item;
+                        $hash = md5(json_encode($item)); // needs to stay the same for kirby between requests
+                        $updated[$hash] = $item;
                     }
                 }
 

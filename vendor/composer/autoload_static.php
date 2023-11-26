@@ -121,7 +121,6 @@ class ComposerStaticInit6b42d764b051343bd3f241c226468d06
         'Bnomei\\Blueprints\\Schema\\Button' => __DIR__ . '/../..' . '/classes/Blueprints/Schema/Button.php',
         'Bnomei\\Blueprints\\Schema\\Column' => __DIR__ . '/../..' . '/classes/Blueprints/Schema/Column.php',
         'Bnomei\\Blueprints\\Schema\\Field' => __DIR__ . '/../..' . '/classes/Blueprints/Schema/Field.php',
-        'Bnomei\\Blueprints\\Schema\\FieldProperties' => __DIR__ . '/../..' . '/classes/Blueprints/Schema/FieldProperties.php',
         'Bnomei\\Blueprints\\Schema\\FieldTypes' => __DIR__ . '/../..' . '/classes/Blueprints/Schema/FieldTypes.php',
         'Bnomei\\Blueprints\\Schema\\Fields\\TextField' => __DIR__ . '/../..' . '/classes/Blueprints/Schema/Fields/TextField.php',
         'Bnomei\\Blueprints\\Schema\\Fields\\Url' => __DIR__ . '/../..' . '/classes/Blueprints/Schema/Fields/Url.php',

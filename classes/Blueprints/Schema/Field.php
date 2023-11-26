@@ -12,7 +12,7 @@ use JsonSerializable;
  * @method self id(string|null $id)
  * @method self label(array|string|null $label)
  * @method self width(float|string|null $width)
- * @method self property(FieldProperties|string $name, mixed $value)
+ * @method self property(string $name, mixed $value)
  * @method self properties(array $properties)
  */
 class Field implements JsonSerializable

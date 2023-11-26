@@ -3,8 +3,6 @@
 use Bnomei\Blueprints\Attributes\Blueprint;
 use Bnomei\Blueprints\Attributes\Label;
 use Bnomei\Blueprints\Attributes\Type;
-use Bnomei\Blueprints\Schema\FieldTypes;
-use Bnomei\Blueprints\Schema\SectionTypes;
 use Bnomei\HasInk;
 use Bnomei\Ink;
 use Kirby\Cms\Page;
@@ -16,13 +14,13 @@ class ElephantPage extends Page
 
     #[
         Label('Left Ear'),
-        Type(FieldTypes::TEXT),
+        Type(Ink::TEXT),
     ]
     public Field $leftEar;
 
     #[
         Label('Right Ear'),
-        Type(FieldTypes::TAGS),
+        Type(Ink::TAGS),
     ]
     public Field $rightEar;
 
@@ -37,22 +35,23 @@ class ElephantPage extends Page
             title: 'Elephant',
             columns: [
                 Ink::column(2 / 3)->fields([
-                    'leftEar' => true,
-                    Ink::field(FieldTypes::BLOCKS)
+                    'leftEar',
+                    Ink::field(Ink::BLOCKS)
                         ->label('Trunk')
-                        ->property('empty', '🐘'),
-                    'rightEar' => true,
+                        ->property(Ink::EMPTY, '🐘'),
+                    'rightEar',
                 ]),
                 Ink::column(1 / 3)->sections([
-                    Ink::section(SectionTypes::FIELDS)->fields([
-                        Ink::field('text', label: 'User')
+                    Ink::fields()->fields([
+                        Ink::field(Ink::TEXT)
+                            ->label('User')
                             ->property('placeholder', $user?->email().' ('.$user?->role().')'),
                     ]),
-                    Ink::section(SectionTypes::INFO)
+                    Ink::info()
                         ->label('Kirby Version')
-                        ->theme('info')
+                        ->theme(Ink::INFO)
                         ->text(kirby()->version()),
-                    Ink::section(SectionTypes::FILES)
+                    Ink::files()
                         ->label('Files'),
                 ]),
             ],

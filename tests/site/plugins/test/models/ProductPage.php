@@ -9,7 +9,6 @@ use Bnomei\Blueprints\HasBlueprintFromAttributes;
 use Bnomei\Blueprints\HasPublicPropertiesMappedToKirbyFields;
 use Bnomei\Blueprints\Schema\Column;
 use Bnomei\Blueprints\Schema\Field;
-use Bnomei\Blueprints\Schema\FieldProperties;
 use Bnomei\Blueprints\Schema\Fields\Url;
 use Bnomei\Blueprints\Schema\FieldTypes;
 use Bnomei\Blueprints\Schema\Icon;
@@ -19,6 +18,7 @@ use Bnomei\Blueprints\Schema\PageNavigation;
 use Bnomei\Blueprints\Schema\PageOptions;
 use Bnomei\Blueprints\Schema\PageStatus;
 use Bnomei\Blueprints\Schema\Tab;
+use Bnomei\Ink;
 
 class ProductPage extends \Kirby\Cms\Page
 {
@@ -39,7 +39,7 @@ class ProductPage extends \Kirby\Cms\Page
     public Kirby\Content\Field $email;
 
     #[
-        Blueprint
+        Blueprint(cacheable: true)
     ]
     public static function nameOfThisMethodDoesNotMatterOnlyTheAttribute(): array
     {
@@ -87,14 +87,14 @@ class ProductPage extends \Kirby\Cms\Page
                                     label: 'Introduction',
                                     // for custom props use a method with attributes or...
                                     properties: [
-                                        FieldProperties::MAXLENGTH->value => 3000,
-                                        FieldProperties::SPELLCHECK->value => false,
-                                        FieldProperties::BUTTONS->value => false,
+                                        Ink::MAXLENGTH => 3000,
+                                        Ink::SPELLCHECK => false,
+                                        Ink::BUTTONS => false,
                                     ],
                                 )
-                                // ->property(FieldProperties::MAXLENGTH->value, 3000)
-                                // ->property(FieldProperties::SPELLCHECK->value, false)
-                                // ->property(FieldProperties::BUTTONS->value, false)
+                                // ->property(Ink::MAXLENGTH, 3000)
+                                // ->property(Ink::SPELLCHECK, false)
+                                // ->property(Ink::BUTTONS, false)
                                 ,
                                 /*
                                  * THIS WOULD MEAN CREATING A LOT OF CLASSES

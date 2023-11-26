@@ -427,15 +427,15 @@ class ProductPage extends \Kirby\Cms\Page
                                     label: 'Introduction',
                                     // for custom props use a method with attributes or...
                                     properties: [
-                                        FieldProperties::MAXLENGTH->value => 3000,
-                                        FieldProperties::SPELLCHECK->value => false,
-                                        FieldProperties::BUTTONS->value => false,
+                                        Ink::MAXLENGTH => 3000,
+                                        Ink::SPELLCHECK => false,
+                                        Ink::BUTTONS => false,
                                     ],
                                 )
                                 // OR
-                                // ->property(FieldProperties::MAXLENGTH->value, 3000)
-                                // ->property(FieldProperties::SPELLCHECK->value, false)
-                                // ->property(FieldProperties::BUTTONS->value, false)
+                                // ->property(Ink::MAXLENGTH, 3000)
+                                // ->property(Ink::SPELLCHECK, false)
+                                // ->property(Ink::BUTTONS-, false)
                                 // OR
                                 // ->maxLength(3000)
                                 // ->spellcheck(false)
@@ -508,24 +508,24 @@ class ElephantPage extends Page
         return Ink::page(
             title: 'Elephant',
             columns: [
-                Ink::column(2/3)->fields([
-                    'leftEar' => true,
+                Ink::column(2 / 3)->fields([
+                    'leftEar',
                     Ink::field(FieldTypes::BLOCKS)
-                        ->id('trunk')
-                        ->label('Trunk Blocks')
+                        ->label('Trunk')
                         ->property('empty', '🐘'),
-                    'rightEar' => true,
+                    'rightEar',
                 ]),
-                Ink::column(1/3)->sections([
-                    Ink::section(SectionTypes::FIELDS)->fields([
-                        Ink::field('text', label: 'User')
+                Ink::column(1 / 3)->sections([
+                    Ink::fields()->fields([
+                        Ink::field('text')
+                            ->label('User')
                             ->property('placeholder', $user?->email().' ('.$user?->role().')'),
                     ]),
-                    Ink::section(SectionTypes::INFO)
+                    Ink::info()
                         ->label('Kirby Version')
                         ->theme('info')
                         ->text(kirby()->version()),
-                    Ink::section(SectionTypes::FILES)
+                    Ink::files()
                         ->label('Files'),
                 ]),
             ],

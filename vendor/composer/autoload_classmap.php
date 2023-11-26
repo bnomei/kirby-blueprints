@@ -98,7 +98,6 @@ return array(
     'Bnomei\\Blueprints\\Schema\\Button' => $baseDir . '/classes/Blueprints/Schema/Button.php',
     'Bnomei\\Blueprints\\Schema\\Column' => $baseDir . '/classes/Blueprints/Schema/Column.php',
     'Bnomei\\Blueprints\\Schema\\Field' => $baseDir . '/classes/Blueprints/Schema/Field.php',
-    'Bnomei\\Blueprints\\Schema\\FieldProperties' => $baseDir . '/classes/Blueprints/Schema/FieldProperties.php',
     'Bnomei\\Blueprints\\Schema\\FieldTypes' => $baseDir . '/classes/Blueprints/Schema/FieldTypes.php',
     'Bnomei\\Blueprints\\Schema\\Fields\\TextField' => $baseDir . '/classes/Blueprints/Schema/Fields/TextField.php',
     'Bnomei\\Blueprints\\Schema\\Fields\\Url' => $baseDir . '/classes/Blueprints/Schema/Fields/Url.php',
