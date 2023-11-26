@@ -8,36 +8,37 @@ use Bnomei\Blueprints\IsArrayable;
 /**
  * // FIELD
  *
- * @method fields(Field[] $fields): self
+ * @method self fields(Field[] $fields)
  * // FILES
- * @method columns(Column[] $columns): self
- * @method empty(string|array $empty): self
- * @method flip(bool $flip): self
- * @method headline(string|array $headline): self
- * @method help(string|array $help): self
- * @method image(array $image): self
- * @method info(string|array $info): self
- * @method label(string|array $label): self
- * @method layout(string $layout): self
- * @method limit(int $limit): self
- * @method max(int $max): self
- * @method min(int $min): self
- * @method page(int $page): self
- * @method parent(string $parent): self
- * @method search(bool $search): self
- * @method size(string $size): self
- * @method sortBy(string $sortBy): self
- * @method sortable(bool $sortable): self
- * @method template(string $template): self
- * @method text(string $text): self
+ * @method self columns(Column[] $columns)
+ * @method self empty(string|array $empty)
+ * @method self flip(bool $flip)
+ * @method self headline(string|array $headline)
+ * @method self help(string|array $help)
+ * @method self image(array $image)
+ * @method self info(string|array $info)
+ * @method self id(string $id)
+ * @method self label(string|array $label)
+ * @method self layout(string $layout)
+ * @method self limit(int $limit)
+ * @method self max(int $max)
+ * @method self min(int $min)
+ * @method self page(int $page)
+ * @method self parent(string $parent)
+ * @method self search(bool $search)
+ * @method self size(string $size)
+ * @method self sortBy(string $sortBy)
+ * @method self sortable(bool $sortable)
+ * @method self template(string $template)
+ * @method self text(string $text)
  * // INFO
- * @method theme(string $text): self
+ * @method self theme(string $text)
  * // PAGES
- * @method create(bool|array $create): self
- * @method status(string $status='all'): self
- * @method templates(array $templates): self
+ * @method self create(bool|array $create)
+ * @method self status(string $status='all')
+ * @method self templates(array $templates)
  * // STATS
- * @method reports(string|array $reports): self
+ * @method self reports(string|array $reports)
  */
 class Section
 {
@@ -54,6 +55,7 @@ class Section
         public mixed $help = null,
         public array $image = [],
         public mixed $info = null,
+        public ?string $id = null,
         public mixed $label = null,
         public ?string $layout = 'list',
         public ?int $limit = null,
@@ -85,6 +87,7 @@ class Section
         mixed $help = null,
         array $image = [],
         mixed $info = null,
+        string $id = null,
         mixed $label = null,
         ?string $layout = 'list',
         int $limit = null,

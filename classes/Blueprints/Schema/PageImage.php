@@ -5,10 +5,10 @@ namespace Bnomei\Blueprints\Schema;
 use Bnomei\Blueprints\HasFluentSetter;
 
 /**
- * @method back(string $back): self
- * @method color(string $color): self
- * @method icon(string $icon): self
- * @method query(string $query): self
+ * @method self back(string $back)
+ * @method self color(string $color)
+ * @method self icon(string $icon)
+ * @method self query(string $query)
  */
 class PageImage
 {

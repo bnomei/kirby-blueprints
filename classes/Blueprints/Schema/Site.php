@@ -6,10 +6,10 @@ use Bnomei\Blueprints\HasFluentSetter;
 use Bnomei\Blueprints\IsArrayable;
 
 /**
- * @method tabs(Tab[] $tabs): self
- * @method sections(Section[] $sections): self
- * @method columns(Column[] $columns): self
- * @method fields(Field[] $fields): self
+ * @method self tabs(Tab[] $tabs)
+ * @method self sections(Section[] $sections)
+ * @method self columns(Column[] $columns)
+ * @method self fields(Field[] $fields)
  */
 class Site
 {

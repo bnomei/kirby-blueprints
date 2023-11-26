@@ -4,31 +4,32 @@ namespace Bnomei\Blueprints\Schema;
 
 use Bnomei\Blueprints\HasFluentSetter;
 use Bnomei\Blueprints\HasProperties;
+use Bnomei\Blueprints\HasStaticMake;
 use JsonSerializable;
 
 /**
- * @method label(array|string|null $label): self
- * @method width(float|string|null $width): self
+ * @method self type(FieldTypes|string $type)
+ * @method self id(string|null $id)
+ * @method self label(array|string|null $label)
+ * @method self width(float|string|null $width)
+ * @method self property(FieldProperties|string $name, mixed $value)
+ * @method self properties(array $properties)
  */
 class Field implements JsonSerializable
 {
     use HasFluentSetter;
     use HasProperties;
+    use HasStaticMake;
+
+    public mixed $type = null;
 
     public function __construct(
-        public mixed $type = null,
+        mixed $type = null,
+        public ?string $id = null,
         public string|array|null $label = null,
         public array $properties = [],
         public string|float|null $width = null,
     ) {
-    }
-
-    public static function make(
-        mixed $type = null,
-        string|array $label = null,
-        array $properties = [],
-        string|float $width = null,
-    ): static {
-        return new static(...func_get_args());
+        $this->type ??= $type; // allow override from inheriting class
     }
 }

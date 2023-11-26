@@ -40,6 +40,9 @@ trait HasProperties
         return $this;
     }
 
+    /**
+     * @internal
+     */
     public function jsonSerialize(): array
     {
         return $this->toArray();

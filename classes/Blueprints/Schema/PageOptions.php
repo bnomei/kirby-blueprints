@@ -6,17 +6,17 @@ use Bnomei\Blueprints\HasFluentSetter;
 use Bnomei\Blueprints\HasProperties;
 
 /**
- * @method changeSlug(bool|array $changeSlug = true): self
- * @method changeStatus(bool|array $changeStatus = true): self
- * @method changeTemplate(bool|array $changeTemplate = true): self
- * @method changeTitle(bool|array $changeTitle = true): self
- * @method create(bool|array $create = true): self
- * @method delete(bool|array $delete = true): self
- * @method duplicate(bool|array $duplicate = true): self
- * @method preview(bool|string $preview = true): self
- * @method read(bool|array $read = true): self
- * @method sort(bool|array $sort = true): self
- * @method update(bool|array $update = true): self
+ * @method self changeSlug(bool|array $changeSlug = true)
+ * @method self changeStatus(bool|array $changeStatus = true)
+ * @method self changeTemplate(bool|array $changeTemplate = true)
+ * @method self changeTitle(bool|array $changeTitle = true)
+ * @method self create(bool|array $create = true)
+ * @method self delete(bool|array $delete = true)
+ * @method self duplicate(bool|array $duplicate = true)
+ * @method self preview(bool|string $preview = true)
+ * @method self read(bool|array $read = true)
+ * @method self sort(bool|array $sort = true)
+ * @method self update(bool|array $update = true)
  */
 class PageOptions implements \JsonSerializable
 {

@@ -5,9 +5,9 @@ namespace Bnomei\Blueprints\Schema;
 use Bnomei\Blueprints\HasFluentSetter;
 
 /**
- * @method draft(string|array $draft): self
- * @method unlisted(string|array $unlisted): self
- * @method listed(string|array $listed): self
+ * @method self draft(string|array $draft)
+ * @method self unlisted(string|array $unlisted)
+ * @method self listed(string|array $listed)
  */
 class PageStatus
 {

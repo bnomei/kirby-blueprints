@@ -5,9 +5,9 @@ namespace Bnomei\Blueprints\Schema\Fields;
 use Bnomei\Blueprints\IsArrayable;
 use JetBrains\PhpStorm\Deprecated;
 
-#[
-    Deprecated
-]
+/**
+ * @deprecated use Field::make('url') instead, this is just me testing stuff
+ */
 class Url
 {
     use IsArrayable;

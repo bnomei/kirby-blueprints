@@ -1,18 +1,19 @@
 <?php
 
 use Bnomei\Blueprints\Attributes\Blueprint;
-use Bnomei\Blueprints\HasBlueprintFromAttributes;
-use Bnomei\Blueprints\HasPublicPropertiesMappedToKirbyFields;
-use Bnomei\Blueprints\Schema\Column;
-use Bnomei\Blueprints\Schema\Field;
-use Bnomei\Blueprints\Schema\Page;
-use Bnomei\Blueprints\Schema\Section;
+use Bnomei\Blueprints\Attributes\Label;
+use Bnomei\Blueprints\Attributes\Type;
+use Bnomei\Blueprints\Schema\Fields\TextField;
+use Bnomei\Blueprints\Schema\FieldTypes;
 use Bnomei\Blueprints\Schema\SectionTypes;
+use Bnomei\HasInk;
+use Bnomei\Ink;
+use Kirby\Cms\Page;
+use Kirby\Content\Field;
 
-class DynamoPage extends \Kirby\Cms\Page
+class DynamoPage extends Page
 {
-    use HasBlueprintFromAttributes;
-    use HasPublicPropertiesMappedToKirbyFields;
+    use HasInk;
 
     #[
         Label('Loaded'),
@@ -36,29 +37,35 @@ class DynamoPage extends \Kirby\Cms\Page
         // $kirby->blueprints() ==> empty
         // $site->blueprints() ==> unreliable due to being filled at this stage, will occasionally break the panel
 
-        $x = Page::make(
-            'Dynamo',
+        $x = Ink::page(
+            title: 'Dynamo',
             columns: [
-                Column::make('1/2')->fields([
-                    'v' => Field::make('text', 'Kirby Version')
+                Ink::column('1/2')->fields([
+                    Ink::field('text', label: 'Kirby Version')
                         ->property('placeholder', $kirby->version()),
-                    'a' => Field::make('text', 'Site Title')
+                    Ink::field('text', label: 'Site Title')
                         ->property('placeholder', $site->title()),
-                    'b' => Field::make('text', 'Blueprints')
+                    Ink::field('text', 'Blueprints')
                         ->property('placeholder', implode(', ', array_column($kirby->blueprints(), 'name'))),
                 ]),
-                Column::make('1/2')->sections([
-                    Section::make(SectionTypes::FIELDS)->fields([
-                        'c' => Field::make('text', 'User')
-                            ->property('placeholder', $user->email().' ('.$user->role().')'),
-                        'd' => Field::make('text', 'Value from Plugin Options')
+                Ink::column('1/2')->sections([
+                    Ink::section(SectionTypes::FIELDS, id: 'hello')->fields([
+                        Ink::field('text', label: 'User')
+                            ->property('placeholder', $user?->email().' ('.$user?->role().')'),
+                        Ink::field('text', label: 'Value from Plugin Options')
+                            ->id('d')
                             ->property('placeholder', option('bnomei.blueprints.test')) // does not work
                             ->property('help', 'expected: Test'),
-                        'e' => Field::make('text', 'Value from global Options')
-                            ->property('placeholder', option('debug') ? 'true' : 'false'),
+                        TextField::make()
+                            ->label('Value from Plugin Options')
+                            ->placeholder(option('debug') ? 'true' : 'false'),
+                        TextField::make()
+                            ->placeholder('hello')
+                            ->label('Value from Plugin Options'),
                     ]),
-                    Section::make(SectionTypes::FILES)
-                        ->label('Files'),
+                    Ink::section(SectionTypes::FILES)
+                        ->label('Files')
+                        ->id('filesyoyo'),
                 ]),
             ],
 

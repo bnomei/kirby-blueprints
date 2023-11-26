@@ -5,9 +5,9 @@ namespace Bnomei\Blueprints\Schema;
 use Bnomei\Blueprints\HasFluentSetter;
 
 /**
- * @method status(string|array $status): self
- * @method template(string|array $template): self
- * @method sortBy(string $sortBy): self
+ * @method self status(string|array $status)
+ * @method self template(string|array $template)
+ * @method self sortBy(string $sortBy)
  */
 class PageNavigation
 {

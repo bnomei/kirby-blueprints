@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e38ea86fce2222df629d100cf05bde15",
+    "content-hash": "015ee699b085dc98b772b40bb44e15e7",
     "packages": [
         {
             "name": "getkirby/composer-installer",
@@ -835,16 +835,16 @@
         },
         {
             "name": "getkirby/cms",
-            "version": "4.0.0-rc.3",
+            "version": "4.0.0-rc.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getkirby/kirby.git",
-                "reference": "b1d6619b9fb128d1104b6cccff2df7ed2eddae34"
+                "reference": "02eea268819ddb770b91479370c62d53f1c38790"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getkirby/kirby/zipball/b1d6619b9fb128d1104b6cccff2df7ed2eddae34",
-                "reference": "b1d6619b9fb128d1104b6cccff2df7ed2eddae34",
+                "url": "https://api.github.com/repos/getkirby/kirby/zipball/02eea268819ddb770b91479370c62d53f1c38790",
+                "reference": "02eea268819ddb770b91479370c62d53f1c38790",
                 "shasum": ""
             },
             "require": {
@@ -934,7 +934,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2023-11-24T14:44:44+00:00"
+            "time": "2023-11-24T19:47:33+00:00"
         },
         {
             "name": "guzzlehttp/uri-template",

@@ -162,4 +162,36 @@ class Blueprint
 
         return $haystack;
     }
+
+    public static function arraySetKeysFromColumns(array $data): array
+    {
+        foreach ($data as $key => $value) {
+            if (in_array($key, ['fields', 'sections', 'columns', 'tabs']) && is_array($value) && count($value)) {
+                $updated = [];
+                // if item has column id or label than use that as a key
+                foreach ($value as $id => $item) {
+                    if (is_numeric($id) === false) {
+                        $updated[$id] = $item; // keep
+
+                        continue; // do not overwrite those set manually in arrays
+                    }
+                    if (isset($item['id'])) {
+                        $updated[Str::camel($item['id'])] = $item;
+                    } elseif (isset($item['label'])) {
+                        $updated[Str::camel($item['label'])] = $item;
+                    } else {
+                        $updated[Str::random(5)] = $item;
+                    }
+                }
+
+                $value = $updated;
+            }
+
+            if (is_array($value)) {
+                $data[$key] = static::arraySetKeysFromColumns($value);
+            }
+        }
+
+        return $data;
+    }
 }

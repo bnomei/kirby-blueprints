@@ -7,7 +7,7 @@
 [![Maintainability](https://flat.badgen.net/codeclimate/maintainability/bnomei/kirby-blueprints)](https://codeclimate.com/github/bnomei/kirby-blueprints)
 [![Twitter](https://flat.badgen.net/badge/twitter/bnomei?color=66d9ef)](https://twitter.com/bnomei)
 
-PHP Class-based Blueprints for Kirby CMS for better type safety and code completion.
+Kirby Ink - PHP Class-based Blueprints for Kirby CMS for better type safety and code completion.
 
 ## Install
 
@@ -471,6 +471,67 @@ Column::make()
         // attributes set on the `public Field $email` property.
         'email' => true, 
     ]),
+```
+
+## Why is it called Ink?
+
+Because on top of all these `*::make()`-helpers it also introduces a new `Ink::*`-helpers to create a blueprint definition from a PageModel. And because it's short and easy to remember.
+
+```php
+<?php
+
+use ...;
+
+class ElephantPage extends Page
+{
+    use HasInk;
+
+    #[
+        Label('Left Ear'),
+        Type(FieldTypes::TEXT),
+    ]
+    public Field $leftEar;
+
+    #[
+        Label('Right Ear'),
+        Type(FieldTypes::TAGS),
+    ]
+    public Field $rightEar;
+
+    #[
+        Blueprint
+    ]
+    public static function elephantsBlueprint(): array
+    {
+        $user = kirby()->user();
+
+        return Ink::page(
+            title: 'Elephant',
+            columns: [
+                Ink::column(2/3)->fields([
+                    'leftEar' => true,
+                    Ink::field(FieldTypes::BLOCKS)
+                        ->id('trunk')
+                        ->label('Trunk Blocks')
+                        ->property('empty', '🐘'),
+                    'rightEar' => true,
+                ]),
+                Ink::column(1/3)->sections([
+                    Ink::section(SectionTypes::FIELDS)->fields([
+                        Ink::field('text', label: 'User')
+                            ->property('placeholder', $user?->email().' ('.$user?->role().')'),
+                    ]),
+                    Ink::section(SectionTypes::INFO)
+                        ->label('Kirby Version')
+                        ->theme('info')
+                        ->text(kirby()->version()),
+                    Ink::section(SectionTypes::FILES)
+                        ->label('Files'),
+                ]),
+            ],
+        )->toArray();
+    }
+}
 ```
 
 ## Disclaimer

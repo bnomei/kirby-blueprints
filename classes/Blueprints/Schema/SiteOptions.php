@@ -6,8 +6,8 @@ use Bnomei\Blueprints\HasFluentSetter;
 use Bnomei\Blueprints\HasProperties;
 
 /**
- * @method changeTitle(bool|array $changeTitle = true): self
- * @method update(bool|array $update = true): self
+ * @method self changeTitle(bool|array $changeTitle = true)
+ * @method self update(bool|array $update = true)
  */
 class SiteOptions implements \JsonSerializable
 {

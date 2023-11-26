@@ -6,21 +6,21 @@ use Bnomei\Blueprints\HasFluentSetter;
 use Bnomei\Blueprints\HasProperties;
 
 /**
- * @method changeName(bool|array $changeName = true): self
- * @method replace(bool|array $replace = true): self
- * @method delete(bool|array $delete = true): self
- * @method read(bool|array $read = true): self
- * @method update(bool|array $update = true): self
- * @method extension(null|string|array $extension = null): self
- * @method mime(null|string|array $mime = null): self
- * @method maxHeight(null|int $maxheight = null): self
- * @method maxSize(null|int $maxsize = null): self
- * @method maxWidth(null|int $maxwidth = null): self
- * @method minHeight(null|int $minheight = null): self
- * @method minSize(null|int $minsize = null): self
- * @method minWidth(null|int $minwidth = null): self
- * @method orientation(null|string $orientation = null): self
- * @method type(null|string|array $type = null): self
+ * @method self changeName(bool|array $changeName = true)
+ * @method self replace(bool|array $replace = true)
+ * @method self delete(bool|array $delete = true)
+ * @method self read(bool|array $read = true)
+ * @method self update(bool|array $update = true)
+ * @method self extension(null|string|array $extension = null)
+ * @method self mime(null|string|array $mime = null)
+ * @method self maxHeight(null|int $maxheight = null)
+ * @method self maxSize(null|int $maxsize = null)
+ * @method self maxWidth(null|int $maxwidth = null)
+ * @method self minHeight(null|int $minheight = null)
+ * @method self minSize(null|int $minsize = null)
+ * @method self minWidth(null|int $minwidth = null)
+ * @method self orientation(null|string $orientation = null)
+ * @method self type(null|string|array $type = null)
  */
 class FileAccept implements \JsonSerializable
 {

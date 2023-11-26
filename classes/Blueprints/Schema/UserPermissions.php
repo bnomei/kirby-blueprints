@@ -6,12 +6,12 @@ use Bnomei\Blueprints\HasFluentSetter;
 use Bnomei\Blueprints\HasProperties;
 
 /**
- * @method access(bool|array $access = true): self
- * @method files(bool|array $files = true): self
- * @method pages(bool|array $pages = true): self
- * @method site(bool|array $site = true): self
- * @method user(bool|array $user = true): self
- * @method users(bool|array $users = true): self
+ * @method self access(bool|array $access = true)
+ * @method self files(bool|array $files = true)
+ * @method self pages(bool|array $pages = true)
+ * @method self site(bool|array $site = true)
+ * @method self user(bool|array $user = true)
+ * @method self users(bool|array $users = true)
  */
 class UserPermissions implements \JsonSerializable
 {

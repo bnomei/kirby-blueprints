@@ -6,11 +6,12 @@ use Bnomei\Blueprints\HasFluentSetter;
 use Bnomei\Blueprints\IsArrayable;
 
 /**
- * @method icon(Icon|null $icon): self
- * @method label(array|string $label): self
- * @method sections(Section[] $sections): self
- * @method columns(Column[] $columns): self
- * @method fields(Field[] $fields): self
+ * @method self icon(Icon|null $icon)
+ * @method self id(string $id)
+ * @method self label(array|string $label)
+ * @method self sections(Section[] $sections)
+ * @method self columns(Column[] $columns)
+ * @method self fields(Field[] $fields)
  */
 class Tab
 {
@@ -26,6 +27,7 @@ class Tab
     public function __construct(
         public string|array $label = '',
         public ?Icon $icon = null,
+        public ?string $id = null,
         public array $columns = [],
         public array $sections = [],
         public array $fields = [],
@@ -41,6 +43,7 @@ class Tab
     public static function make(
         array|string $label,
         Icon $icon = null,
+        string $id = null,
         array $columns = [],
         array $sections = [],
         array $fields = []

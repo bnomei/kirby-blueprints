@@ -6,11 +6,11 @@ use Bnomei\Blueprints\HasFluentSetter;
 use Bnomei\Blueprints\HasProperties;
 
 /**
- * @method changeName(bool|array $changeName = true): self
- * @method replace(bool|array $replace = true): self
- * @method delete(bool|array $delete = true): self
- * @method read(bool|array $read = true): self
- * @method update(bool|array $update = true): self
+ * @method self changeName(bool|array $changeName = true)
+ * @method self replace(bool|array $replace = true)
+ * @method self delete(bool|array $delete = true)
+ * @method self read(bool|array $read = true)
+ * @method self update(bool|array $update = true)
  */
 class FileOptions implements \JsonSerializable
 {
