@@ -3,7 +3,7 @@
         'name' => 'bnomei/kirby-blueprints',
         'pretty_version' => '4.2.2',
         'version' => '4.2.2.0',
-        'reference' => NULL,
+        'reference' => null,
         'type' => 'kirby-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'bnomei/kirby-blueprints' => array(
             'pretty_version' => '4.2.2',
             'version' => '4.2.2.0',
-            'reference' => NULL,
+            'reference' => null,
             'type' => 'kirby-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
