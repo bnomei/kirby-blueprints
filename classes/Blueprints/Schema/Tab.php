@@ -42,8 +42,8 @@ class Tab
      */
     public static function make(
         array|string $label,
-        Icon $icon = null,
-        string $id = null,
+        ?Icon $icon = null,
+        ?string $id = null,
         array $columns = [],
         array $sections = [],
         array $fields = []

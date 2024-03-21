@@ -9,8 +9,16 @@ trait HasBlueprintFromAttributes
     //	'blueprints' => [
     //		'page/mypage' => MyPageModelClass::blueprintFromAttributes(),
     //	],
-    public static function blueprintFromAttributes(): array
+    public static function blueprintFromAttributes(): ?array
     {
-        return (new Blueprint(self::class))->toArray();
+        $blueprint = (new Blueprint(self::class));
+
+        if ($blueprint->isLoadAfter()) {
+            Blueprint::addBlueprintToLoadAfter($blueprint);
+
+            return null;
+        }
+
+        return $blueprint->toArray();
     }
 }

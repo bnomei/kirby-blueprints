@@ -22,22 +22,15 @@ class DynamoPage extends Page
     public Field $fromblue;
 
     #[
-        Blueprint
+        Blueprint(false, true)
     ]
     public static function nameOfThisMethodDoesNotMatterOnlyTheAttribute(): array
     {
-        // IMPORTANT: be carefull when using kirby() or site() or page() or option() here
-        // since the THIS method is called before the kirby instance is fully available.
-        // if you need such behaviour register the blueprint in the plugins:after hook.
-
         $kirby = kirby();
         $site = $kirby->site();
         $user = $kirby->user();
 
-        // $kirby->blueprints() ==> empty
-        // $site->blueprints() ==> unreliable due to being filled at this stage, will occasionally break the panel
-
-        $x = Ink::page(
+        return Ink::page(
             title: 'Dynamo',
             columns: [
                 Ink::column('1/2')->fields([
@@ -70,9 +63,5 @@ class DynamoPage extends Page
             ],
 
         )->toArray();
-
-        ray($x)->red();
-
-        return $x;
     }
 }

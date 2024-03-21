@@ -503,28 +503,29 @@ class ElephantPage extends Page
     ]
     public static function elephantsBlueprint(): array
     {
-        $user = kirby()->user();
+        // DANGER: do not use kirby() or site() or page() here
+        // $user = kirby()->user(); // will cause issues with blueprint loading
 
         return Ink::page(
             title: 'Elephant',
             columns: [
                 Ink::column(2 / 3)->fields([
                     'leftEar',
-                    Ink::field(FieldTypes::BLOCKS)
+                    Ink::field(Ink::BLOCKS)
                         ->label('Trunk')
-                        ->property('empty', '🐘'),
+                        ->property(Ink::EMPTY, '🐘'),
                     'rightEar',
                 ]),
                 Ink::column(1 / 3)->sections([
                     Ink::fields()->fields([
-                        Ink::field('text')
+                        Ink::field(Ink::TEXT)
                             ->label('User')
-                            ->property('placeholder', $user?->email().' ('.$user?->role().')'),
+                            ->property(Ink::PLACEHOLDER, '{{ user.nameOrEmail }} ({{ user.role.name }})'),
                     ]),
                     Ink::info()
                         ->label('Kirby Version')
-                        ->theme('info')
-                        ->text(kirby()->version()),
+                        ->theme(Ink::INFO)
+                        ->text('{{ kirby.version }}'),
                     Ink::files()
                         ->label('Files'),
                 ]),

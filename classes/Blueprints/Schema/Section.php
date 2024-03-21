@@ -9,7 +9,7 @@ use Bnomei\Blueprints\IsArrayable;
  * // FIELD
  *
  * @method self fields(Field[] $fields)
- * // FILES
+ *                                      // FILES
  * @method self columns(Column[] $columns)
  * @method self empty(string|array $empty)
  * @method self flip(bool $flip)
@@ -31,13 +31,13 @@ use Bnomei\Blueprints\IsArrayable;
  * @method self sortable(bool $sortable)
  * @method self template(string $template)
  * @method self text(string $text)
- * // INFO
+ *                                 // INFO
  * @method self theme(string $text)
- * // PAGES
+ *                                  // PAGES
  * @method self create(bool|array $create)
  * @method self status(string $status='all')
  * @method self templates(array $templates)
- * // STATS
+ *                                          // STATS
  * @method self reports(string|array $reports)
  */
 class Section
@@ -82,28 +82,28 @@ class Section
         array $fields = [],
         array $columns = [],
         mixed $empty = null,
-        bool $flip = null,
+        ?bool $flip = null,
         mixed $headline = null,
         mixed $help = null,
         array $image = [],
         mixed $info = null,
-        string $id = null,
+        ?string $id = null,
         mixed $label = null,
         ?string $layout = 'list',
-        int $limit = null,
-        int $max = null,
-        int $min = null,
-        int $page = null,
-        string $parent = null,
-        bool $search = null,
-        string $size = null,
-        string $sortBy = null,
-        bool $sortable = null,
-        string $template = null,
-        string $text = null,
-        string $theme = null,
+        ?int $limit = null,
+        ?int $max = null,
+        ?int $min = null,
+        ?int $page = null,
+        ?string $parent = null,
+        ?bool $search = null,
+        ?string $size = null,
+        ?string $sortBy = null,
+        ?bool $sortable = null,
+        ?string $template = null,
+        ?string $text = null,
+        ?string $theme = null,
         mixed $create = null,
-        string $status = null,
+        ?string $status = null,
         array $templates = [],
         mixed $reports = null,
     ): static {

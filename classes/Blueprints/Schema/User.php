@@ -17,6 +17,7 @@ class User
     use IsArrayable;
 
     public function __construct(
+        public string $name,
         public string $title, // TODO: should be an string OR array of languages
         public ?string $description = null, // TODO: should be an string OR array of languages
         public ?string $home = null,
@@ -38,9 +39,10 @@ class User
      * @param  array<Field>  $fields
      */
     public static function make(
+        string $name,
         string $title,
-        string $description = null,
-        string $home = null,
+        ?string $description = null,
+        ?string $home = null,
         mixed $image = null,
         mixed $permissions = null,
         array $tabs = [],

@@ -29,8 +29,6 @@ class ElephantPage extends Page
     ]
     public static function elephantsBlueprint(): array
     {
-        $user = kirby()->user();
-
         return Ink::page(
             title: 'Elephant',
             columns: [
@@ -45,12 +43,12 @@ class ElephantPage extends Page
                     Ink::fields()->fields([
                         Ink::field(Ink::TEXT)
                             ->label('User')
-                            ->property('placeholder', $user?->email().' ('.$user?->role().')'),
+                            ->property(Ink::PLACEHOLDER, '{{ user.nameOrEmail }} ({{ user.role.name }})'),
                     ]),
                     Ink::info()
                         ->label('Kirby Version')
                         ->theme(Ink::INFO)
-                        ->text(kirby()->version()),
+                        ->text('{{ kirby.version }}'),
                     Ink::files()
                         ->label('Files'),
                 ]),

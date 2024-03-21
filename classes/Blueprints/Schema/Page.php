@@ -44,7 +44,7 @@ class Page
      */
     public static function make(
         string $title,
-        string $num = null,
+        ?string $num = null,
         mixed $status = null,
         mixed $icon = null,
         mixed $image = null,

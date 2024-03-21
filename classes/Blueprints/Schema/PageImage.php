@@ -23,10 +23,10 @@ class PageImage
     }
 
     public static function make(
-        string $back = null,
-        string $color = null,
-        string $icon = null,
-        string $query = null,
+        ?string $back = null,
+        ?string $color = null,
+        ?string $icon = null,
+        ?string $query = null,
     ): static {
         return new static(...func_get_args());
     }

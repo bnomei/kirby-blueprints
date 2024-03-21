@@ -34,9 +34,9 @@ class Column
      * @param  array<Field>  $fields
      */
     public static function make(
-        string|float $width = null,
+        string|float|null $width = null,
         bool $sticky = false,
-        string $id = null,
+        ?string $id = null,
         array $sections = [],
         array $fields = [],
     ): static {

@@ -1,6 +1,6 @@
 <?php
 
-/** @var DynamoPage $dynamo */
+/** @var \models\DynamoPage $dynamo */
 $dynamo = page('dynamo');
 
 echo $dynamo->fromblue->value;

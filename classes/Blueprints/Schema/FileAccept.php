@@ -43,16 +43,16 @@ class FileAccept implements \JsonSerializable
     }
 
     public static function make(
-        string|array $extension = null,
-        string|array $mime = null,
-        int $maxheight = null,
-        int $maxsize = null,
-        int $maxwidth = null,
-        int $minheight = null,
-        int $minsize = null,
-        int $minwidth = null,
-        string $orientation = null, // landscape/square/portrait
-        string|array $type = null,
+        string|array|null $extension = null,
+        string|array|null $mime = null,
+        ?int $maxheight = null,
+        ?int $maxsize = null,
+        ?int $maxwidth = null,
+        ?int $minheight = null,
+        ?int $minsize = null,
+        ?int $minwidth = null,
+        ?string $orientation = null, // landscape/square/portrait
+        string|array|null $type = null,
         array $properties = [],
     ): static {
         return new static(...func_get_args());

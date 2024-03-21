@@ -9,7 +9,6 @@ use Bnomei\Blueprints\HasBlueprintFromAttributes;
 use Bnomei\Blueprints\HasPublicPropertiesMappedToKirbyFields;
 use Bnomei\Blueprints\Schema\Column;
 use Bnomei\Blueprints\Schema\Field;
-use Bnomei\Blueprints\Schema\Fields\Url;
 use Bnomei\Blueprints\Schema\FieldTypes;
 use Bnomei\Blueprints\Schema\Icon;
 use Bnomei\Blueprints\Schema\Page;

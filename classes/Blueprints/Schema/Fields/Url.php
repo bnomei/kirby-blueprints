@@ -16,8 +16,8 @@ class Url
      * @param  string|array<string,string>  $label
      */
     public static function make(
-        string|array $label = null,
-        string|float $width = null,
+        string|array|null $label = null,
+        string|float|null $width = null,
     ): self {
         return new self(...func_get_args());
     }

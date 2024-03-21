@@ -12,7 +12,9 @@ use ReflectionUnionType;
 
 class Blueprint
 {
-    public function __construct(private readonly string $modelClass, private ?bool $cache = null)
+    protected static array $loadPluginsAfter = [];
+
+    public function __construct(private readonly string $modelClass, private bool $loadAfter = false, private ?bool $cache = null)
     {
         $isCacheable = false;
         $rc = new ReflectionClass($modelClass);
@@ -20,6 +22,7 @@ class Blueprint
             foreach ($method->getAttributes() as $attribute) {
                 if ($attribute->getName() === 'Bnomei\Blueprints\Attributes\Blueprint') {
                     $isCacheable = $attribute->newInstance()->cacheable;
+                    $this->loadAfter = $attribute->newInstance()->loadPluginsAfter;
                     break;
                 }
             }
@@ -210,5 +213,29 @@ class Blueprint
         }
 
         return $data;
+    }
+
+    public static function addBlueprintToLoadAfter(Blueprint $blueprint): void
+    {
+        if (! isset(static::$loadPluginsAfter)) {
+            static::$loadPluginsAfter = [];
+        }
+        static::$loadPluginsAfter[] = $blueprint;
+    }
+
+    public static function loadPluginsAfter()
+    {
+        $blueprints = [];
+        foreach (static::$loadPluginsAfter as $blueprint) {
+            $blueprints = array_merge($blueprints, $blueprint->toArray());
+        }
+        kirby()->extend([
+            'blueprints' => $blueprints,
+        ]);
+    }
+
+    public function isLoadAfter(): bool
+    {
+        return $this->loadAfter;
     }
 }
