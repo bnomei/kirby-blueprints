@@ -47,14 +47,8 @@ class DynamoPage extends Page
                             ->property('placeholder', $user?->email().' ('.$user?->role().')'),
                         Ink::field('text', label: 'Value from Plugin Options')
                             ->id('d')
-                            ->property('placeholder', option('bnomei.blueprints.test')) // does not work
+                            ->property('placeholder', $kirby->option('test.plugin.test'))
                             ->property('help', 'expected: Test'),
-                        TextField::make()
-                            ->label('Value from Plugin Options')
-                            ->placeholder(option('debug') ? 'true' : 'false'),
-                        TextField::make()
-                            ->placeholder('hello')
-                            ->label('Value from Plugin Options'),
                     ]),
                     Ink::section(SectionTypes::FILES)
                         ->label('Files')
