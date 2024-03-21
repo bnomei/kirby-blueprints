@@ -535,6 +535,27 @@ class ElephantPage extends Page
 }
 ```
 
+## Caching and Lazy-loading of blueprints
+
+The `Blueprint` attribute allows you to set the `cacheable` and `loadPluginsAfter` properties. Both are disabled by default. 
+
+If cached it will only compile the blueprint once and then use the cached version. The cache lasts for the duration of you opcache `opcache.revalidate_freq` settings.
+
+```php
+#[
+    Blueprint(cacheable: true)
+]
+```
+
+If `loadPluginsAfter` is set to `true` it will compile the blueprint after the kirby instance is ready. This means you can use the `kirby()/site()/page()`-helpers in your blueprints or query the content of the site.
+
+```php
+#[
+    Blueprint(loadPluginsAfter: true)
+]
+```
+
+
 ## Disclaimer
 
 This plugin is provided "as is" with no guarantee. Use it at your own risk and always test it yourself before using it in a production environment. If you find any issues, please [create a new issue](https://github.com/bnomei/kirby-blueprints/issues/new).
