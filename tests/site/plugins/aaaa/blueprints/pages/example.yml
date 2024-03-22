@@ -1,0 +1,15 @@
+title: example
+
+fields:
+  text:
+    extends: fields/extme
+    placeholder: "{{ page.title }}"
+  blocks:
+    type: blocks
+    fieldsets:
+      - text
+      - image
+      - video
+      - quote
+      - code
+      - gallery

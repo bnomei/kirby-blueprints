@@ -1,0 +1,6 @@
+name: Someblo
+fields:
+  title:
+    label: Title
+    type: text
+  text: fields/extme

@@ -89,6 +89,8 @@ return array(
     'Bnomei\\Blueprints\\Attributes\\Wizard' => $baseDir . '/classes/Blueprints/Attributes/Wizard.php',
     'Bnomei\\Blueprints\\Blueprint' => $baseDir . '/classes/Blueprints/Blueprint.php',
     'Bnomei\\Blueprints\\BlueprintCache' => $baseDir . '/classes/Blueprints/BlueprintCache.php',
+    'Bnomei\\Blueprints\\HasBlueprintCache' => $baseDir . '/classes/Blueprints/HasBlueprintCache.php',
+    'Bnomei\\Blueprints\\HasBlueprintCacheResolve' => $baseDir . '/classes/Blueprints/HasBlueprintCacheResolve.php',
     'Bnomei\\Blueprints\\HasBlueprintFromAttributes' => $baseDir . '/classes/Blueprints/HasBlueprintFromAttributes.php',
     'Bnomei\\Blueprints\\HasFluentSetter' => $baseDir . '/classes/Blueprints/HasFluentSetter.php',
     'Bnomei\\Blueprints\\HasProperties' => $baseDir . '/classes/Blueprints/HasProperties.php',

@@ -29,30 +29,44 @@ class BlueprintCache
         return kirby()->session()->get($key);
     }
 
-    private static function cacheFile(string $key): ?string
+    protected static function cacheFile(string $key): ?string
     {
+        $hash = hash('xxh3', $key);
+        $hash = substr($hash, 0, 2).'/'.substr($hash, 2);
+
         return static::cacheDir() ?
-            static::cacheDir().'/'.hash('xxh3', $key).'.cache'
+            static::cacheDir().'/'.$hash.'.cache'
             : null;
     }
 
-    public static function get(string $key, $default = null): ?array
+    public static function exists(string $key, $expire = null): bool
     {
         $file = static::cacheFile($key);
         if (! $file) {
-            return $default;
+            return false;
         }
-        $expire = 5; // seconds
-        if ($opcacheConfig = opcache_get_configuration()) {
-            $expire = $opcacheConfig['directives']['opcache.enable'] ?
-                $opcacheConfig['directives']['opcache.revalidate_freq'] : $expire;
+        if ($expire === null) {
+            $expire = option('bnomei.blueprints.expire'); // in seconds
+        }
+        if (! $expire || $expire <= 0) {
+            return false;
         }
         $m = F::modified($file) + $expire >= time();
         if (F::exists($file) && $m) {
-            return Json::read($file);
+            return true;
         }
         if (F::exists($file) && ! $m) {
             F::remove($file);
+        }
+
+        return false;
+    }
+
+    public static function get(string $key, $default = null, $expire = null): ?array
+    {
+        $file = static::cacheFile($key);
+        if ($file && static::exists($key, $expire)) {
+            return Json::read($file);
         }
 
         return $default;
@@ -68,5 +82,30 @@ class BlueprintCache
     public static function getKey(): string
     {
         return 'bnomei.blueprints.cache.dir';
+    }
+
+    public static function preloadCachedBlueprints(): void
+    {
+        $kirby = kirby();
+        $preload = $kirby->option('bnomei.blueprints.preload');
+        if ($preload === false) {
+            return;
+        }
+
+        $preloaded = [];
+        foreach ($preload as $type) {
+            $blueprints = $kirby->blueprints($type);
+            foreach ($blueprints as $name) {
+                $key = $type.'/'.$name;
+                $blueprint = static::get($key);
+                if ($blueprint === null) {
+                    continue;
+                }
+                $preloaded[$key] = $blueprint;
+            }
+        }
+        $kirby->extend([
+            'blueprints' => $preloaded,
+        ]);
     }
 }

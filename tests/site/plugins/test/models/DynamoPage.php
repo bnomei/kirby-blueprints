@@ -3,7 +3,6 @@
 use Bnomei\Blueprints\Attributes\Blueprint;
 use Bnomei\Blueprints\Attributes\Label;
 use Bnomei\Blueprints\Attributes\Type;
-use Bnomei\Blueprints\Schema\Fields\TextField;
 use Bnomei\Blueprints\Schema\FieldTypes;
 use Bnomei\Blueprints\Schema\SectionTypes;
 use Bnomei\HasInk;
@@ -14,6 +13,8 @@ use Kirby\Content\Field;
 class DynamoPage extends Page
 {
     use HasInk;
+    //use \Bnomei\Blueprints\HasBlueprintCache;
+    //use \Bnomei\Blueprints\HasBlueprintCacheResolve;
 
     #[
         Label('Loaded'),
@@ -22,7 +23,9 @@ class DynamoPage extends Page
     public Field $fromblue;
 
     #[
-        Blueprint(false, true)
+        //Blueprint(cache: 100, defer: true)
+        //Blueprint(defer: true, cache: 0)
+        Blueprint(cache: 0)
     ]
     public static function nameOfThisMethodDoesNotMatterOnlyTheAttribute(): array
     {
@@ -30,9 +33,8 @@ class DynamoPage extends Page
         $site = $kirby->site();
         $user = $kirby->user();
 
-        return Ink::page(
-            title: 'Dynamo',
-            columns: [
+        $tab1 = Ink::tab('content')
+            ->columns([
                 Ink::column('1/2')->fields([
                     Ink::field('text', label: 'Kirby Version')
                         ->property('placeholder', $kirby->version()),
@@ -54,7 +56,31 @@ class DynamoPage extends Page
                         ->label('Files')
                         ->id('filesyoyo'),
                 ]),
-            ],
+            ]);
+
+        $tabs = [
+            $tab1,
+        ];
+
+        for ($t = 1; $t < 20; $t++) {
+            $fields = [];
+            $sections = [];
+            for ($f = 1; $f < 40; $f++) {
+                $fields[] = Ink::field('text', label: 'Field '.$t.$f);
+            }
+            for ($s = 1; $s < 10; $s++) {
+                $sections[] = Ink::section(SectionTypes::FILES)->label('Files '.$t.$s);
+            }
+            $tabs[] = Ink::tab('tab'.$t)
+                ->columns([
+                    Ink::column('1/2')->fields($fields),
+                    Ink::column('1/2')->sections($sections),
+                ]);
+        }
+
+        return Ink::page(
+            title: 'Dynamo',
+            tabs: $tabs,
 
         )->toArray();
     }

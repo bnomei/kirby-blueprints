@@ -535,26 +535,60 @@ class ElephantPage extends Page
 }
 ```
 
-## Caching and Lazy-loading of blueprints
+## Caching and Lazy-loading of PHP based blueprints
 
-The `Blueprint` attribute allows you to set the `cacheable` and `loadPluginsAfter` properties. Both are disabled by default. 
-
-If cached it will only compile the blueprint once and then use the cached version. The cache lasts for the duration of you opcache `opcache.revalidate_freq` settings.
+If caching is enabled it will only compile the blueprint once and then use the cached version. The cache lasts for the duration set.
 
 ```php
 #[
-    Blueprint(cacheable: true)
+    // cache for 5 seconds
+    Blueprint(cache: 5) 
+    
+    // cache with default 60 seconds
+    Blueprint()
+    Blueprint(cache: null) 
+    
+    // disable
+    Blueprint(cache: 0) 
 ]
 ```
 
-If `loadPluginsAfter` is set to `true` it will compile the blueprint after the kirby instance is ready. This means you can use the `kirby()/site()/page()`-helpers in your blueprints or query the content of the site.
+> The default can be set in the config.php of your plugin with the `bnomei.blueprints.expire` option. 
+
+
+If `defer` is set to `true` it will compile the blueprint after the kirby instance is ready. This means you can use the `kirby()/site()/page()`-helpers in your blueprints or query the content of the site. Most of the time it makes sense to disable caching when using `defer` since the cache might interfere with the dynamic behaviour you are trying to create.
 
 ```php
 #[
-    Blueprint(loadPluginsAfter: true)
+    // load with system.loadPlugins:after hook and no cache
+    Blueprint(defer: true, cache: 0) 
 ]
 ```
 
+## Caching for PHP and YAML based blueprints
+
+If you are not using the attributes to define your blueprint definitions you can still enable caching using traits model. One to enable the cache and one to define if it should resolve all fields as much as possible. 
+
+Resolving the fields means to write all meta-data in extracting them using a model instance. So if you are using the Kirby query-strings language or other dynamic values in your blueprints (like the Janitor or some SEO plugins do), you might want to skip resolving. But... if you have a very complex blueprint with many fields and you want to speed up the blueprint loading you might want to resolve them. Especially when using lots of Layouts, Columns & Blocks resolving might be a good idea.
+
+```php
+
+**site/models/example.php**
+```php
+<?php
+
+class ExamplePage extends \Kirby\Cms\Page {
+
+    // can be used safely to speed up all kind of blueprints
+    use \Bnomei\Blueprints\HasBlueprintCache;
+    
+    // not recommended for dynamic blueprints
+    use \Bnomei\Blueprints\HasBlueprintCacheResolve; 
+
+}
+```
+
+> The cache will use the duration as defined in the `bnomei.blueprints.expire` option in the config.php of your plugin.
 
 ## Disclaimer
 

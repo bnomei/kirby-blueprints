@@ -112,6 +112,8 @@ class ComposerStaticInitf86866b1e656ff06b3e06fa3ac36b4f7
         'Bnomei\\Blueprints\\Attributes\\Wizard' => __DIR__ . '/../..' . '/classes/Blueprints/Attributes/Wizard.php',
         'Bnomei\\Blueprints\\Blueprint' => __DIR__ . '/../..' . '/classes/Blueprints/Blueprint.php',
         'Bnomei\\Blueprints\\BlueprintCache' => __DIR__ . '/../..' . '/classes/Blueprints/BlueprintCache.php',
+        'Bnomei\\Blueprints\\HasBlueprintCache' => __DIR__ . '/../..' . '/classes/Blueprints/HasBlueprintCache.php',
+        'Bnomei\\Blueprints\\HasBlueprintCacheResolve' => __DIR__ . '/../..' . '/classes/Blueprints/HasBlueprintCacheResolve.php',
         'Bnomei\\Blueprints\\HasBlueprintFromAttributes' => __DIR__ . '/../..' . '/classes/Blueprints/HasBlueprintFromAttributes.php',
         'Bnomei\\Blueprints\\HasFluentSetter' => __DIR__ . '/../..' . '/classes/Blueprints/HasFluentSetter.php',
         'Bnomei\\Blueprints\\HasProperties' => __DIR__ . '/../..' . '/classes/Blueprints/HasProperties.php',

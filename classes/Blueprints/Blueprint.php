@@ -14,15 +14,15 @@ class Blueprint
 {
     protected static array $loadPluginsAfter = [];
 
-    public function __construct(private readonly string $modelClass, private bool $loadAfter = false, private ?bool $cache = null)
+    public function __construct(private readonly string $modelClass, private ?bool $defer = null, private ?int $cache = null)
     {
         $isCacheable = false;
         $rc = new ReflectionClass($modelClass);
         foreach ($rc->getMethods(ReflectionMethod::IS_PUBLIC) as $method) {
             foreach ($method->getAttributes() as $attribute) {
                 if ($attribute->getName() === 'Bnomei\Blueprints\Attributes\Blueprint') {
-                    $isCacheable = $attribute->newInstance()->cacheable;
-                    $this->loadAfter = $attribute->newInstance()->loadPluginsAfter;
+                    $isCacheable = $attribute->newInstance()->cache;
+                    $this->defer = $attribute->newInstance()->defer;
                     break;
                 }
             }
@@ -40,7 +40,7 @@ class Blueprint
 
     public function toArray(): array
     {
-        $blueprint = $this->cache ? BlueprintCache::get($this->modelClass) : null;
+        $blueprint = $this->cache ? BlueprintCache::get($this->modelClass, null, $this->cache) : null;
         if ($blueprint) {
             return $blueprint;
         }
@@ -236,6 +236,6 @@ class Blueprint
 
     public function isLoadAfter(): bool
     {
-        return $this->loadAfter;
+        return $this->defer === true;
     }
 }
