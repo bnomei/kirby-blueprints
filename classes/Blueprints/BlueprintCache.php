@@ -31,11 +31,8 @@ class BlueprintCache
 
     protected static function cacheFile(string $key): ?string
     {
-        $hash = hash('xxh3', $key);
-        $hash = substr($hash, 0, 2).'/'.substr($hash, 2);
-
         return static::cacheDir() ?
-            static::cacheDir().'/'.$hash.'.cache'
+            static::cacheDir().'/'.$key.'.cache'
             : null;
     }
 
@@ -64,7 +61,14 @@ class BlueprintCache
 
     public static function get(string $key, $default = null, $expire = null): ?array
     {
+        /*
+        if ($loaded = \Kirby\Toolkit\A::get(\Kirby\Cms\Blueprint::$loaded, $key)) {
+            return $loaded;
+        }
+        */
+
         $file = static::cacheFile($key);
+
         if ($file && static::exists($key, $expire)) {
             return Json::read($file);
         }
@@ -84,28 +88,22 @@ class BlueprintCache
         return 'bnomei.blueprints.cache.dir';
     }
 
+    /*
     public static function preloadCachedBlueprints(): void
     {
-        $kirby = kirby();
-        $preload = $kirby->option('bnomei.blueprints.preload');
-        if ($preload === false) {
-            return;
-        }
-
-        $preloaded = [];
-        foreach ($preload as $type) {
-            $blueprints = $kirby->blueprints($type);
-            foreach ($blueprints as $name) {
-                $key = $type.'/'.$name;
-                $blueprint = static::get($key);
-                if ($blueprint === null) {
+        foreach (Dir::dirs(static::cacheDir(), [], true) as $dir) {
+            foreach (Dir::files($dir, [], true) as $file) {
+                if (! \Kirby\Toolkit\Str::endsWith($file, '.cache')) {
                     continue;
                 }
-                $preloaded[$key] = $blueprint;
+                $key = str_replace([static::cacheDir().'/', '.cache'], ['', ''], $file);
+                $blueprint = Json::read($file);
+                \Kirby\Cms\Blueprint::$loaded[$key] = $blueprint;
             }
         }
-        $kirby->extend([
-            'blueprints' => $preloaded,
-        ]);
+        // ray('preloaded', \Kirby\Cms\Blueprint::$loaded);
+
+        return count(\Kirby\Cms\Blueprint::$loaded);
     }
+    */
 }

@@ -24,8 +24,8 @@ class DynamoPage extends Page
 
     #[
         //Blueprint(cache: 100, defer: true)
-        //Blueprint(defer: true, cache: 0)
-        Blueprint(cache: 0)
+        Blueprint(defer: true, cache: 0)
+        //Blueprint(cache: 0)
     ]
     public static function nameOfThisMethodDoesNotMatterOnlyTheAttribute(): array
     {
@@ -81,7 +81,6 @@ class DynamoPage extends Page
         return Ink::page(
             title: 'Dynamo',
             tabs: $tabs,
-
         )->toArray();
     }
 }

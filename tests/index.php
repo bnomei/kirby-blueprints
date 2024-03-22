@@ -6,7 +6,9 @@ const KIRBY_HELPER_E = false;
 require __DIR__.'/../vendor/autoload.php';
 
 $micotime = microtime(true);
-$render = (new Kirby())->render();
+//\Bnomei\Blueprints\BlueprintCache::preloadFromLoadMap();
+$kirby = new Kirby();
+$render = $kirby->render();
 $micotime = microtime(true) - $micotime;
 header('X-Render-Time: '.number_format($micotime, 3, '.', '').'s');
 echo $render;

@@ -38,21 +38,40 @@ class Blueprint
         return Yaml::encode($this->toArray());
     }
 
+    public function blueprintCacheKeyFromModel(): string
+    {
+        $ref = new ReflectionClass($this->modelClass);
+
+        if ($ref->isSubclassOf(\Kirby\Cms\Page::class)) {
+            return 'pages/'.strtolower(substr($this->modelClass, 0, -4));
+        } elseif ($ref->isSubclassOf(\Kirby\Cms\File::class)) {
+            return 'files/'.strtolower(substr($this->modelClass, 0, -4));
+        } elseif ($ref->isSubclassOf(\Kirby\Cms\User::class)) {
+            return 'users/'.strtolower(substr($this->modelClass, 0, -4));
+        }
+
+        return $this->modelClass;
+    }
+
     public function toArray(): array
     {
-        $blueprint = $this->cache ? BlueprintCache::get($this->modelClass, null, $this->cache) : null;
+        $key = $this->blueprintCacheKeyFromModel();
+        $blueprint = $this->cache ? BlueprintCache::get($key, null, $this->cache) : null;
         if ($blueprint) {
-            return $blueprint;
+            return [$key => $blueprint];
         }
 
         $blueprint = self::getBlueprintUsingReflection($this->modelClass);
+        // get first value of array, the key of array matched the $key
+        $blueprint = reset($blueprint);
 
         // some might not be cacheable like when they are class based and have dynamic fields
-        if ($this->cache) {
-            BlueprintCache::set($this->modelClass, $blueprint);
+        // only set here now if they will not be written on __destruct by trait
+        if ($this->cache && ! method_exists($this->modelClass, 'blueprintCacheKey')) {
+            BlueprintCache::set($key, $blueprint);
         }
 
-        return $blueprint;
+        return [$key => $blueprint];
     }
 
     public static function getBlueprintFieldsFromReflection(string $class): array

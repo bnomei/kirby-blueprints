@@ -1,7 +1,7 @@
 {
     "name": "bnomei/kirby-blueprints",
     "type": "kirby-plugin",
-    "version": "4.4.0",
+    "version": "4.4.1",
     "license": "MIT",
     "homepage": "https://github.com/bnomei/kirby3-blueprints",
     "description": "PHP Class-based Blueprints for Kirby CMS for better type safety and code completion",
@@ -51,7 +51,7 @@
         "getkirby/composer-installer": "^1.2"
     },
     "require-dev": {
-        "bnomei/autoloader-for-kirby": "^4.2.1",
+        "bnomei/autoloader-for-kirby": "^4.2",
         "getkirby/cms": "^4.0.0-beta.2",
         "larastan/larastan": "^2.9",
         "laravel/pint": "^1.11",

@@ -38,7 +38,7 @@ class ProductPage extends \Kirby\Cms\Page
     public Kirby\Content\Field $email;
 
     #[
-        Blueprint(cache: 10)
+        Blueprint(cache: 600)
     ]
     public static function nameOfThisMethodDoesNotMatterOnlyTheAttribute(): array
     {

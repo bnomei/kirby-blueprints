@@ -25,7 +25,7 @@ class ElephantPage extends Page
     public Field $rightEar;
 
     #[
-        Blueprint(cache: 10)
+        Blueprint(cache: 500)
     ]
     public static function elephantsBlueprint(): array
     {
