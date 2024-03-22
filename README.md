@@ -571,9 +571,9 @@ If you are not using the attributes to define your blueprint definitions you can
 
 Resolving the fields means to write all meta-data in extracting them using a model instance. So if you are using the Kirby query-strings language or other dynamic values in your blueprints (like the Janitor or some SEO plugins do), you might want to skip resolving. But... if you have a very complex blueprint with many fields and you want to speed up the blueprint loading you might want to resolve them. Especially when using lots of Layouts, Columns & Blocks resolving might be a good idea.
 
-```php
 
 **site/models/example.php**
+
 ```php
 <?php
 
