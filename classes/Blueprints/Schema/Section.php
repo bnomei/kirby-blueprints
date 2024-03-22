@@ -35,7 +35,7 @@ use Bnomei\Blueprints\IsArrayable;
  * @method self theme(string $text)
  *                                  // PAGES
  * @method self create(bool|array $create)
- * @method self status(string $status='all')
+ * @method self status(string $status = 'all')
  * @method self templates(array $templates)
  *                                          // STATS
  * @method self reports(string|array $reports)

@@ -70,7 +70,10 @@ class BlueprintCache
         $file = static::cacheFile($key);
 
         if ($file && static::exists($key, $expire)) {
-            return Json::read($file);
+            $data = Json::read($file);
+            //\Kirby\Cms\Blueprint::$loaded[$key] = $data;
+
+            return $data;
         }
 
         return $default;
@@ -88,22 +91,29 @@ class BlueprintCache
         return 'bnomei.blueprints.cache.dir';
     }
 
-    /*
-    public static function preloadCachedBlueprints(): void
+    public static function preloadCachedBlueprints(): int
     {
+        $blueprints = [];
         foreach (Dir::dirs(static::cacheDir(), [], true) as $dir) {
             foreach (Dir::files($dir, [], true) as $file) {
                 if (! \Kirby\Toolkit\Str::endsWith($file, '.cache')) {
                     continue;
                 }
                 $key = str_replace([static::cacheDir().'/', '.cache'], ['', ''], $file);
+                /* this check would decrease performance
+                if (\Kirby\Toolkit\A::get(\Kirby\Cms\Blueprint::$loaded, $key)) {
+                    continue;
+                }*/
                 $blueprint = Json::read($file);
-                \Kirby\Cms\Blueprint::$loaded[$key] = $blueprint;
+                //\Kirby\Cms\Blueprint::$loaded[$key] = $blueprint;
+                $blueprints[$key] = $blueprint;
             }
         }
         // ray('preloaded', \Kirby\Cms\Blueprint::$loaded);
+        kirby()->extend(
+            ['blueprints' => $blueprints],
+        );
 
         return count(\Kirby\Cms\Blueprint::$loaded);
     }
-    */
 }

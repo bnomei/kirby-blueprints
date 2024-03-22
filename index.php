@@ -15,6 +15,7 @@ Kirby::plugin('bnomei/blueprints', [
             // and use it on next request
             \Bnomei\Blueprints\BlueprintCache::rememberCacheDir();
             \Bnomei\Blueprints\Blueprint::loadPluginsAfter();
+            \Bnomei\Blueprints\BlueprintCache::preloadCachedBlueprints();
         },
     ],
 ]);
