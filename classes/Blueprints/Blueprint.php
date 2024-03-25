@@ -16,7 +16,7 @@ class Blueprint
 
     public function __construct(private readonly string $modelClass, private ?bool $defer = null, private ?int $cache = null)
     {
-        $isCacheable = false;
+        $isCacheable = null;
         $rc = new ReflectionClass($modelClass);
         foreach ($rc->getMethods(ReflectionMethod::IS_PUBLIC) as $method) {
             foreach ($method->getAttributes() as $attribute) {
@@ -56,7 +56,7 @@ class Blueprint
     public function toArray(): array
     {
         $key = $this->blueprintCacheKeyFromModel();
-        $blueprint = $this->cache ? BlueprintCache::get($key, null, $this->cache) : null;
+        $blueprint = BlueprintCache::get($key, null, $this->cache);
         if ($blueprint) {
             return [$key => $blueprint];
         }
