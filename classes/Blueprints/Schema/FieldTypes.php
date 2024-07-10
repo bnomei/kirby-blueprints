@@ -10,6 +10,7 @@ enum FieldTypes: string
     case EMAIL = 'email';
     case FILES = 'files';
     case GAP = 'gap';
+    case GROUP = 'group';
     case HEADLINE = 'headline';
     case HIDDEN = 'hidden';
     case INFO = 'info';
