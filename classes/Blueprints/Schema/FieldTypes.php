@@ -6,6 +6,7 @@ enum FieldTypes: string
 {
     case BLOCKS = 'blocks';
     case CHECKBOXES = 'checkboxes';
+    case COLOR = 'color';
     case DATE = 'date';
     case EMAIL = 'email';
     case FILES = 'files';
@@ -16,6 +17,7 @@ enum FieldTypes: string
     case INFO = 'info';
     case LAYOUT = 'layout';
     case LINE = 'line';
+    case LINK = 'link';
     case LIST = 'list';
     case MULTISELECT = 'multiselect';
     case NUMBER = 'number';
