@@ -12,6 +12,5 @@ class Columns extends GenericAttribute
      */
     public function __construct(
         public array $columns = []
-    ) {
-    }
+    ) {}
 }

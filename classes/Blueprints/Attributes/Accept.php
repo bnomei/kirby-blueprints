@@ -12,6 +12,5 @@ class Accept extends GenericAttribute
      */
     public function __construct(
         public string $accept = 'all' // all, options
-    ) {
-    }
+    ) {}
 }

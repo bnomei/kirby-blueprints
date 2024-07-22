@@ -12,6 +12,5 @@ class Image extends GenericAttribute
      */
     public function __construct(
         public string|array $image
-    ) {
-    }
+    ) {}
 }

@@ -28,8 +28,7 @@ class Page
         public array $columns = [],
         public array $sections = [],
         public array $fields = [],
-    ) {
-    }
+    ) {}
 
     /**
      * @param  PageStatus  $status

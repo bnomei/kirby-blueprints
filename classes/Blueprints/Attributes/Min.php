@@ -12,6 +12,5 @@ class Min extends GenericAttribute
      */
     public function __construct(
         public int $min
-    ) {
-    }
+    ) {}
 }

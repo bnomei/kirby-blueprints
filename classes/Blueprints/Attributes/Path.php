@@ -12,6 +12,5 @@ class Path extends GenericAttribute
      */
     public function __construct(
         public string $path
-    ) {
-    }
+    ) {}
 }

@@ -12,6 +12,5 @@ class MaxDate extends GenericAttribute
      */
     public function __construct(
         public string $max //  (Y-m-d)
-    ) {
-    }
+    ) {}
 }

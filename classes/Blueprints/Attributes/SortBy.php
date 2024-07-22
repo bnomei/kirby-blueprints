@@ -12,6 +12,5 @@ class SortBy extends GenericAttribute
      */
     public function __construct(
         public string $sortby
-    ) {
-    }
+    ) {}
 }

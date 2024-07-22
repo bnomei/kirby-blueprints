@@ -17,8 +17,7 @@ class PageNavigation
         public string|array $status = 'all',
         public string|array $template = 'all',
         public string $sortBy = 'title asc',
-    ) {
-    }
+    ) {}
 
     public static function make(
         string|array $status = 'all',

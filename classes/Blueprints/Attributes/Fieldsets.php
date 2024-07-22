@@ -12,6 +12,5 @@ class Fieldsets extends GenericAttribute
      */
     public function __construct(
         public array $fieldsets = []
-    ) {
-    }
+    ) {}
 }

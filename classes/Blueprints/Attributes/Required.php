@@ -12,6 +12,5 @@ class Required extends GenericAttribute
      */
     public function __construct(
         public bool $required
-    ) {
-    }
+    ) {}
 }

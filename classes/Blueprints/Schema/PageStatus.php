@@ -17,8 +17,7 @@ class PageStatus
         public string|array $draft,
         public string|array $unlisted,
         public string|array $listed,
-    ) {
-    }
+    ) {}
 
     public static function make(
         string|array $draft,

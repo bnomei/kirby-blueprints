@@ -12,6 +12,5 @@ class Placeholder extends GenericAttribute
      */
     public function __construct(
         public string $placeholder
-    ) {
-    }
+    ) {}
 }

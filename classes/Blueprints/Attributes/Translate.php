@@ -12,6 +12,5 @@ class Translate extends GenericAttribute
      */
     public function __construct(
         public bool $translate = true
-    ) {
-    }
+    ) {}
 }

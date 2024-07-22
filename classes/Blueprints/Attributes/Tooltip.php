@@ -12,6 +12,5 @@ class Tooltip extends GenericAttribute
      */
     public function __construct(
         public bool $tooltip
-    ) {
-    }
+    ) {}
 }

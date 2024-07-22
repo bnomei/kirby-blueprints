@@ -12,6 +12,5 @@ class MaxLength extends GenericAttribute
      */
     public function __construct(
         public int $maxlength
-    ) {
-    }
+    ) {}
 }

@@ -36,8 +36,7 @@ class PageOptions implements \JsonSerializable
         public bool|array $sort = true,
         public bool|array $update = true,
         public array $properties = [],
-    ) {
-    }
+    ) {}
 
     public static function make(
         bool|array $changeSlug = true,

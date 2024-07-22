@@ -12,6 +12,5 @@ class LayoutSettings extends GenericAttribute
      */
     public function __construct(
         public array $settings = []
-    ) {
-    }
+    ) {}
 }

@@ -12,6 +12,5 @@ class Nodes extends GenericAttribute
      */
     public function __construct(
         public bool|array $nodes = true // ['paragraph', 'heading', 'bulletList', 'orderedList']
-    ) {
-    }
+    ) {}
 }

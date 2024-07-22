@@ -2,6 +2,4 @@
 
 namespace Bnomei\Blueprints\Schema;
 
-class FileImage extends PageImage
-{
-}
+class FileImage extends PageImage {}

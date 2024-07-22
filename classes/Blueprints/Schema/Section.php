@@ -74,8 +74,7 @@ class Section
         public ?string $status = null,
         public array $templates = [],
         public mixed $reports = null,
-    ) {
-    }
+    ) {}
 
     public static function make(
         string|SectionTypes $type,

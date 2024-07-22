@@ -14,6 +14,5 @@ class CustomType extends GenericAttribute
      */
     public function __construct(
         public string $type
-    ) {
-    }
+    ) {}
 }

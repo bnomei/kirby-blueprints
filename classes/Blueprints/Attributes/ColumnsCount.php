@@ -12,6 +12,5 @@ class ColumnsCount extends GenericAttribute
      */
     public function __construct(
         public int $columns = 1
-    ) {
-    }
+    ) {}
 }

@@ -12,6 +12,5 @@ class Layout extends GenericAttribute
      */
     public function __construct(
         public string $layout = 'list' // list, cards, cardlets
-    ) {
-    }
+    ) {}
 }

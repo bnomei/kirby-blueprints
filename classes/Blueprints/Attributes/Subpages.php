@@ -12,6 +12,5 @@ class Subpages extends GenericAttribute
      */
     public function __construct(
         public bool $subpages = true
-    ) {
-    }
+    ) {}
 }

@@ -12,6 +12,5 @@ class Files extends GenericAttribute
      */
     public function __construct(
         public array $files = []
-    ) {
-    }
+    ) {}
 }

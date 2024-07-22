@@ -25,8 +25,7 @@ class FileOptions implements \JsonSerializable
         public bool|array $read = true,
         public bool|array $update = true,
         public array $properties = [],
-    ) {
-    }
+    ) {}
 
     public static function make(
         bool|array $changeName = true,

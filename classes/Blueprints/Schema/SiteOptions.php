@@ -18,8 +18,7 @@ class SiteOptions implements \JsonSerializable
         public bool|array $changeTitle = true,
         public bool|array $update = true,
         public array $properties = [],
-    ) {
-    }
+    ) {}
 
     public static function make(
         bool|array $changeTitle = true,

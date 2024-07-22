@@ -26,8 +26,7 @@ class Column
         public ?string $id = null,
         public array $sections = [],
         public array $fields = [],
-    ) {
-    }
+    ) {}
 
     /**
      * @param  array<Section>  $sections

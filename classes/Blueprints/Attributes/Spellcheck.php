@@ -12,6 +12,5 @@ class Spellcheck extends GenericAttribute
      */
     public function __construct(
         public bool $spellcheck = false
-    ) {
-    }
+    ) {}
 }

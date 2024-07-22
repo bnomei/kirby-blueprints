@@ -12,6 +12,5 @@ class Display extends GenericAttribute
      */
     public function __construct(
         public string $display = 'YYYY-MM-DD'
-    ) {
-    }
+    ) {}
 }

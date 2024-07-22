@@ -12,6 +12,5 @@ class MaxTime extends GenericAttribute
      */
     public function __construct(
         public string $max //  (H:i or H:i:s)
-    ) {
-    }
+    ) {}
 }

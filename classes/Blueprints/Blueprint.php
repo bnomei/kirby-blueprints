@@ -44,7 +44,7 @@ class Blueprint
 
     public function blueprintCacheKeyFromModel(): string
     {
-        if (!class_exists($this->modelClass)) {
+        if (! class_exists($this->modelClass)) {
             throw new \Exception('Model class ['.$this->modelClass.'] does not exist.');
         }
 
@@ -84,7 +84,7 @@ class Blueprint
 
     public static function getBlueprintFieldsFromReflection(string $class): array
     {
-        if (!class_exists($class)) {
+        if (! class_exists($class)) {
             throw new \Exception('Model class ['.$class.'] does not exist.');
         }
 
@@ -127,7 +127,7 @@ class Blueprint
 
     public static function getBlueprintFromYamlFile(string $class): array
     {
-        if (!class_exists($class)) {
+        if (! class_exists($class)) {
             throw new \Exception('Model class ['.$class.'] does not exist.');
         }
 
@@ -146,7 +146,7 @@ class Blueprint
 
     public static function getBlueprintFromClass(string $class): array
     {
-        if (!class_exists($class)) {
+        if (! class_exists($class)) {
             throw new \Exception('Model class ['.$class.'] does not exist.');
         }
 
@@ -171,7 +171,7 @@ class Blueprint
 
     public static function getBlueprintUsingReflection(string $class): array
     {
-        if (!class_exists($class)) {
+        if (! class_exists($class)) {
             throw new \Exception('Model class ['.$class.'] does not exist.');
         }
 
@@ -274,7 +274,7 @@ class Blueprint
         static::$loadPluginsAfter[] = $blueprint;
     }
 
-    public static function loadPluginsAfter():  void
+    public static function loadPluginsAfter(): void
     {
         $blueprints = [];
         foreach (static::$loadPluginsAfter as $blueprint) {

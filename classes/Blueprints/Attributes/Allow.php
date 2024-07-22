@@ -12,6 +12,5 @@ class Allow extends GenericAttribute
      */
     public function __construct(
         public string $allow
-    ) {
-    }
+    ) {}
 }

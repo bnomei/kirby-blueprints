@@ -31,8 +31,7 @@ class Tab
         public array $columns = [],
         public array $sections = [],
         public array $fields = [],
-    ) {
-    }
+    ) {}
 
     /**
      * @param  array<string, string>  $label

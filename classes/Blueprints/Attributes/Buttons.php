@@ -15,6 +15,5 @@ class Buttons extends GenericAttribute
      */
     public function __construct(
         public bool|array $buttons = true
-    ) {
-    }
+    ) {}
 }

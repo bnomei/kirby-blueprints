@@ -111,7 +111,7 @@ class BlueprintCache
                     continue;
                 }
                 $key = str_replace([static::cacheDir().'/', '.cache'], ['', ''], $file);
-                if (!is_string($key)) {
+                if (! is_string($key)) {
                     continue;
                 }
                 /* this check would decrease performance
@@ -133,7 +133,7 @@ class BlueprintCache
         return count(\Kirby\Cms\Blueprint::$loaded);
     }
 
-    public static function flush()
+    public static function flush(): void
     {
         $cdir = static::cacheDir();
         if (! $cdir) {

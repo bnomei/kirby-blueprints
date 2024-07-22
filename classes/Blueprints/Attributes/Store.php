@@ -12,6 +12,5 @@ class Store extends GenericAttribute
      */
     public function __construct(
         public string $store = 'uuid' // uuid, id
-    ) {
-    }
+    ) {}
 }

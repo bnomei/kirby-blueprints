@@ -12,6 +12,5 @@ class Marks extends GenericAttribute
      */
     public function __construct(
         public bool|array $marks = true // ['bold', 'italic', 'underline', 'strike', 'code', 'link', 'email']
-    ) {
-    }
+    ) {}
 }

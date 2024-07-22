@@ -12,6 +12,5 @@ class Prepend extends GenericAttribute
      */
     public function __construct(
         public bool $prepend = false
-    ) {
-    }
+    ) {}
 }

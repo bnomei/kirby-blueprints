@@ -12,6 +12,5 @@ class Disabled extends GenericAttribute
      */
     public function __construct(
         public bool $disabled = false
-    ) {
-    }
+    ) {}
 }

@@ -12,6 +12,5 @@ class When extends GenericAttribute
      */
     public function __construct(
         public mixed $when
-    ) {
-    }
+    ) {}
 }

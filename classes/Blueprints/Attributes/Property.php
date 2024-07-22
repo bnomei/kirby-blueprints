@@ -14,8 +14,7 @@ class Property extends GenericAttribute
     public function __construct(
         public string $key,
         public string|bool|array $value
-    ) {
-    }
+    ) {}
 
     public function toArray(): array
     {

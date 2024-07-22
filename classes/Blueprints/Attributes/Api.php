@@ -12,6 +12,5 @@ class Api extends GenericAttribute
      */
     public function __construct(
         public mixed $api
-    ) {
-    }
+    ) {}
 }

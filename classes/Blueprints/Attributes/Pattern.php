@@ -12,6 +12,5 @@ class Pattern extends GenericAttribute
      */
     public function __construct(
         public string $pattern
-    ) {
-    }
+    ) {}
 }

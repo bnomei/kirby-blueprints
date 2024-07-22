@@ -14,6 +14,5 @@ class Icon extends GenericAttribute
      */
     public function __construct(
         public mixed $icon
-    ) {
-    }
+    ) {}
 }

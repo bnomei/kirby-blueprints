@@ -12,6 +12,5 @@ class Search extends GenericAttribute
      */
     public function __construct(
         public bool $search = true
-    ) {
-    }
+    ) {}
 }

@@ -12,6 +12,5 @@ class Text extends GenericAttribute
      */
     public function __construct(
         public string $text
-    ) {
-    }
+    ) {}
 }

@@ -12,6 +12,5 @@ class MinTime extends GenericAttribute
      */
     public function __construct(
         public string $min //  (H:i or H:i:s)
-    ) {
-    }
+    ) {}
 }

@@ -12,6 +12,5 @@ class Uploads extends GenericAttribute
      */
     public function __construct(
         public array $uploads = []
-    ) {
-    }
+    ) {}
 }

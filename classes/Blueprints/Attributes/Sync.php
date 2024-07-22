@@ -12,6 +12,5 @@ class Sync extends GenericAttribute
      */
     public function __construct(
         public string $sync
-    ) {
-    }
+    ) {}
 }

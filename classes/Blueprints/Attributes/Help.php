@@ -12,6 +12,5 @@ class Help extends GenericAttribute
      */
     public function __construct(
         public string $help
-    ) {
-    }
+    ) {}
 }

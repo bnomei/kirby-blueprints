@@ -12,6 +12,5 @@ class Inline extends GenericAttribute
      */
     public function __construct(
         public bool $inline = false
-    ) {
-    }
+    ) {}
 }

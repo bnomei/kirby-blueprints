@@ -12,6 +12,5 @@ class Converter extends GenericAttribute
      */
     public function __construct(
         public string $converter
-    ) {
-    }
+    ) {}
 }

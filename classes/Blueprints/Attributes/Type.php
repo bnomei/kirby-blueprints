@@ -15,6 +15,5 @@ class Type extends GenericAttribute
      */
     public function __construct(
         public FieldTypes|string $type
-    ) {
-    }
+    ) {}
 }

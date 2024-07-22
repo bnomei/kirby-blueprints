@@ -19,8 +19,7 @@ class PageImage
         public ?string $color = null,
         public ?string $icon = null,
         public ?string $query = null,
-    ) {
-    }
+    ) {}
 
     public static function make(
         ?string $back = null,

@@ -23,8 +23,7 @@ class Site
         public array $columns = [],
         public array $sections = [],
         public array $fields = [],
-    ) {
-    }
+    ) {}
 
     /**
      * @param  SiteOptions  $options

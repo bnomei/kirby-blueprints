@@ -12,6 +12,5 @@ class Grow extends GenericAttribute
      */
     public function __construct(
         public bool $grow = true
-    ) {
-    }
+    ) {}
 }

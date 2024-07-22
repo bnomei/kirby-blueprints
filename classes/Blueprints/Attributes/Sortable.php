@@ -12,6 +12,5 @@ class Sortable extends GenericAttribute
      */
     public function __construct(
         public bool $sortable
-    ) {
-    }
+    ) {}
 }

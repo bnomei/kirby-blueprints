@@ -12,6 +12,5 @@ class Time extends GenericAttribute
      */
     public function __construct(
         public bool $time = false
-    ) {
-    }
+    ) {}
 }

@@ -12,6 +12,5 @@ class Width extends GenericAttribute
      */
     public function __construct(
         public float|string $width = '1/1'
-    ) {
-    }
+    ) {}
 }

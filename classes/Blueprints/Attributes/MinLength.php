@@ -12,6 +12,5 @@ class MinLength extends GenericAttribute
      */
     public function __construct(
         public int $minlength
-    ) {
-    }
+    ) {}
 }

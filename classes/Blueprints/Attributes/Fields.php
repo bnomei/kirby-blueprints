@@ -14,6 +14,5 @@ class Fields extends GenericAttribute
      */
     public function __construct(
         public array $fields = []
-    ) {
-    }
+    ) {}
 }

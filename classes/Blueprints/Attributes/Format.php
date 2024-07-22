@@ -12,6 +12,5 @@ class Format extends GenericAttribute
      */
     public function __construct(
         public string $format
-    ) {
-    }
+    ) {}
 }

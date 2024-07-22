@@ -12,7 +12,7 @@ trait IsArrayable
         }
 
         $data = json_decode($json_encode, true);
-        if (!is_array($data)) {
+        if (! is_array($data)) {
             $data = [];
         }
         ksort($data);

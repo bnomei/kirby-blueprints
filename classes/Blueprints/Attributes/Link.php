@@ -12,6 +12,5 @@ class Link extends GenericAttribute
      */
     public function __construct(
         public bool $link = true
-    ) {
-    }
+    ) {}
 }

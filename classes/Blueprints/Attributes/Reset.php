@@ -12,6 +12,5 @@ class Reset extends GenericAttribute
      */
     public function __construct(
         public bool $reset = true
-    ) {
-    }
+    ) {}
 }

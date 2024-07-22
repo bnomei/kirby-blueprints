@@ -12,6 +12,5 @@ class Step extends GenericAttribute
      */
     public function __construct(
         public array $step = [] // ['unit' => 'd', 'size' => 1]
-    ) {
-    }
+    ) {}
 }

@@ -14,6 +14,5 @@ class EmptyValue extends GenericAttribute
      */
     public function __construct(
         public string|array $empty
-    ) {
-    }
+    ) {}
 }

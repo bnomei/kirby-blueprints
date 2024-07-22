@@ -12,6 +12,5 @@ class Multiple extends GenericAttribute
      */
     public function __construct(
         public bool $multiple = false
-    ) {
-    }
+    ) {}
 }

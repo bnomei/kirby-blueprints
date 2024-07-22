@@ -12,6 +12,5 @@ class Autofocus extends GenericAttribute
      */
     public function __construct(
         public bool $autofocus
-    ) {
-    }
+    ) {}
 }

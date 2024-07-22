@@ -25,8 +25,7 @@ class File
         public array $columns = [],
         public array $sections = [],
         public array $fields = [],
-    ) {
-    }
+    ) {}
 
     /**
      * @param  FileImage  $image

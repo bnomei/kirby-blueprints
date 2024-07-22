@@ -12,6 +12,5 @@ class MaxRange extends GenericAttribute
      */
     public function __construct(
         public float $max = 100.0
-    ) {
-    }
+    ) {}
 }

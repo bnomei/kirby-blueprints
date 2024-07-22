@@ -12,6 +12,5 @@ class Size extends GenericAttribute
      */
     public function __construct(
         public string $size // small, medium, large, huge
-    ) {
-    }
+    ) {}
 }

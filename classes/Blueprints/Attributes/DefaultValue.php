@@ -12,6 +12,5 @@ class DefaultValue extends GenericAttribute
      */
     public function __construct(
         public mixed $default
-    ) {
-    }
+    ) {}
 }

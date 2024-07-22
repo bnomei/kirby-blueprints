@@ -26,6 +26,5 @@ class Url
         public string $type = 'url',
         public string|array|null $label = null,
         public string|float|null $width = null,
-    ) {
-    }
+    ) {}
 }

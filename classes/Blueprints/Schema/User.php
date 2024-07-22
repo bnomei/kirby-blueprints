@@ -27,8 +27,7 @@ class User
         public array $columns = [],
         public array $sections = [],
         public array $fields = [],
-    ) {
-    }
+    ) {}
 
     /**
      * @param  UserImage  $image

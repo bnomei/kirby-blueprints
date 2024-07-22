@@ -12,6 +12,5 @@ class ExtendsField extends GenericAttribute
      */
     public function __construct(
         public string $extends
-    ) {
-    }
+    ) {}
 }

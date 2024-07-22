@@ -12,6 +12,5 @@ class Numbered extends GenericAttribute
      */
     public function __construct(
         public bool $numbered = false
-    ) {
-    }
+    ) {}
 }

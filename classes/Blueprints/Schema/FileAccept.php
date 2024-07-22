@@ -39,8 +39,7 @@ class FileAccept implements \JsonSerializable
         public ?string $orientation = null, // landscape/square/portrait
         public null|string|array $type = null,
         public array $properties = [],
-    ) {
-    }
+    ) {}
 
     public static function make(
         string|array|null $extension = null,

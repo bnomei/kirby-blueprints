@@ -12,6 +12,5 @@ class Theme extends GenericAttribute
      */
     public function __construct(
         public string $theme = 'info'
-    ) {
-    }
+    ) {}
 }

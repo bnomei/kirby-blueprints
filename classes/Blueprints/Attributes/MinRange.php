@@ -12,6 +12,5 @@ class MinRange extends GenericAttribute
      */
     public function __construct(
         public float $min
-    ) {
-    }
+    ) {}
 }

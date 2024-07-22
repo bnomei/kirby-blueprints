@@ -12,6 +12,5 @@ class TimeNotation extends GenericAttribute
      */
     public function __construct(
         public int $time = 24
-    ) {
-    }
+    ) {}
 }

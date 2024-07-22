@@ -12,6 +12,5 @@ class Max extends GenericAttribute
      */
     public function __construct(
         public int $max
-    ) {
-    }
+    ) {}
 }

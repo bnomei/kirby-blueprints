@@ -12,6 +12,5 @@ class Calendar extends GenericAttribute
      */
     public function __construct(
         public bool $calendar = true
-    ) {
-    }
+    ) {}
 }

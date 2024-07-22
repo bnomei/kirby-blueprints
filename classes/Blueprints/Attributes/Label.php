@@ -14,6 +14,5 @@ class Label extends GenericAttribute
      */
     public function __construct(
         public string|array $label
-    ) {
-    }
+    ) {}
 }

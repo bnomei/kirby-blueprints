@@ -26,8 +26,7 @@ class UserPermissions implements \JsonSerializable
         public bool|array $user = true,
         public bool|array $users = true,
         public array $properties = [],
-    ) {
-    }
+    ) {}
 
     public static function make(
         bool|array $access = true,

@@ -12,6 +12,5 @@ class Options extends GenericAttribute
      */
     public function __construct(
         public array $options
-    ) {
-    }
+    ) {}
 }

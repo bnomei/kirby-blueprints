@@ -12,6 +12,5 @@ class Separator extends GenericAttribute
      */
     public function __construct(
         public string $separator = ','
-    ) {
-    }
+    ) {}
 }

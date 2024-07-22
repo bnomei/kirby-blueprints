@@ -12,6 +12,5 @@ class Wizard extends GenericAttribute
      */
     public function __construct(
         public bool $wizard = false
-    ) {
-    }
+    ) {}
 }

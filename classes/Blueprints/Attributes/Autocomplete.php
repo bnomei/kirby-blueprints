@@ -12,6 +12,5 @@ class Autocomplete extends GenericAttribute
      */
     public function __construct(
         public string $autocomplete // tel, url
-    ) {
-    }
+    ) {}
 }

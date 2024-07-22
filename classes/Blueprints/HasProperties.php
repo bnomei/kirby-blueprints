@@ -29,7 +29,7 @@ trait HasProperties
             throw new \Exception('Could not encode to JSON.');
         }
         $data = json_decode($json_encode, true);
-        if (!is_array($data)) {
+        if (! is_array($data)) {
             $data = [];
         }
         ksort($data);

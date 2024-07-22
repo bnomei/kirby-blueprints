@@ -14,6 +14,5 @@ class Before extends GenericAttribute
      */
     public function __construct(
         public string|array $before
-    ) {
-    }
+    ) {}
 }

@@ -12,6 +12,5 @@ class MinDate extends GenericAttribute
      */
     public function __construct(
         public string $min //  (Y-m-d)
-    ) {
-    }
+    ) {}
 }

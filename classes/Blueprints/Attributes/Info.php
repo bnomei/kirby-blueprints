@@ -12,6 +12,5 @@ class Info extends GenericAttribute
      */
     public function __construct(
         public string $info
-    ) {
-    }
+    ) {}
 }

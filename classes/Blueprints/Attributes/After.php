@@ -14,6 +14,5 @@ class After extends GenericAttribute
      */
     public function __construct(
         public string|array $after
-    ) {
-    }
+    ) {}
 }
