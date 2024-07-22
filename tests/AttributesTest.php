@@ -5,6 +5,8 @@ use Bnomei\Blueprints\Attributes\Label;
 use Bnomei\Blueprints\Attributes\MaxLength;
 use Bnomei\Blueprints\Attributes\Spellcheck;
 use Bnomei\Blueprints\Attributes\Type;
+use Bnomei\Blueprints\Blueprint;
+use Bnomei\Blueprints\BlueprintCache;
 
 test('HomePage has field from attributes', function () {
     $blueprint = HomePage::blueprintFromAttributes();
@@ -40,7 +42,7 @@ test('Textarea has Attributes', function () {
 
 test('has a Blueprint of ProductPage with description Textarea field', function () {
     $blueprint = ProductPage::blueprintFromAttributes();
-    expect($blueprint['pages/product']['tabs'][0]['columns'][1]['fields']['description'])->toEqual([
+    expect($blueprint['pages/product']['tabs']['shop']['columns']['92ad5ced93dbb1f298bb9a655ae5e7d7']['fields']['description'])->toEqual([
         'buttons' => [
             'bold',
             'italic',
@@ -58,12 +60,42 @@ test('has a Blueprint of ProductPage with description Textarea field', function 
     ]);
 });
 
+it('can cache and read blueprints', function () {
+    BlueprintCache::flush();
+    $key = 'pages/product';
+    expect(BlueprintCache::exists($key))->toBeFalse();
+
+    $blueprint = ProductPage::blueprintFromAttributes();
+    expect(BlueprintCache::set($key, $blueprint))->toBeTrue()
+        ->and($blueprint)->toBeArray()
+        ->and(BlueprintCache::get($key))->toEqual($blueprint);
+
+    // passing of time will make the cache expire
+    touch(BlueprintCache::cacheFile($key), time() - 61);
+    clearstatcache();
+    expect(BlueprintCache::exists($key, 60))->toBeFalse();
+});
+
 test('has Custom Type and Property', function () {
     $blueprint = ProductPage::blueprintFromAttributes();
-    expect($blueprint['pages/product']['tabs'][0]['columns'][1]['fields']['qrcode'])->toEqual(
+    expect($blueprint['pages/product']['tabs']['shop']['columns']['92ad5ced93dbb1f298bb9a655ae5e7d7']['fields']['qrcode'])->toEqual(
         [
             'type' => 'qrcode',
             'customkey' => 'custom data',
         ]
     );
+});
+
+it('has helpers to get do stuff when kirby has loaded the plugins', function() {
+    $key = BlueprintCache::getKey();
+    kirby()->session()->remove($key);
+    expect(kirby()->session()->get($key))->toBeNull();
+    BlueprintCache::rememberCacheDir();
+    expect(kirby()->session()->get($key))->not()->toBeNull();
+
+    Blueprint::loadPluginsAfter();
+
+    expect(BlueprintCache::cacheDir())->not()->toBeNull();
+    $count = BlueprintCache::preloadCachedBlueprints();
+    expect($count)->toBeGreaterThan(0);
 });

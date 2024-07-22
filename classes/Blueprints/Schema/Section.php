@@ -106,7 +106,7 @@ class Section
         ?string $status = null,
         array $templates = [],
         mixed $reports = null,
-    ): static {
-        return new static(...func_get_args());
+    ): self {
+        return new self(...func_get_args()); // @phpstan-ignore-line
     }
 }

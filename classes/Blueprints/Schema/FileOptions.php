@@ -35,7 +35,7 @@ class FileOptions implements \JsonSerializable
         bool|array $read = true,
         bool|array $update = true,
         array $properties = [],
-    ): static {
-        return new static(...func_get_args());
+    ): self {
+        return new self(...func_get_args()); // @phpstan-ignore-line
     }
 }

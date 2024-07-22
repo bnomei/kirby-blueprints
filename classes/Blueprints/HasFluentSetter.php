@@ -4,7 +4,7 @@ namespace Bnomei\Blueprints;
 
 trait HasFluentSetter
 {
-    public function __call($name, $arguments): self
+    public function __call(string $name, array $arguments = []): self
     {
         // fluent setter for properties
         if (count($arguments) === 1 && property_exists($this, $name)) {

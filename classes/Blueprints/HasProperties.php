@@ -18,13 +18,20 @@ trait HasProperties
         }
 
         // move all properties to root
-        if (isset($data['properties'])) {
+        if (isset($data['properties']) && is_array($data['properties'])) {
             $data = array_merge($data, $data['properties']);
             unset($data['properties']);
         }
 
         // resolve enums etc...
-        $data = json_decode(json_encode($data), true) ?? [];
+        $json_encode = json_encode($data);
+        if ($json_encode === false) {
+            throw new \Exception('Could not encode to JSON.');
+        }
+        $data = json_decode($json_encode, true);
+        if (!is_array($data)) {
+            $data = [];
+        }
         ksort($data);
 
         // empty() would catch 0 and false which is not what we want

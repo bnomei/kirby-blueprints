@@ -19,7 +19,7 @@ class Url
         string|array|null $label = null,
         string|float|null $width = null,
     ): self {
-        return new self(...func_get_args());
+        return new self(...func_get_args()); // @phpstan-ignore-line
     }
 
     public function __construct(

@@ -54,7 +54,7 @@ class FileAccept implements \JsonSerializable
         ?string $orientation = null, // landscape/square/portrait
         string|array|null $type = null,
         array $properties = [],
-    ): static {
-        return new static(...func_get_args());
+    ): self {
+        return new self(...func_get_args()); // @phpstan-ignore-line
     }
 }

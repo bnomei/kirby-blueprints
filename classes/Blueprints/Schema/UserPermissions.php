@@ -37,7 +37,7 @@ class UserPermissions implements \JsonSerializable
         bool|array $user = true,
         bool|array $users = true,
         array $properties = [],
-    ): static {
-        return new static(...func_get_args());
+    ): self {
+        return new self(...func_get_args()); // @phpstan-ignore-line
     }
 }

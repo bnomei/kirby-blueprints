@@ -16,13 +16,17 @@ class Blueprint
 
     public function __construct(private readonly string $modelClass, private ?bool $defer = null, private ?int $cache = null)
     {
+        if (! class_exists($modelClass)) {
+            throw new \Exception('Model class ['.$modelClass.'] does not exist.');
+        }
+
         $isCacheable = null;
         $rc = new ReflectionClass($modelClass);
         foreach ($rc->getMethods(ReflectionMethod::IS_PUBLIC) as $method) {
             foreach ($method->getAttributes() as $attribute) {
                 if ($attribute->getName() === 'Bnomei\Blueprints\Attributes\Blueprint') {
-                    $isCacheable = $attribute->newInstance()->cache;
-                    $this->defer = $attribute->newInstance()->defer;
+                    $isCacheable = $attribute->newInstance()->cache; // @phpstan-ignore-line
+                    $this->defer = $attribute->newInstance()->defer; // @phpstan-ignore-line
                     break;
                 }
             }
@@ -40,6 +44,10 @@ class Blueprint
 
     public function blueprintCacheKeyFromModel(): string
     {
+        if (!class_exists($this->modelClass)) {
+            throw new \Exception('Model class ['.$this->modelClass.'] does not exist.');
+        }
+
         $ref = new ReflectionClass($this->modelClass);
 
         if ($ref->isSubclassOf(\Kirby\Cms\Page::class)) {
@@ -76,6 +84,10 @@ class Blueprint
 
     public static function getBlueprintFieldsFromReflection(string $class): array
     {
+        if (!class_exists($class)) {
+            throw new \Exception('Model class ['.$class.'] does not exist.');
+        }
+
         $fields = [];
         $rc = new ReflectionClass($class);
 
@@ -87,7 +99,7 @@ class Blueprint
             // only Fields
             $returnType = $property->getType();
             if ($returnType instanceof ReflectionUnionType === true ||
-                $returnType?->getName() !== Field::class
+                $returnType?->getName() !== Field::class // @phpstan-ignore-line
             ) {
                 continue;
             }
@@ -101,7 +113,7 @@ class Blueprint
                 $instance = $attribute->newInstance();
                 $fields[$key] = array_merge(
                     $fields[$key],
-                    $instance->toArray()
+                    $instance->toArray() // @phpstan-ignore-line
                 );
             }
 
@@ -115,8 +127,16 @@ class Blueprint
 
     public static function getBlueprintFromYamlFile(string $class): array
     {
+        if (!class_exists($class)) {
+            throw new \Exception('Model class ['.$class.'] does not exist.');
+        }
+
         $rc = new ReflectionClass($class);
-        $yamlFile = str_replace('.php', '.yml', $rc->getFileName());
+        $filename = $rc->getFileName();
+        if (! $filename) {
+            throw new \Exception('Model class ['.$class.'] does not have a filename.');
+        }
+        $yamlFile = str_replace('.php', '.yml', $filename);
         if (F::exists($yamlFile)) {
             return Yaml::read($yamlFile);
         }
@@ -126,6 +146,10 @@ class Blueprint
 
     public static function getBlueprintFromClass(string $class): array
     {
+        if (!class_exists($class)) {
+            throw new \Exception('Model class ['.$class.'] does not exist.');
+        }
+
         $blueprint = [];
 
         // find method(s) with blueprint attribute using reflection
@@ -147,6 +171,10 @@ class Blueprint
 
     public static function getBlueprintUsingReflection(string $class): array
     {
+        if (!class_exists($class)) {
+            throw new \Exception('Model class ['.$class.'] does not exist.');
+        }
+
         $fields = self::getBlueprintFieldsFromReflection($class);
 
         // merge with blueprint from yaml file or class
@@ -184,7 +212,7 @@ class Blueprint
     }
 
     // https://stackoverflow.com/a/45534505
-    public static function arrayRemoveByValuesRecursive(array $haystack, array $values)
+    public static function arrayRemoveByValuesRecursive(array $haystack, array $values): array
     {
         foreach ($haystack as $key => $value) {
             if (is_array($value)) {
@@ -218,7 +246,11 @@ class Blueprint
                     } elseif (is_array($item) && isset($item['label'])) {
                         $updated[Str::camel($item['label'])] = $item;
                     } else {
-                        $hash = md5(json_encode($item)); // needs to stay the same for kirby between requests
+                        $json_encode = json_encode($item);
+                        if ($json_encode === false) {
+                            throw new \Exception('Could not encode to JSON.');
+                        }
+                        $hash = md5($json_encode); // needs to stay the same for kirby between requests
                         $updated[$hash] = $item;
                     }
                 }
@@ -242,15 +274,18 @@ class Blueprint
         static::$loadPluginsAfter[] = $blueprint;
     }
 
-    public static function loadPluginsAfter()
+    public static function loadPluginsAfter():  void
     {
         $blueprints = [];
         foreach (static::$loadPluginsAfter as $blueprint) {
             $blueprints = array_merge($blueprints, $blueprint->toArray());
         }
+        /* Does not work as intended, merge directly instead
         kirby()->extend([
             'blueprints' => $blueprints,
         ]);
+        */
+        \Kirby\Cms\Blueprint::$loaded = array_merge(\Kirby\Cms\Blueprint::$loaded, $blueprints);
     }
 
     public function isLoadAfter(): bool

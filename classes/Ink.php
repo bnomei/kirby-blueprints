@@ -223,7 +223,7 @@ class Ink
 
     const WRITER = 'writer';
 
-    public static function __callStatic(string $name, array $arguments)
+    public static function __callStatic(string $name, array $arguments): mixed
     {
         if (in_array($name, ['info', 'files', 'pages', 'fields'])) {
             $arguments['type'] = $name;

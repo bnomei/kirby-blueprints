@@ -13,6 +13,7 @@ node_modules
 /tests/site/cache
 /tests/site/sessions
 /tests/janitor-*.php
+/tests/clover.xml
 
 # files of Composer dependencies that are not needed for the plugin
 /vendor/**/.*

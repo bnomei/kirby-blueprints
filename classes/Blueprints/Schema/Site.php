@@ -40,7 +40,7 @@ class Site
         array $columns = [],
         array $sections = [],
         array $fields = [],
-    ): static {
-        return new static(...func_get_args());
+    ): self {
+        return new self(...func_get_args()); // @phpstan-ignore-line
     }
 }

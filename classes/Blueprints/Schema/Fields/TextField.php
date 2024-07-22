@@ -6,9 +6,9 @@ use Bnomei\Blueprints\HasStaticMake;
 use Bnomei\Blueprints\Schema\Field;
 
 /**
- * @method label(array|string|null $label): TextField
- * @method placeholder(array|string|null $placeholder): TextField
- * @method width(float|string|null $width): TextField
+ * @method label(array|string|null $label)
+ * @method placeholder(array|string|null $placeholder)
+ * @method width(float|string|null $width)
  *
  * @deprecated use Field::make('text') instead, this is just me testing stuff
  */

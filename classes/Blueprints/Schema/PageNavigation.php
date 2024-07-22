@@ -24,7 +24,7 @@ class PageNavigation
         string|array $status = 'all',
         string|array $template = 'all',
         string $sortBy = 'title asc',
-    ): static {
-        return new static(...func_get_args());
+    ): self {
+        return new self(...func_get_args()); // @phpstan-ignore-line
     }
 }
