@@ -3,5 +3,6 @@ fields:
     type: text
 
   # this field is from a php blueprint
+  version: fields/version
   related: fields/related-pages
   unrelated: fields/un-related-pages

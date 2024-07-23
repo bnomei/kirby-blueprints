@@ -152,6 +152,21 @@ return Field::make(
 )->toArray();
 ```
 
+#### Dynamic Blueprints without PHP Attributes on Models
+
+If you want to return a dynamic definition for a blueprint you need to wrap the return value of your PHP-based blueprint in a callback. This is because otherwise the blueprint definitions get parsed during Kirby's initial setup and you can NOT access all data in the Kirby instance (`kirby()`) or any other helpers (`site()/page()`) without causing issues. But using the closure will delay the parsing of the blueprint until the blueprint is actually needed after Kirby has loaded all plugins and is ready to render a page.
+
+**site/plugins/example/blueprints/fields/version.php**
+```php
+<?php
+
+return fn () => Field::make(FieldTypes::INFO)
+    ->text('Kirby v'.kirby()->version())
+    ->toArray();
+```
+
+> NOTE: For Models you can do that with the `defer` option. See further down.
+
 ### Available Make-Helpers
 
 Depending on what blueprint you want to create you can use one of the following helpers.
