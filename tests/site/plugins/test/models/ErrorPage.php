@@ -13,9 +13,9 @@ use Kirby\Content\Field;
 
 class ErrorPage extends Page
 {
-    use HasBlueprintFromAttributes;
     use HasBlueprintCache;
     use HasBlueprintCacheResolve;
+    use HasBlueprintFromAttributes;
     use HasPublicPropertiesMappedToKirbyFields;
 
     #[
