@@ -124,3 +124,16 @@ it('can be exported as yaml', function () {
 
     expect($blueprint->toYaml())->toBeString();
 });
+
+it('has traits to cache and map props to fields', function() {
+    /** @var ErrorPage $error */
+    $error = page('error');
+    expect($error->blueprintCacheKey())->toBe('pages/error');
+
+    expect($error->fromblue)->toBeInstanceOf(\Kirby\Content\Field::class);
+
+    // test write resolved on __destruct
+    $error->__destruct();
+
+    expect(BlueprintCache::exists('pages/error'))->toBeTrue();
+});
