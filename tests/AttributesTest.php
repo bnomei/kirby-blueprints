@@ -99,3 +99,28 @@ it('has helpers to get do stuff when kirby has loaded the plugins', function () 
     $count = BlueprintCache::preloadCachedBlueprints();
     expect($count)->toBeGreaterThan(0);
 });
+
+it('can Ink a section', function () {
+    $fields = \Bnomei\Ink::fields(fields: [
+
+    ]);
+
+    expect($fields->toArray())->toBeArray();
+
+    $invalid = \Bnomei\Ink::bogus();
+    expect($invalid)->toBeNull();
+});
+
+it('can have deferred blueprints which load on ready()', function () {
+    $blueprint = DynamoPage::blueprintFromAttributes();
+    expect($blueprint)->toBeNull();
+
+    Blueprint::loadPluginsAfter();
+    expect(\Kirby\Cms\Blueprint::$loaded)->toHaveKey('pages/dynamo');
+});
+
+it('can be exported as yaml', function () {
+    $blueprint = new Blueprint(HomePage::class);
+
+    expect($blueprint->toYaml())->toBeString();
+});

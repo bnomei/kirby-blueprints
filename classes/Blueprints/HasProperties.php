@@ -30,7 +30,7 @@ trait HasProperties
         }
         $data = json_decode($json_encode, true);
         if (! is_array($data)) {
-            $data = [];
+            $data = []; // @codeCoverageIgnore
         }
         ksort($data);
 

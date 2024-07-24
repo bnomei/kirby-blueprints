@@ -17,7 +17,7 @@ class Blueprint
     public function __construct(private readonly string $modelClass, private ?bool $defer = null, private ?int $cache = null)
     {
         if (! class_exists($modelClass)) {
-            throw new \Exception('Model class ['.$modelClass.'] does not exist.');
+            throw new \Exception('Model class ['.$modelClass.'] does not exist.'); // @codeCoverageIgnore
         }
 
         $isCacheable = null;
@@ -39,13 +39,18 @@ class Blueprint
 
     public function __toString(): string
     {
+        return $this->toYaml();
+    }
+
+    public function toYaml(): string
+    {
         return Yaml::encode($this->toArray());
     }
 
     public function blueprintCacheKeyFromModel(): string
     {
         if (! class_exists($this->modelClass)) {
-            throw new \Exception('Model class ['.$this->modelClass.'] does not exist.');
+            throw new \Exception('Model class ['.$this->modelClass.'] does not exist.'); // @codeCoverageIgnore
         }
 
         $ref = new ReflectionClass($this->modelClass);
@@ -85,7 +90,7 @@ class Blueprint
     public static function getBlueprintFieldsFromReflection(string $class): array
     {
         if (! class_exists($class)) {
-            throw new \Exception('Model class ['.$class.'] does not exist.');
+            throw new \Exception('Model class ['.$class.'] does not exist.'); // @codeCoverageIgnore
         }
 
         $fields = [];
@@ -128,13 +133,13 @@ class Blueprint
     public static function getBlueprintFromYamlFile(string $class): array
     {
         if (! class_exists($class)) {
-            throw new \Exception('Model class ['.$class.'] does not exist.');
+            throw new \Exception('Model class ['.$class.'] does not exist.'); // @codeCoverageIgnore
         }
 
         $rc = new ReflectionClass($class);
         $filename = $rc->getFileName();
         if (! $filename) {
-            throw new \Exception('Model class ['.$class.'] does not have a filename.');
+            throw new \Exception('Model class ['.$class.'] does not have a filename.'); // @codeCoverageIgnore
         }
         $yamlFile = str_replace('.php', '.yml', $filename);
         if (F::exists($yamlFile)) {
@@ -147,7 +152,7 @@ class Blueprint
     public static function getBlueprintFromClass(string $class): array
     {
         if (! class_exists($class)) {
-            throw new \Exception('Model class ['.$class.'] does not exist.');
+            throw new \Exception('Model class ['.$class.'] does not exist.'); // @codeCoverageIgnore
         }
 
         $blueprint = [];
@@ -172,7 +177,7 @@ class Blueprint
     public static function getBlueprintUsingReflection(string $class): array
     {
         if (! class_exists($class)) {
-            throw new \Exception('Model class ['.$class.'] does not exist.');
+            throw new \Exception('Model class ['.$class.'] does not exist.'); // @codeCoverageIgnore
         }
 
         $fields = self::getBlueprintFieldsFromReflection($class);
