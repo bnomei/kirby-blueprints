@@ -24,5 +24,9 @@
         <include>
             <directory suffix=".php">classes</directory>
         </include>
+        <exclude>
+            <directory suffix=".php">classes/Blueprints/Attributes</directory>
+            <directory suffix=".php">classes/Blueprints/Schema</directory>
+        </exclude>
     </source>
 </phpunit>
