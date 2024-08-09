@@ -11,8 +11,9 @@ class BlueprintCache
 {
     public static function rememberCacheDir(): void
     {
-        $key = self::getKey();
-        if (kirby()->session()->get($key)) { // @phpstan-ignore-line
+        // NOTE: using session breaks the staticache plugin
+
+        if (F::exists(self::cacheDirMemoryFile())) {
             return;
         }
 
@@ -22,14 +23,23 @@ class BlueprintCache
         if (! Dir::exists($dir)) {
             Dir::make($dir);
         }
-        kirby()->session()->set($key, $dir); // @phpstan-ignore-line
+
+        F::write(self::cacheDirMemoryFile(), $dir);
+    }
+
+    public static function cacheDirMemoryFile(): string
+    {
+        return __DIR__.'/../../dir-'.md5(kirby()->environment()->host()).'.cache';
     }
 
     public static function cacheDir(): ?string
     {
-        $key = self::getKey();
-
-        return kirby()->session()->get($key); // @phpstan-ignore-line
+        $file = self::cacheDirMemoryFile();
+        if (F::exists($file)) {
+            $dir = F::read($file);
+            return $dir !== false ? $dir : null;
+        }
+        return null;
     }
 
     public static function cacheFile(string $key): ?string
@@ -91,11 +101,6 @@ class BlueprintCache
         $file = static::cacheFile($key);
 
         return $file ? Json::write($file, $data) : false;
-    }
-
-    public static function getKey(): string
-    {
-        return 'bnomei.blueprints.cache.dir';
     }
 
     public static function preloadCachedBlueprints(): int
