@@ -1,8 +1,8 @@
 <?php return array(
     'root' => array(
         'name' => 'bnomei/kirby-blueprints',
-        'pretty_version' => '4.4.9',
-        'version' => '4.4.9.0',
+        'pretty_version' => '4.4.10',
+        'version' => '4.4.10.0',
         'reference' => null,
         'type' => 'kirby-plugin',
         'install_path' => __DIR__ . '/../../',
@@ -11,8 +11,8 @@
     ),
     'versions' => array(
         'bnomei/kirby-blueprints' => array(
-            'pretty_version' => '4.4.9',
-            'version' => '4.4.9.0',
+            'pretty_version' => '4.4.10',
+            'version' => '4.4.10.0',
             'reference' => null,
             'type' => 'kirby-plugin',
             'install_path' => __DIR__ . '/../../',

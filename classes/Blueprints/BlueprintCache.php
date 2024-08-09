@@ -29,7 +29,7 @@ class BlueprintCache
 
     public static function cacheDirMemoryFile(): string
     {
-        return __DIR__.'/../../dir-'.md5(kirby()->environment()->host()).'.cache';
+        return __DIR__.'/../../dir-'.md5(kirby()->environment()->host() ?? '_').'.cache';
     }
 
     public static function cacheDir(): ?string
