@@ -5,7 +5,7 @@
 Kirby::plugin('bnomei/blueprints', [
     'options' => [
         'cache' => true,
-        'expire' => 60, // in seconds, null = use opcache duration, 0 to disable
+        // 'expire' => 60, // default is HARD-CODED in BlueprintCache.php
         'preload' => ['pages', 'files', 'users'],
     ],
     'hooks' => [

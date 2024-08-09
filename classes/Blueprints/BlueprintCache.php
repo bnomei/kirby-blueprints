@@ -56,7 +56,7 @@ class BlueprintCache
             return false;
         }
         if ($expire === null) {
-            $expire = option('bnomei.blueprints.expire'); // in seconds
+            $expire = 60; // in seconds, option()-helper not available yet
         }
         if (! $expire || $expire <= 0) {
             return false;

@@ -555,8 +555,8 @@ If caching is enabled it will only compile the blueprint once and then use the c
 
 ```php
 #[
-    // cache for 5 seconds
-    Blueprint(cache: 5) 
+    // cache for 120 seconds
+    Blueprint(cache: 120) 
     
     // cache with default 60 seconds
     Blueprint()
@@ -564,6 +564,7 @@ If caching is enabled it will only compile the blueprint once and then use the c
     
     // disable
     Blueprint(cache: 0) 
+    Blueprint(cache: false) 
 ]
 ```
 
