@@ -37,8 +37,10 @@ class BlueprintCache
         $file = self::cacheDirMemoryFile();
         if (F::exists($file)) {
             $dir = F::read($file);
+
             return $dir !== false ? $dir : null;
         }
+
         return null;
     }
 

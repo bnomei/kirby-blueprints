@@ -80,7 +80,8 @@ class Blueprint
 
         // some might not be cacheable like when they are class based and have dynamic fields
         // only set here now if they will not be written on __destruct by trait
-        if ($this->cache && ! method_exists($this->modelClass, 'blueprintCacheKey')) {
+        // the cacha could be null which means it will use the default value
+        if (! in_array($this->cache, [false, 0]) && ! method_exists($this->modelClass, 'blueprintCacheKey')) {
             BlueprintCache::set($key, $blueprint);
         }
 
