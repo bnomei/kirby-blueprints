@@ -1,7 +1,7 @@
 {
     "name": "bnomei/kirby-blueprints",
     "type": "kirby-plugin",
-    "version": "4.4.10",
+    "version": "4.4.12",
     "license": "MIT",
     "homepage": "https://github.com/bnomei/kirby3-blueprints",
     "description": "PHP Class-based Blueprints for Kirby CMS for better type safety and code completion",

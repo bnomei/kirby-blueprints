@@ -90,6 +90,7 @@ enum Icon: string
     case GRID_TOP = 'grid-top';
     case GRID_TOP_LEFT = 'grid-top-left';
     case GRID_TOP_RIGHT = 'grid-top-right';
+    case GOOGLE = 'google';
     case H1 = 'h1';
     case H2 = 'h2';
     case H3 = 'h3';
