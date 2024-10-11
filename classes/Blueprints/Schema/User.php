@@ -10,6 +10,11 @@ use Bnomei\Blueprints\IsArrayable;
  * @method self sections(Section[] $sections)
  * @method self columns(Column[] $columns)
  * @method self fields(Field[] $fields)
+ * @method self name(string $name)
+ * @method self title(string $title)
+ * @method self description(string $description)
+ * @method self home(string $home)
+ * @method self image(UserImage $image)
  */
 class User
 {
@@ -50,5 +55,19 @@ class User
         array $fields = [],
     ): self {
         return new self(...func_get_args()); // @phpstan-ignore-line
+    }
+
+    public function permissions(
+        bool|array $access = true,
+        bool|array $files = true,
+        bool|array $pages = true,
+        bool|array $site = true,
+        bool|array $user = true,
+        bool|array $users = true,
+        array $properties = []
+    ): self {
+        $this->permissions = UserPermissions::make(...func_get_args());  // @phpstan-ignore-line;
+
+        return $this;
     }
 }

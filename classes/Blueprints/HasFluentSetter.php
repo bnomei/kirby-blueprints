@@ -4,6 +4,7 @@ namespace Bnomei\Blueprints;
 
 trait HasFluentSetter
 {
+    // TODO: refactor to __set
     public function __call(string $name, array $arguments = []): self
     {
         // fluent setter for properties

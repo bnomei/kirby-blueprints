@@ -48,4 +48,46 @@ class File
     ): self {
         return new self(...func_get_args()); // @phpstan-ignore-line
     }
+
+    public function accept(
+        string|array|null $extension = null,
+        string|array|null $mime = null,
+        ?int $maxheight = null,
+        ?int $maxsize = null,
+        ?int $maxwidth = null,
+        ?int $minheight = null,
+        ?int $minsize = null,
+        ?int $minwidth = null,
+        ?string $orientation = null, // landscape/square/portrait
+        string|array|null $type = null,
+        array $properties = [],
+    ): self {
+        $this->accept = FileAccept::make(...func_get_args());  // @phpstan-ignore-line;
+
+        return $this;
+    }
+
+    public function image(
+        ?string $back = null,
+        ?string $color = null,
+        ?string $icon = null,
+        ?string $query = null,
+    ): self {
+        $this->image = FileImage::make(...func_get_args());  // @phpstan-ignore-line;
+
+        return $this;
+    }
+
+    public function options(
+        bool|array $changeName = true,
+        bool|array $replace = true,
+        bool|array $delete = true,
+        bool|array $read = true,
+        bool|array $update = true,
+        array $properties = [],
+    ): self {
+        $this->options = FileOptions::make(...func_get_args());  // @phpstan-ignore-line
+
+        return $this;
+    }
 }

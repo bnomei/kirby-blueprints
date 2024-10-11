@@ -40,6 +40,13 @@ trait HasProperties
         return $data;
     }
 
+    public function properties(array $merge): self
+    {
+        $this->properties = array_merge($this->properties, $merge);
+
+        return $this;
+    }
+
     public function property(string $key, mixed $value): self
     {
         $this->properties[$key] = $value;

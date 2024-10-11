@@ -42,4 +42,14 @@ class Site
     ): self {
         return new self(...func_get_args()); // @phpstan-ignore-line
     }
+
+    public function options(
+        bool|array $changeTitle = true,
+        bool|array $update = true,
+        array $properties = [],
+    ): self {
+        $this->options = SiteOptions::make(...func_get_args());  // @phpstan-ignore-line;
+
+        return $this;
+    }
 }

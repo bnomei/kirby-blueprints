@@ -2,6 +2,7 @@
 
 namespace Bnomei\Blueprints\Schema;
 
+use Bnomei\Blueprints\HasFluentGetter;
 use Bnomei\Blueprints\HasFluentSetter;
 use Bnomei\Blueprints\HasProperties;
 use Bnomei\Blueprints\HasStaticMake;
@@ -12,11 +13,13 @@ use JsonSerializable;
  * @method self id(string|null $id)
  * @method self label(array|string|null $label)
  * @method self width(float|string|null $width)
+ * @method self extends(string|null $extends)
  * @method self property(string $name, mixed $value)
  * @method self properties(array $properties)
  */
 class Field implements JsonSerializable
 {
+    use HasFluentGetter;
     use HasFluentSetter;
     use HasProperties;
     use HasStaticMake;
@@ -29,6 +32,7 @@ class Field implements JsonSerializable
         public string|array|null $label = null,
         public array $properties = [],
         public string|float|null $width = null,
+        public ?string $extends = null,
     ) {
         $this->type ??= $type; // allow override from inheriting class
     }

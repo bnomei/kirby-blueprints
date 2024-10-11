@@ -10,6 +10,7 @@ use Bnomei\Blueprints\IsArrayable;
  * @method self sections(Section[] $sections)
  * @method self id(string $id)
  * @method self fields(Field[] $fields)
+ * @method self sticky(bool $sticky)
  */
 class Column
 {

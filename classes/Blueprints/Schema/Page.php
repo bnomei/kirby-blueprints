@@ -10,6 +10,9 @@ use Bnomei\Blueprints\IsArrayable;
  * @method self sections(Section[] $sections)
  * @method self columns(Column[] $columns)
  * @method self fields(Field[] $fields)
+ * @method self title(string $title)
+ * @method self num(string $num)
+ * @method self icon(string|Icon $icon)
  */
 class Page
 {
@@ -17,7 +20,7 @@ class Page
     use IsArrayable;
 
     public function __construct(
-        public string $title, // TODO: should be an string OR array of languages
+        public mixed $title,
         public ?string $num = null,
         public mixed $status = null,
         public mixed $icon = null,
@@ -42,7 +45,7 @@ class Page
      * @param  array<Field>  $fields
      */
     public static function make(
-        string $title,
+        mixed $title,
         ?string $num = null,
         mixed $status = null,
         mixed $icon = null,
@@ -55,5 +58,55 @@ class Page
         array $fields = [],
     ): self {
         return new self(...func_get_args()); // @phpstan-ignore-line
+    }
+
+    public function status(
+        string|array $draft,
+        string|array $unlisted,
+        string|array $listed,
+    ): self {
+        $this->status = PageStatus::make(...func_get_args());  // @phpstan-ignore-line;
+
+        return $this;
+    }
+
+    public function image(
+        ?string $back = null,
+        ?string $color = null,
+        ?string $icon = null,
+        ?string $query = null,
+    ): self {
+        $this->image = PageImage::make(...func_get_args());  // @phpstan-ignore-line;
+
+        return $this;
+    }
+
+    public function options(
+        bool|array $changeSlug = true,
+        bool|array $changeStatus = true,
+        bool|array $changeTemplate = true,
+        bool|array $changeTitle = true,
+        bool|array $create = true,
+        bool|array $delete = true,
+        bool|array $duplicate = true,
+        bool|string $preview = true,
+        bool|array $read = true,
+        bool|array $sort = true,
+        bool|array $update = true,
+        array $properties = [],
+    ): self {
+        $this->options = PageOptions::make(...func_get_args());  // @phpstan-ignore-line
+
+        return $this;
+    }
+
+    public function navigation(
+        string|array $status = 'all',
+        string|array $template = 'all',
+        string $sortBy = 'title asc',
+    ): self {
+        $this->navigation = PageNavigation::make(...func_get_args());  // @phpstan-ignore-line
+
+        return $this;
     }
 }

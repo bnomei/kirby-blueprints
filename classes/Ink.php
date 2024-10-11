@@ -18,9 +18,10 @@ use Bnomei\Blueprints\Schema\User;
  * @method static Page page(string $title, string $num = null, mixed $status = null, mixed $icon = null, mixed $image = null, mixed $options = null, mixed $navigation = null, array $tabs = [], array $columns = [], array $sections = [], array $fields = [])
  * @method static File file(string $title, mixed $image = null, mixed $accept = null, mixed $options = null, array $tabs = [], array $columns = [], array $sections = [], array $fields = [])
  * @method static User user(string $name, string $title, string $description = null, string $home = null, mixed $image = null, mixed $permissions = null, array $tabs = [], array $columns = [], array $sections = [], array $fields = [])
- * @method static Field field($type = null, string|null $id = null, string|array|null $label = null, array $properties = [], string|float|null $width = null)
+ * @method static Field field($type = null, string|null $id = null, string|array|null $label = null, array $properties = [], string|float|null $width = null, string|null $extends = null)
  * @method static Section section(string|SectionTypes $type, array $fields = [], array $columns = [], mixed $empty = null, bool $flip = null, mixed $headline = null, mixed $help = null, array $image = [], mixed $info = null, ?string $id = null, mixed $label = null, ?string $layout = 'list', int $limit = null, int $max = null, int $min = null, int $page = null, string $parent = null, bool $search = null, string $size = null, string $sortBy = null, bool $sortable = null, string $template = null, string $text = null, string $theme = null, mixed $create = null, string $status = null, array $templates = [], mixed $reports = null)
  * @method static Section info(string|SectionTypes $type = SectionTypes::INFO, array $fields = [], array $columns = [], mixed $empty = null, bool $flip = null, mixed $headline = null, mixed $help = null, array $image = [], mixed $info = null, ?string $id = null, mixed $label = null, ?string $layout = 'list', int $limit = null, int $max = null, int $min = null, int $page = null, string $parent = null, bool $search = null, string $size = null, string $sortBy = null, bool $sortable = null, string $template = null, string $text = null, string $theme = null, mixed $create = null, string $status = null, array $templates = [], mixed $reports = null)
+ * @method static Section stats(string|SectionTypes $type = SectionTypes::STATS, array $fields = [], array $columns = [], mixed $empty = null, bool $flip = null, mixed $headline = null, mixed $help = null, array $image = [], mixed $info = null, ?string $id = null, mixed $label = null, ?string $layout = 'list', int $limit = null, int $max = null, int $min = null, int $page = null, string $parent = null, bool $search = null, string $size = null, string $sortBy = null, bool $sortable = null, string $template = null, string $text = null, string $theme = null, mixed $create = null, string $status = null, array $templates = [], mixed $reports = null)
  * @method static Section pages(string|SectionTypes $type = SectionTypes::PAGES, array $fields = [], array $columns = [], mixed $empty = null, bool $flip = null, mixed $headline = null, mixed $help = null, array $image = [], mixed $info = null, ?string $id = null, mixed $label = null, ?string $layout = 'list', int $limit = null, int $max = null, int $min = null, int $page = null, string $parent = null, bool $search = null, string $size = null, string $sortBy = null, bool $sortable = null, string $template = null, string $text = null, string $theme = null, mixed $create = null, string $status = null, array $templates = [], mixed $reports = null)
  * @method static Section files(string|SectionTypes $type = SectionTypes::FILES, array $fields = [], array $columns = [], mixed $empty = null, bool $flip = null, mixed $headline = null, mixed $help = null, array $image = [], mixed $info = null, ?string $id = null, mixed $label = null, ?string $layout = 'list', int $limit = null, int $max = null, int $min = null, int $page = null, string $parent = null, bool $search = null, string $size = null, string $sortBy = null, bool $sortable = null, string $template = null, string $text = null, string $theme = null, mixed $create = null, string $status = null, array $templates = [], mixed $reports = null)
  * @method static Section fields(string|SectionTypes $type = SectionTypes::FIELDS, array $fields = [], array $columns = [], mixed $empty = null, bool $flip = null, mixed $headline = null, mixed $help = null, array $image = [], mixed $info = null, ?string $id = null, mixed $label = null, ?string $layout = 'list', int $limit = null, int $max = null, int $min = null, int $page = null, string $parent = null, bool $search = null, string $size = null, string $sortBy = null, bool $sortable = null, string $template = null, string $text = null, string $theme = null, mixed $create = null, string $status = null, array $templates = [], mixed $reports = null)
@@ -29,6 +30,7 @@ use Bnomei\Blueprints\Schema\User;
  */
 class Ink
 {
+    const ALPHA = 'alpha';
     const ACCEPT = 'accept';
 
     const AFTER = 'after';
@@ -46,6 +48,8 @@ class Ink
     const BUTTONS = 'buttons';
 
     const CALENDAR = 'calendar';
+
+    const COLOR = 'color';
 
     const COLUMNS = 'columns';
 
@@ -100,6 +104,7 @@ class Ink
     const MAXLENGTH = 'maxlength';
 
     const MIN = 'min';
+    const MODE = 'mode';
 
     const MULTIPLE = 'multiple';
 
@@ -138,6 +143,8 @@ class Ink
     const SORTABLE = 'sortable';
 
     const SPELLCHECK = 'spellcheck';
+
+    const STATS = 'stats';
 
     const STEP = 'step';
 
@@ -225,7 +232,8 @@ class Ink
 
     public static function __callStatic(string $name, array $arguments): mixed
     {
-        if (in_array($name, ['info', 'files', 'pages', 'fields'])) {
+        // TODO: replace with \Bnomei\Blueprints\Schema\SectionTypes::cases()
+        if (in_array($name, ['info', 'files', 'pages', 'fields', 'stats'])) {
             $arguments['type'] = $name;
             $name = 'section';
         }

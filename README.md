@@ -213,6 +213,7 @@ You will need to add two traits to your PageModel.
 Without defining a YAML blueprint for the `article` template Kirby would have an empty blueprint definition. But with the attributes defined in the PageModel Kirby will know what fields we want to have in the blueprint (registered by the *autoloader helper*).
 
 **site/plugins/example/models/ArticlePage.php**
+
 ```php
 <?php
 
@@ -259,7 +260,7 @@ Most likely you will want a more complex blueprint definition than just fields a
 
 You can find all available PHP attributes in the [classes/Blueprints/Attributes folder](https://github.com/bnomei/kirby-blueprints/tree/main/classes/Blueprints/Attributes) of this repository. They reflect the properties you would set for a given field in a YAML blueprint. For some properties I created variants since different fields use the same property name but with different meanings (like `max` in a `number` field vs. `max` in a `date` field) and I wanted to keep them unambiguous in PHP.
 
-`Accept, After, Api, Autocomplete, Autofocus, Before, Blueprint, Buttons, Calendar, Columns, ColumnsCount, Converter, Counter, CustomType, DefaultValue, Disabled, Display, EmptyValue, ExtendsField, Fieldsets, Fields, Files, Font, Format, GenericAttribute, Grow, Help, Icon, Image, Info, Inline, Label, Layout, LayoutSettings, Layouts, Link, Marks, Max, MaxDate, MaxRange, MaxTime, MaxLength, Min, MinDate, MinLength, MinRange, MinTime, Multiple, Nodes, Numbered, Options, Path, Pattern, Placeholder, Prepend, Property, Query, Range, Required, Reset, Search, Separator, Size, SortBy, Sortable, Spellcheck, Step, Store, Subpages, Sync, Text, Theme, Time, TimeNotation, Tooltip, Translate, Type, Uploads, When, Width, Wizard`
+`Alpha, Accept, After, Api, Autocomplete, Autofocus, Before, Blueprint, Buttons, Calendar, Columns, ColumnsCount, Converter, Counter, CustomType, DefaultValue, Disabled, Display, EmptyValue, ExtendsField, Fieldsets, Fields, Files, Font, Format, GenericAttribute, Grow, Help, Icon, Image, Info, Inline, Label, Layout, LayoutSettings, Layouts, Link, Marks, Max, MaxDate, MaxRange, MaxTime, MaxLength, Min, MinDate, MinLength, MinRange, MinTime, Mode, Multiple, Nodes, Numbered, Options, Path, Pattern, Placeholder, Prepend, Property, Query, Range, Required, Reset, Search, Separator, Size, SortBy, Sortable, Spellcheck, Step, Store, Subpages, Sync, Text, Theme, Time, TimeNotation, Tooltip, Translate, Type, Uploads, When, Width, Wizard`
 
 ### Benefits of using this plugin
 
@@ -371,6 +372,7 @@ You will use the `*::make()`-helpers to create a blueprint definition in a PHP b
 This will also give you the benefit of not having any blueprint files at all.
 
 **site/plugins/example/models/ArticlePage.php**
+
 ```php
 <?php
 
@@ -388,13 +390,13 @@ class ProductPage extends \Kirby\Cms\Page
         CustomType('qrcode'),
         Property('Custom key', 'custom data'),
     ]
-    public Kirby\Content\Field $qrcode;
+    public \Kirby\Content\Field $qrcode;
 
     #[
         Type(FieldTypes::EMAIL),
         Placeholder('Email Field from Property')
     ]
-    public Kirby\Content\Field $email;
+    public \Kirby\Content\Field $email;
 
     #[
         Blueprint

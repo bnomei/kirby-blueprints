@@ -29,20 +29,20 @@ class ProductPage extends \Kirby\Cms\Page
         CustomType('qrcode'),
         Property('Custom key', 'custom data'),
     ]
-    public Kirby\Content\Field $qrcode;
+    public \Kirby\Content\Field $qrcode;
 
     #[
         Type(FieldTypes::EMAIL),
         Placeholder('Email Field from Property')
     ]
-    public Kirby\Content\Field $email;
+    public \Kirby\Content\Field $email;
 
     #[
         Blueprint(cache: 600)
     ]
     public static function nameOfThisMethodDoesNotMatterOnlyTheAttribute(): array
     {
-        // IMPORTANT: be carefull when using kirby() or site() or page() or option() here
+        // IMPORTANT: be careful when using kirby() or site() or page() or option() here
         // since the THIS method is called before the kirby instance is fully available.
         // if you need such behaviour register the blueprint in the plugins:after hook.
 
@@ -110,7 +110,10 @@ class ProductPage extends \Kirby\Cms\Page
                     ],
                 ),
                 Tab::make(label: 'Badger')
-                    ->icon(Icon::BADGE),
+                    ->icon(Icon::BADGE)
+                    ->sections([
+                        Ink::info(label: 'hello')->text('world'),
+                    ]),
             ],
         )->toArray();
     }
