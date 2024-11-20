@@ -1,7 +1,7 @@
 {
     "name": "bnomei/kirby-blueprints",
     "type": "kirby-plugin",
-    "version": "4.5.0",
+    "version": "5.0.0",
     "license": "MIT",
     "homepage": "https://github.com/bnomei/kirby3-blueprints",
     "description": "PHP Class-based Blueprints for Kirby CMS for better type safety and code completion",
@@ -44,7 +44,7 @@
         }
     },
     "conflict": {
-        "getkirby/cms": "<4.0"
+        "getkirby/cms": "<5.0"
     },
     "require": {
         "php": ">=8.2",
@@ -52,8 +52,8 @@
     },
     "require-dev": {
         "bnomei/autoloader-for-kirby": "^4.2",
-        "getkirby/cms": "^4.0.0-beta.2",
-        "larastan/larastan": "^2.9",
+        "getkirby/cms": "^5.0.0-alpha.3",
+        "larastan/larastan": "^v3.0.0",
         "laravel/pint": "^1.11",
         "pestphp/pest": "^2.24",
         "pestphp/pest-plugin-drift": "^2.5",
