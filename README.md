@@ -1,10 +1,8 @@
 # Kirby Blueprints 
 
-![Release](https://flat.badgen.net/packagist/v/bnomei/kirby-blueprints?color=ae81ff)
-![Downloads](https://flat.badgen.net/packagist/dt/bnomei/kirby-blueprints?color=272822)
-[![Coverage](https://flat.badgen.net/codeclimate/coverage/bnomei/kirby-blueprints)](https://codeclimate.com/github/bnomei/kirby-blueprints)
-[![Maintainability](https://flat.badgen.net/codeclimate/maintainability/bnomei/kirby-blueprints)](https://codeclimate.com/github/bnomei/kirby-blueprints)
-[![Discord](https://flat.badgen.net/badge/discord/bnomei?color=7289da)](https://discordapp.com/users/bnomei)
+![Release](https://flat.badgen.net/packagist/v/bnomei/kirby-blueprints?color=ae81ff&icon=github&label)
+[![Discord](https://flat.badgen.net/badge/discord/bnomei?color=7289da&icon=discord&label)](https://discordapp.com/users/bnomei)
+[![Buymecoffee](https://flat.badgen.net/badge/icon/donate?icon=buymeacoffee&color=FF813F&label)](https://www.buymeacoffee.com/bnomei)
 
 Kirby Ink - PHP Class-based Blueprints for Kirby CMS for better type safety and code completion.
 
