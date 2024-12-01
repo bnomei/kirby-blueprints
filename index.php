@@ -16,10 +16,10 @@ Kirby::plugin('bnomei/blueprints', [
     ],
     'fieldMethods' => [
         'toBlueprint' => function (Field $field): ?array {
-            return $field->model()->blueprint()->field($field->key());
+            return $field->model()?->blueprint()->field($field->key());
         },
         'toInk' => function (Field $field): \Bnomei\Blueprints\Schema\Field {
-            $blueprint = $field->model()->blueprint()->field($field->key());
+            $blueprint = $field->model()?->blueprint()->field($field->key()) ?? [];
             $blueprintSlim = $blueprint;
             unset($blueprintSlim['type']);
             unset($blueprintSlim['label']);

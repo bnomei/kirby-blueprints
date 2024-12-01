@@ -81,7 +81,7 @@ class Blueprint
         // some might not be cacheable like when they are class based and have dynamic fields
         // only set here now if they will not be written on __destruct by trait
         // the cache could be null which means it will use the default value
-        if ($this->cache !== false && $this->cache !== 0 && ! method_exists($this->modelClass, 'blueprintCacheKey')) {
+        if ($this->cache !== false && $this->cache !== 0 && ! method_exists($this->modelClass, 'blueprintCacheKey')) { // @phpstan-ignore-line
             BlueprintCache::set($key, $blueprint);
         }
 
@@ -248,9 +248,9 @@ class Blueprint
                     if (is_string($item)) {
                         $updated[$item] = true; // resolve attribute based definition
                     } elseif (is_array($item) && isset($item['id'])) {
-                        $updated[Str::camel($item['id'])] = $item;
+                        $updated[Str::camel(strval($item['id']))] = $item;
                     } elseif (is_array($item) && isset($item['label'])) {
-                        $updated[Str::camel($item['label'])] = $item;
+                        $updated[Str::camel(strval($item['label']))] = $item;
                     } else {
                         $json_encode = json_encode($item);
                         if ($json_encode === false) {

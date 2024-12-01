@@ -31,6 +31,7 @@ use Bnomei\Blueprints\Schema\User;
 class Ink
 {
     const ALPHA = 'alpha';
+
     const ACCEPT = 'accept';
 
     const AFTER = 'after';
@@ -104,6 +105,7 @@ class Ink
     const MAXLENGTH = 'maxlength';
 
     const MIN = 'min';
+
     const MODE = 'mode';
 
     const MULTIPLE = 'multiple';

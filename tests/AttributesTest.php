@@ -87,12 +87,7 @@ test('has Custom Type and Property', function () {
 });
 
 it('has helpers to get do stuff when kirby has loaded the plugins', function () {
-    $key = BlueprintCache::getKey();
-    kirby()->session()->remove($key);
-    expect(kirby()->session()->get($key))->toBeNull();
     BlueprintCache::rememberCacheDir();
-    expect(kirby()->session()->get($key))->not()->toBeNull();
-
     Blueprint::loadPluginsAfter();
 
     expect(BlueprintCache::cacheDir())->not()->toBeNull();

@@ -57,7 +57,7 @@ class Page
         array $sections = [],
         array $fields = [],
     ): self {
-        return new self(...func_get_args()); // @phpstan-ignore-line
+        return new self(...func_get_args());
     }
 
     public function status(
