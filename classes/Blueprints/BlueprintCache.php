@@ -17,9 +17,13 @@ class BlueprintCache
             return;
         }
 
-        /** @var FileCache $cache */
         $cache = kirby()->cache('bnomei.blueprints');
-        $dir = $cache->root();
+        if ($cache instanceof FileCache) {
+            $dir = $cache->root();
+        } else {
+            $dir = kirby()->roots()->cache();
+        }
+
         if (! Dir::exists($dir)) {
             Dir::make($dir);
         }

@@ -8,5 +8,14 @@ parameters:
 
     ignoreErrors:
 #        - '#Undefined variable: \$this#'
+        - '#Call to function is_array\(\) with array will always evaluate to true#'
+        - '#Call to an undefined method Kirby\\Cms\\Ingredients::#'
+        - '#Trait Bnomei\\Blueprints\\HasBlueprintFromAttributes is used zero times and is not analysed#'
+        - '#Trait Bnomei\\Blueprints\\HasBlueprintCache is used zero times and is not analysed#'
+        - '#Trait Bnomei\\Blueprints\\HasBlueprintCacheResolve is used zero times and is not analysed#'
+        - '#Trait Bnomei\\Blueprints\\HasPublicPropertiesMappedToKirbyFields is used zero times and is not analysed#'
+        - '#Trait Bnomei\\HasInk is used zero times and is not analysed#'
+        - '#Call to function property_exists\(\) with#'
+        - '#Parameter \#1 \$value of function strval expects#'
         -
             identifier: missingType.iterableValue

@@ -13,6 +13,7 @@ enum Icon: string
     case ANGLE_RIGHT = 'angle-right';
     case ANGLE_UP = 'angle-up';
     case ARCHIVE = 'archive';
+    case ASTERIX = 'asterix';
     case ATTACHMENT = 'attachment';
     case AUDIO = 'audio';
     case BADGE = 'badge';
@@ -45,6 +46,7 @@ enum Icon: string
     case CODE = 'code';
     case COG = 'cog';
     case COLLAPSE = 'collapse';
+    case COLLAPSE_HORIZONTAL = 'collapse-horizontal';
     case COPY = 'copy';
     case CREDIT_CARD = 'credit-card';
     case CROP = 'crop';
@@ -61,6 +63,7 @@ enum Icon: string
     case EDIT_LINE = 'edit-line';
     case EMAIL = 'email';
     case EXPAND = 'expand';
+    case EXPAND_HORIZONTAL = 'expand-horizontal';
     case FACEBOOK = 'facebook';
     case FILE = 'file';
     case FILE_AUDIO = 'file-audio';
@@ -111,6 +114,9 @@ enum Icon: string
     case ITALIC = 'italic';
     case KEY = 'key';
     case LAYERS = 'layers';
+    case LAYOUT_COLUMNS = 'layout-columns';
+    case LAYOUT_RIGHT = 'layout-right';
+    case LAYOUT_LEFT = 'layout-left';
     case LINKEDIN = 'linkedin';
     case LIST_BULLET = 'list-bullet';
     case LIST_NUMBERS = 'list-numbers';
@@ -201,5 +207,6 @@ enum Icon: string
     case WAND = 'wand';
     case WHATSAPP = 'whatsapp';
     case WHEELCHAIR = 'wheelchair';
+    case WINDOW = 'window';
     case YOUTUBE = 'youtube';
 }

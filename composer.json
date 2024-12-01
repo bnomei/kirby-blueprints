@@ -1,7 +1,7 @@
 {
     "name": "bnomei/kirby-blueprints",
     "type": "kirby-plugin",
-    "version": "4.5.0",
+    "version": "5.0.0",
     "license": "MIT",
     "homepage": "https://github.com/bnomei/kirby3-blueprints",
     "description": "PHP Class-based Blueprints for Kirby CMS for better type safety and code completion",
@@ -44,31 +44,26 @@
         }
     },
     "conflict": {
-        "getkirby/cms": "<4.0"
+        "getkirby/cms": "<5.0"
     },
     "require": {
         "php": ">=8.2",
         "getkirby/composer-installer": "^1.2"
     },
     "require-dev": {
-        "bnomei/autoloader-for-kirby": "^4.2",
-        "getkirby/cms": "^4.0.0-beta.2",
-        "larastan/larastan": "^2.9",
-        "laravel/pint": "^1.11",
-        "pestphp/pest": "^2.24",
-        "pestphp/pest-plugin-drift": "^2.5",
-        "pestphp/pest-plugin-type-coverage": "^2.4",
-        "spatie/ray": "^1.37"
+        "bnomei/autoloader-for-kirby": "^5.0",
+        "getkirby/cms": "^5.0.0-alpha.4",
+        "larastan/larastan": "^v3.0.0",
+        "laravel/pint": "^1.13",
+        "pestphp/pest": "^v3.5.1",
+        "spatie/ray": "^1.39"
     },
     "scripts": {
-        "analyze": "./vendor/bin/phpstan",
+        "stan": "./vendor/bin/phpstan",
         "fix": "./vendor/bin/pint",
-        "test": "./vendor/bin/pest",
-        "coverage": [
-            "php tests/patch.php",
-            "./vendor/bin/pest --coverage"
-        ],
+        "test": "./vendor/bin/pest --profile",
         "dist": [
+            "composer fix",
             "composer install --no-dev --optimize-autoloader",
             "git rm -rf --cached .; git add .;"
         ],
@@ -77,7 +72,8 @@
             "composer update",
             "composer install --working-dir=tests/kirby --no-dev --optimize-autoloader",
             "composer update --working-dir=tests/kirby",
-            "php tests/patch.php"
+            "sed -i.bak 's/function dump(/function xdump(/g' tests/kirby/config/helpers.php",
+            "sed -i.bak 's/function e(/function xe(/g' tests/kirby/config/helpers.php"
         ]
     },
     "extra": {
