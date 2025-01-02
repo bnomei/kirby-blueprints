@@ -94,7 +94,7 @@ class BlueprintCache
 
         if ($file && static::exists($key, $expire)) {
             $data = Json::read($file);
-            //\Kirby\Cms\Blueprint::$loaded[$key] = $data;
+            // \Kirby\Cms\Blueprint::$loaded[$key] = $data;
 
             return $data;
         }
@@ -130,7 +130,7 @@ class BlueprintCache
                     continue;
                 }*/
                 $blueprint = Json::read($file);
-                //\Kirby\Cms\Blueprint::$loaded[$key] = $blueprint;
+                // \Kirby\Cms\Blueprint::$loaded[$key] = $blueprint;
                 $blueprints[$key] = $blueprint;
             }
         }

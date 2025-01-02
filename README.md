@@ -1,4 +1,4 @@
-# Kirby Blueprints 
+# Kirby Blueprints with Ink
 
 [![Kirby 5](https://flat.badgen.net/badge/Kirby/5?color=ECC748)](https://getkirby.com)
 ![PHP 8.2](https://flat.badgen.net/badge/PHP/8.2?color=4E5B93&icon=php&label)
@@ -7,9 +7,9 @@
 [![Coverage](https://flat.badgen.net/codeclimate/coverage/bnomei/kirby-blueprints?icon=codeclimate&label)](https://codeclimate.com/github/bnomei/kirby-blueprints)
 [![Maintainability](https://flat.badgen.net/codeclimate/maintainability/bnomei/kirby-blueprints?icon=codeclimate&label)](https://codeclimate.com/github/bnomei/kirby-blueprints/issues)
 [![Discord](https://flat.badgen.net/badge/discord/bnomei?color=7289da&icon=discord&label)](https://discordapp.com/users/bnomei)
-[![Buymecoffee](https://flat.badgen.net/badge/icon/donate?icon=buymeacoffee&color=FF813F&label)](https://www.buymeacoffee.com/bnomei)
+[![Buy License](https://flat.badgen.net/badge/icon/Buy%20License?icon=lemonsqueeze&color=FFC233&label=$)](https://buy-blueprints.bnomei.com)
 
-Kirby Ink - PHP Class-based Blueprints for Kirby CMS for better type safety and code completion.
+Kirby Blueprints with Ink - PHP Class-based Blueprints for Kirby CMS for better type safety and code completion.
 
 ## Install
 
@@ -18,6 +18,10 @@ Using composer:
 ```bash
 composer require bnomei/kirby-blueprints
 ```
+
+## Licensing
+
+Kirby Blueprints with Ink is a commercial plugin that requires a license. You can install and test the plugin locally without a license. However, production environments require a valid license. You can [purchase a license here](https://buy-blueprints.bnomei.com).
 
 ## What's in the box?
 
@@ -561,7 +565,7 @@ If caching is enabled it will only compile the blueprint once and then use the c
 ```
 
 > [!NOTE]
-> The default can be set in the config.php of your plugin with the `bnomei.blueprints.expire` option. 
+> The default can be set in the config.php of your plugin with the `bnomei.ink.expire` option. 
 
 
 If `defer` is set to `true` it will compile the blueprint after the kirby instance is ready. This means you can use the `kirby()/site()/page()`-helpers in your blueprints or query the content of the site. Most of the time it makes sense to disable caching when using `defer` since the cache might interfere with the dynamic behaviour you are trying to create.
@@ -597,7 +601,14 @@ class ExamplePage extends \Kirby\Cms\Page {
 ```
 
 > [!NOTE]
-> The cache will use the duration as defined in the `bnomei.blueprints.expire` option in the config.php of your plugin.
+> The cache will use the duration as defined in the `bnomei.ink.expire` option in the config.php of your plugin.
+
+
+## Settings
+
+| bnomei.blueprints. | Default               | Description                                                                                                              |
+|--------------------|-----------------------|--------------------------------------------------------------------------------------------------------------------------|
+| license            | `string/fn()`         | Enter your license key. You need to [buy a license](https://buy-blueprints.bnomei.com) for non-development environments. |
 
 ## Disclaimer
 
@@ -605,6 +616,4 @@ This plugin is provided "as is" with no guarantee. Use it at your own risk and a
 
 ## License
 
-[MIT](https://opensource.org/licenses/MIT)
-
-It is discouraged to use this plugin in any project that promotes racism, sexism, homophobia, animal abuse, violence or any other form of hate speech.
+Kirby Blueprints (Ink) License © 2025-PRESENT Bruno Meilick

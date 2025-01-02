@@ -1,9 +1,8 @@
 {
     "name": "bnomei/kirby-blueprints",
     "type": "kirby-plugin",
-    "version": "5.0.0",
-    "license": "MIT",
-    "homepage": "https://github.com/bnomei/kirby3-blueprints",
+    "version": "5.0.1",
+    "license": "proprietary",
     "description": "PHP Class-based Blueprints for Kirby CMS for better type safety and code completion",
     "authors": [
         {
@@ -28,7 +27,8 @@
         "model",
         "class",
         "attributes",
-        "property"
+        "property",
+        "ink"
     ],
     "autoload": {
         "psr-4": {

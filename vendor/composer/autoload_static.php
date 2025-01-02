@@ -29,6 +29,7 @@ class ComposerStaticInitf86866b1e656ff06b3e06fa3ac36b4f7
     );
 
     public static $classMap = array (
+        'Bnomei\\BlueprintsLicense' => __DIR__ . '/../..' . '/classes/BlueprintsLicense.php',
         'Bnomei\\Blueprints\\Attributes\\Accept' => __DIR__ . '/../..' . '/classes/Blueprints/Attributes/Accept.php',
         'Bnomei\\Blueprints\\Attributes\\After' => __DIR__ . '/../..' . '/classes/Blueprints/Attributes/After.php',
         'Bnomei\\Blueprints\\Attributes\\Allow' => __DIR__ . '/../..' . '/classes/Blueprints/Attributes/Allow.php',

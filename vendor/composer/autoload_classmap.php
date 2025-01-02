@@ -6,6 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Bnomei\\BlueprintsLicense' => $baseDir . '/classes/BlueprintsLicense.php',
     'Bnomei\\Blueprints\\Attributes\\Accept' => $baseDir . '/classes/Blueprints/Attributes/Accept.php',
     'Bnomei\\Blueprints\\Attributes\\After' => $baseDir . '/classes/Blueprints/Attributes/After.php',
     'Bnomei\\Blueprints\\Attributes\\Allow' => $baseDir . '/classes/Blueprints/Attributes/Allow.php',

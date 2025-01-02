@@ -6,7 +6,7 @@ const KIRBY_HELPER_E = false;
 require __DIR__.'/../vendor/autoload.php';
 
 $micotime = microtime(true);
-//\Bnomei\Blueprints\BlueprintCache::preloadFromLoadMap();
+// \Bnomei\Blueprints\BlueprintCache::preloadFromLoadMap();
 $kirby = new Kirby;
 $render = $kirby->render();
 $micotime = microtime(true) - $micotime;

@@ -14,7 +14,7 @@ $a = autoloader(__DIR__)->toArray([
         ],
     ],
 ]);
-//ray($a)->blue();
+// ray($a)->blue();
 
 // load everything else with the autoloader
 Kirby::plugin('test/plugin', $a);

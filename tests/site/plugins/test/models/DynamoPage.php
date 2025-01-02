@@ -13,8 +13,8 @@ use Kirby\Content\Field;
 class DynamoPage extends Page
 {
     use HasInk;
-    //use \Bnomei\Blueprints\HasBlueprintCache;
-    //use \Bnomei\Blueprints\HasBlueprintCacheResolve;
+    // use \Bnomei\Blueprints\HasBlueprintCache;
+    // use \Bnomei\Blueprints\HasBlueprintCacheResolve;
 
     #[
         Label('Loaded'),
@@ -23,9 +23,9 @@ class DynamoPage extends Page
     public Field $fromblue;
 
     #[
-        //Blueprint(cache: 100, defer: true)
+        // Blueprint(cache: 100, defer: true)
         Blueprint(defer: true, cache: 0)
-        //Blueprint(cache: 0)
+        // Blueprint(cache: 0)
     ]
     public static function nameOfThisMethodDoesNotMatterOnlyTheAttribute(): array
     {
