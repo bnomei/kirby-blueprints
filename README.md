@@ -603,6 +603,9 @@ class ExamplePage extends \Kirby\Cms\Page {
 > [!NOTE]
 > The cache will use the duration as defined in the `bnomei.ink.expire` option in the config.php of your plugin.
 
+## Commands
+
+- `blueprints:yml2php` will allow you to convert existing YAML based blueprints into PHP arrays for easier migration to full PHP blueprints
 
 ## Settings
 
