@@ -9,6 +9,7 @@ enum FieldTypes: string
     case COLOR = 'color';
     case DATE = 'date';
     case EMAIL = 'email';
+    case ENTRIES = 'entries';
     case FILES = 'files';
     case GAP = 'gap';
     case GROUP = 'group';

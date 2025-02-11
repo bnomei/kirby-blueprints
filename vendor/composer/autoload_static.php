@@ -51,6 +51,7 @@ class ComposerStaticInitf86866b1e656ff06b3e06fa3ac36b4f7
         'Bnomei\\Blueprints\\Attributes\\Display' => __DIR__ . '/../..' . '/classes/Blueprints/Attributes/Display.php',
         'Bnomei\\Blueprints\\Attributes\\EmptyValue' => __DIR__ . '/../..' . '/classes/Blueprints/Attributes/EmptyValue.php',
         'Bnomei\\Blueprints\\Attributes\\ExtendsField' => __DIR__ . '/../..' . '/classes/Blueprints/Attributes/ExtendsField.php',
+        'Bnomei\\Blueprints\\Attributes\\Field' => __DIR__ . '/../..' . '/classes/Blueprints/Attributes/Field.php',
         'Bnomei\\Blueprints\\Attributes\\Fields' => __DIR__ . '/../..' . '/classes/Blueprints/Attributes/Fields.php',
         'Bnomei\\Blueprints\\Attributes\\Fieldsets' => __DIR__ . '/../..' . '/classes/Blueprints/Attributes/Fieldsets.php',
         'Bnomei\\Blueprints\\Attributes\\Files' => __DIR__ . '/../..' . '/classes/Blueprints/Attributes/Files.php',

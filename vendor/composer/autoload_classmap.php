@@ -28,6 +28,7 @@ return array(
     'Bnomei\\Blueprints\\Attributes\\Display' => $baseDir . '/classes/Blueprints/Attributes/Display.php',
     'Bnomei\\Blueprints\\Attributes\\EmptyValue' => $baseDir . '/classes/Blueprints/Attributes/EmptyValue.php',
     'Bnomei\\Blueprints\\Attributes\\ExtendsField' => $baseDir . '/classes/Blueprints/Attributes/ExtendsField.php',
+    'Bnomei\\Blueprints\\Attributes\\Field' => $baseDir . '/classes/Blueprints/Attributes/Field.php',
     'Bnomei\\Blueprints\\Attributes\\Fields' => $baseDir . '/classes/Blueprints/Attributes/Fields.php',
     'Bnomei\\Blueprints\\Attributes\\Fieldsets' => $baseDir . '/classes/Blueprints/Attributes/Fieldsets.php',
     'Bnomei\\Blueprints\\Attributes\\Files' => $baseDir . '/classes/Blueprints/Attributes/Files.php',

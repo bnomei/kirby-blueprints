@@ -70,6 +70,8 @@ class Ink
 
     const FIELDSETS = 'fieldsets';
 
+    const FIELD = 'field';
+
     const FIELDS = 'fields';
 
     const FILES = 'files';
