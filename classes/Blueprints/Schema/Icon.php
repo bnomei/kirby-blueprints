@@ -4,8 +4,10 @@ namespace Bnomei\Blueprints\Schema;
 
 enum Icon: string
 {
+    case ACCESSIBILITY = 'accessibility';
     case ACCOUNT = 'account';
     case ADD = 'add';
+    case AI = 'ai';
     case ALERT = 'alert';
     case ANCHOR = 'anchor';
     case ANGLE_DOWN = 'angle-down';
@@ -25,8 +27,8 @@ enum Icon: string
     case BOOK = 'book';
     case BOOKMARK = 'bookmark';
     case BOX = 'box';
-    case BUG = 'bug';
     case BRUSH = 'brush';
+    case BUG = 'bug';
     case CALENDAR = 'calendar';
     case CANCEL = 'cancel';
     case CANCEL_SMALL = 'cancel-small';
@@ -43,6 +45,7 @@ enum Icon: string
     case CIRCLE_OUTLINE = 'circle-outline';
     case CLEAR = 'clear';
     case CLOCK = 'clock';
+    case CLOUD = 'cloud';
     case CODE = 'code';
     case COG = 'cog';
     case COLLAPSE = 'collapse';
@@ -83,6 +86,7 @@ enum Icon: string
     case FUNNEL = 'funnel';
     case GITHUB = 'github';
     case GLOBE = 'globe';
+    case GOOGLE = 'google';
     case GRID = 'grid';
     case GRID_BOTTOM = 'grid-bottom';
     case GRID_BOTTOM_LEFT = 'grid-bottom-left';
@@ -93,7 +97,6 @@ enum Icon: string
     case GRID_TOP = 'grid-top';
     case GRID_TOP_LEFT = 'grid-top-left';
     case GRID_TOP_RIGHT = 'grid-top-right';
-    case GOOGLE = 'google';
     case H1 = 'h1';
     case H2 = 'h2';
     case H3 = 'h3';
@@ -110,13 +113,15 @@ enum Icon: string
     case IMAGES = 'images';
     case IMPORT = 'import';
     case INFO = 'info';
+    case INFO_CARD = 'info-card';
     case INSTAGRAM = 'instagram';
     case ITALIC = 'italic';
     case KEY = 'key';
+    case KIRBY = 'kirby';
     case LAYERS = 'layers';
     case LAYOUT_COLUMNS = 'layout-columns';
-    case LAYOUT_RIGHT = 'layout-right';
     case LAYOUT_LEFT = 'layout-left';
+    case LAYOUT_RIGHT = 'layout-right';
     case LINKEDIN = 'linkedin';
     case LIST_BULLET = 'list-bullet';
     case LIST_NUMBERS = 'list-numbers';
@@ -159,11 +164,15 @@ enum Icon: string
     case QUOTE = 'quote';
     case REFRESH = 'refresh';
     case REMOVE = 'remove';
+    case ROCKET = 'rocket';
+    case RSS = 'rss';
     case SEARCH = 'search';
     case SERVER = 'server';
     case SETTINGS = 'settings';
     case SHARE = 'share';
+    case SHIELD = 'shield';
     case SHUFFLE = 'shuffle';
+    case SHUT_SOWN = 'shut-down';
     case SITEMAP = 'sitemap';
     case SMILE = 'smile';
     case SORT = 'sort';
@@ -173,17 +182,18 @@ enum Icon: string
     case STAR_FILLED = 'star-filled';
     case STAR_OUTLINE = 'star-outline';
     case STATUS_DRAFT = 'status-draft';
-    case STATUS_UNLISTED = 'status-unlisted';
     case STATUS_LISTED = 'status-listed';
+    case STATUS_UNLISTED = 'status-unlisted';
     case STORE = 'store';
     case STRIKETHROUGH = 'strikethrough';
-    case SUN = 'sun';
     case SUBSCRIPT = 'subscript';
+    case SUN = 'sun';
     case SUPERSCRIPT = 'superscript';
     case TABLE = 'table';
     case TABLET = 'tablet';
     case TAG = 'tag';
     case TEMPLATE = 'template';
+    case TERMINAL = 'terminal';
     case TEXT = 'text';
     case TEXT_CENTER = 'text-center';
     case TEXT_JUSTIFY = 'text-justify';
@@ -204,6 +214,7 @@ enum Icon: string
     case USERS = 'users';
     case VIDEO = 'video';
     case VIMEO = 'vimeo';
+    case WALLET = 'wallet';
     case WAND = 'wand';
     case WHATSAPP = 'whatsapp';
     case WHEELCHAIR = 'wheelchair';
