@@ -42,6 +42,8 @@ class Ink
 
     const AUTOFOCUS = 'autofocus';
 
+    const BATCH = 'batch';
+
     const BEFORE = 'before';
 
     const BLUEPRINT = 'blueprint';

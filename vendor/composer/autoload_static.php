@@ -37,6 +37,7 @@ class ComposerStaticInitf86866b1e656ff06b3e06fa3ac36b4f7
         'Bnomei\\Blueprints\\Attributes\\Api' => __DIR__ . '/../..' . '/classes/Blueprints/Attributes/Api.php',
         'Bnomei\\Blueprints\\Attributes\\Autocomplete' => __DIR__ . '/../..' . '/classes/Blueprints/Attributes/Autocomplete.php',
         'Bnomei\\Blueprints\\Attributes\\Autofocus' => __DIR__ . '/../..' . '/classes/Blueprints/Attributes/Autofocus.php',
+        'Bnomei\\Blueprints\\Attributes\\Batch' => __DIR__ . '/../..' . '/classes/Blueprints/Attributes/Batch.php',
         'Bnomei\\Blueprints\\Attributes\\Before' => __DIR__ . '/../..' . '/classes/Blueprints/Attributes/Before.php',
         'Bnomei\\Blueprints\\Attributes\\Blueprint' => __DIR__ . '/../..' . '/classes/Blueprints/Attributes/Blueprint.php',
         'Bnomei\\Blueprints\\Attributes\\Buttons' => __DIR__ . '/../..' . '/classes/Blueprints/Attributes/Buttons.php',

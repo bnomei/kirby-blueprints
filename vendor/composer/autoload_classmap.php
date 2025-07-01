@@ -14,6 +14,7 @@ return array(
     'Bnomei\\Blueprints\\Attributes\\Api' => $baseDir . '/classes/Blueprints/Attributes/Api.php',
     'Bnomei\\Blueprints\\Attributes\\Autocomplete' => $baseDir . '/classes/Blueprints/Attributes/Autocomplete.php',
     'Bnomei\\Blueprints\\Attributes\\Autofocus' => $baseDir . '/classes/Blueprints/Attributes/Autofocus.php',
+    'Bnomei\\Blueprints\\Attributes\\Batch' => $baseDir . '/classes/Blueprints/Attributes/Batch.php',
     'Bnomei\\Blueprints\\Attributes\\Before' => $baseDir . '/classes/Blueprints/Attributes/Before.php',
     'Bnomei\\Blueprints\\Attributes\\Blueprint' => $baseDir . '/classes/Blueprints/Attributes/Blueprint.php',
     'Bnomei\\Blueprints\\Attributes\\Buttons' => $baseDir . '/classes/Blueprints/Attributes/Buttons.php',
