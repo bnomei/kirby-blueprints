@@ -2,9 +2,9 @@
 
 namespace Bnomei\Blueprints;
 
-use Kirby\Cms\FileBlueprint;
-use Kirby\Cms\PageBlueprint;
-use Kirby\Cms\UserBlueprint;
+use Kirby\Cms\File;
+use Kirby\Cms\Page;
+use Kirby\Cms\User;
 
 trait HasBlueprintCache
 {
@@ -13,10 +13,10 @@ trait HasBlueprintCache
     public function blueprintCacheKey(): string
     {
         $blueprint = $this->blueprint();
-        $type = match ($blueprint::class) {
-            PageBlueprint::class => 'pages',
-            FileBlueprint::class => 'files',
-            UserBlueprint::class => 'users',
+        $type = match (true) {
+            $this instanceof Page => 'pages',
+            $this instanceof File => 'files',
+            $this instanceof User => 'users',
         }.'/';
 
         return $type.str_replace($type, '', $blueprint->name());
@@ -38,7 +38,7 @@ trait HasBlueprintCache
             if (isset(static::$blueprintCacheResolve)) {
                 foreach ($copy['tabs'] as $tabKey => $tab) {
                     foreach ($tab['columns'] as $columnKey => $column) {
-                        foreach ($column['sections'] as $sectionKey => $section) {
+                        foreach ($column['sections'] ?? [] as $sectionKey => $section) {
                             $section = $blueprint->section($sectionKey);
                             $path = $data['tabs'][$tabKey]['columns'][$columnKey]['sections'][$sectionKey];
                             if (array_key_exists('fields', $path)) {
