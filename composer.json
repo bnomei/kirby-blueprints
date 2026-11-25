@@ -77,7 +77,10 @@
         ]
     },
     "extra": {
-        "kirby-cms-path": "tests/kirby"
+        "kirby-cms-path": "tests/kirby",
+        "kirby": {
+            "compatible": "^5.0 || ^6.0"
+        }
     },
     "suggests": {
         "bnomei/autoloader-for-kirby": "Helper to automatically load various Kirby extensions in a plugin"
